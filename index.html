@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projetos Digitais 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+</head>
+<body>
+  <div id="presentation">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <button class="nav-arrow nav-prev" id="prevBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <button class="nav-arrow nav-next" id="nextBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+    <div class="slide-counter" id="slideCounter">1 / 1</div>
+
+    <!-- RODAPE DE NAVEGACAO POR PROJETO -->
+    <nav class="proj-nav" id="projNav">
+      <button class="proj-nav-item" data-goto="1" data-proj="1">
+        <span class="proj-nav-num">01</span>
+        <span class="proj-nav-name">Avaliacao NPS</span>
+      </button>
+      <button class="proj-nav-item" data-goto="3" data-proj="2">
+        <span class="proj-nav-num">02</span>
+        <span class="proj-nav-name">Calendario</span>
+      </button>
+      <button class="proj-nav-item" data-goto="5" data-proj="3">
+        <span class="proj-nav-num">03</span>
+        <span class="proj-nav-name">Solic. Material</span>
+      </button>
+      <button class="proj-nav-item" data-goto="7" data-proj="4">
+        <span class="proj-nav-num">04</span>
+        <span class="proj-nav-name">Reg. Limpeza</span>
+      </button>
+      <button class="proj-nav-item" data-goto="9" data-proj="5">
+        <span class="proj-nav-num">05</span>
+        <span class="proj-nav-name">Checklist Maq.</span>
+      </button>
+      <button class="proj-nav-item" data-goto="11" data-proj="6">
+        <span class="proj-nav-num">06</span>
+        <span class="proj-nav-name">Notificacoes</span>
+      </button>
+      <button class="proj-nav-item" data-goto="13" data-proj="7">
+        <span class="proj-nav-num">07</span>
+        <span class="proj-nav-name">Gest. Armarios</span>
+      </button>
+      <button class="proj-nav-item" data-goto="15" data-proj="8">
+        <span class="proj-nav-num">08</span>
+        <span class="proj-nav-name">Calend. Telas</span>
+      </button>
+    </nav>
+
+    <!-- ====== CAPA ====== -->
+    <section class="slide slide--cover active" data-slide="0">
+      <div class="cover-stripe"></div>
+      <div class="cover-content">
+        <div class="cover-inner">
+          <div class="cover-top anim-fade-down">
+            <div class="cover-logos">
+              <img src="/images/logo-left.png" alt="" class="cover-logo" onerror="this.style.display='none'" />
+              <span class="cover-logos-sep"></span>
+              <img src="/images/logo-right.png" alt="DPA" class="cover-logo" onerror="this.style.display='none'" />
+            </div>
+          </div>
+          <p class="cover-label anim-fade-up">Apresentacao de Resultados</p>
+          <h1 class="cover-title anim-fade-up delay-1">Projetos<br>Digitais</h1>
+          <div class="cover-year-wrap anim-scale-in delay-2"><span class="cover-year">2026</span></div>
+          <div class="cover-line anim-width-in delay-3"></div>
+          <div class="cover-tags anim-fade-up delay-4">
+            <span class="tag">8 Projetos</span><span class="tag">Automacao</span><span class="tag">Resultados</span>
+          </div>
+          <div class="cover-bottom anim-fade-up delay-5">
+            <button class="cover-btn" onclick="goToSlide(1)">Comecar <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== PROJETO 1A: SHOWCASE ====== -->
+    <section class="slide" data-slide="1">
+      <header class="topbar">
+        <div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div>
+        <div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div>
+      </header>
+      <div class="slide-body">
+        <div class="showcase-layout">
+          <div class="showcase-sidebar anim-fade-right">
+            <div class="proj-num">01</div>
+            <h3 class="proj-name">Avaliacao<br>NPS</h3>
+            <p class="proj-desc">Sistema completo de avaliacao de colaboradores com dashboard inteligente e QR Code digital.</p>
+            <div class="proj-tag-row"><span class="proj-tag">Dashboard</span><span class="proj-tag">QR Code</span><span class="proj-tag">NPS</span></div>
+          </div>
+          <div class="showcase-main anim-fade-up delay-1">
+            <div class="browser-frame"><div class="browser-bar"><div class="browser-dots"><i></i><i></i><i></i></div><div class="browser-url">avaliacao-nps.dpa.com.br</div></div><div class="browser-body"><img src="/images/projeto1-tela.png" alt="Avaliacao NPS" class="browser-img" onerror="this.closest('.browser-body').innerHTML='<div class=placeholder>Adicione: projeto1-tela.png</div>'" /></div></div>
+          </div>
+        </div>
+      </div>
+      <footer class="bottombar"><span class="bottombar-proj">Projeto 1 de 7</span><div class="bottombar-dots"><i class="active"></i><i></i><i></i><i></i><i></i><i></i><i></i></div></footer>
+    </section>
+
+    <!-- ====== PROJETO 1B: ANTES/DEPOIS ====== -->
+    <section class="slide" data-slide="2">
+      <header class="topbar">
+        <div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div>
+        <div class="topbar-center-title anim-fade-down">Avaliacao NPS</div>
+        <div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div>
+      </header>
+
+      <div class="slide-body v2-body">
+        <div class="v2-main-grid">
+          <!-- COLUNA ESQUERDA: ANTES -->
+          <div class="v2-col-before anim-fade-right">
+            <div class="v2-col-title v2-col-title--red">
+              <span class="v2-dot v2-dot--red"></span>
+              O Desafio
+            </div>
+            <div class="v2-img-wrap">
+              <span class="v2-label v2-label--red">Antes</span>
+              <img src="/images/projeto1-antes.png" alt="Google Forms" />
+            </div>
+            <ul class="v2-list v2-list--red">
+              <li>Processo manual: QR Codes impressos em papel e sujeitos a falhas</li>
+              <li>Margem de erro alta: Matriculas digitadas incorretamente</li>
+              <li>Gargalo de tempo: Avaliacoes em planilhas cruas e calculo feito a mao</li>
+            </ul>
+          </div>
+
+          <!-- COLUNA DIREITA: DEPOIS -->
+          <div class="v2-col-after anim-fade-left delay-1">
+            <div class="v2-col-title v2-col-title--green">
+              <span class="v2-dot v2-dot--green"></span>
+              A Solucao
+            </div>
+            <div class="v2-img-wrap">
+              <span class="v2-label v2-label--green">Depois</span>
+              <img src="/images/projeto1-tela.png" alt="Sistema novo" />
+            </div>
+
+            <div class="v2-group anim-fade-up delay-2">
+              <h6>Para o Avaliador (Precisao)</h6>
+              <ul class="v2-list v2-list--green">
+                <li>QR Code 100% digital e separado por area</li>
+                <li>Validacao automatica de matricula com exibicao da foto do colaborador</li>
+                <li>Sistema de "roleta" com alertas bloqueando erros e avisando sobre notas detratoras (6 e 7)</li>
+              </ul>
+            </div>
+
+            <div class="v2-group anim-fade-up delay-3">
+              <h6>Para a Equipe de Limpeza (Transparencia e Privacidade)</h6>
+              <ul class="v2-list v2-list--green">
+                <li>Painel de rastreio: o colaborador ve se foi avaliado, mas nao ve a nota (evita atritos)</li>
+                <li>Acompanhamento de status: em analise, aprovada ou rejeitada (com o motivo exato da rejeicao)</li>
+              </ul>
+            </div>
+
+            <div class="v2-group anim-fade-up delay-3">
+              <h6>Para a Administracao (Gestao e Automacao)</h6>
+              <ul class="v2-list v2-list--green">
+                <li>Dashboard inteligente com calculos das areas ja 100% automatizados</li>
+                <li>Controle de pendencias: visualizacao de quem ja tem ou ainda precisa da avaliacao</li>
+                <li>Auditoria total: rastreio detalhado de quem avaliou, nota dada, setor e matricula</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- CENARIOS -->
+        <div class="v2-time anim-fade-up delay-4">
+          <div class="v2-time-block v2-time--slow">
+            <div class="v2-time-icon">&#128197;</div>
+            <div class="v2-time-info">
+              <span class="v2-time-label">Cenario A <small>- Ritmo atual da empresa</small></span>
+              <span class="v2-time-value v2-time-value--red">6h/semana (Tercas) &rarr; Entrega em 3 Meses</span><small class="v2-time-calc">~72h totais / 6h por semana = 12 semanas</small>
+            </div>
+          </div>
+          <div class="v2-time-block v2-time--fast">
+            <div class="v2-time-icon">&#9889;</div>
+            <div class="v2-time-info">
+              <span class="v2-time-label">Cenario B <small>- Meu ritmo real</small></span>
+              <span class="v2-time-value v2-time-value--green">36h/semana &rarr; Entrega em 2 Semanas</span><small class="v2-time-calc">~72h totais / 36h por semana = 2 semanas</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="bottombar"><span class="bottombar-proj">Projeto 1 de 7</span><div class="bottombar-dots"><i class="active"></i><i></i><i></i><i></i><i></i><i></i><i></i></div></footer>
+    </section>
+
+    <!-- ====== PROJETO 2A ====== -->
+    <section class="slide" data-slide="3">
+      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
+      <div class="slide-body"><div class="showcase-layout"><div class="showcase-sidebar anim-fade-right"><div class="proj-num">02</div><h3 class="proj-name">Calendario</h3><p class="proj-desc">Plataforma completa de gestao de escalas com rastreio fotografico de atividades em tempo real.</p><div class="proj-tag-row"><span class="proj-tag">Calendario</span><span class="proj-tag">Escalas</span><span class="proj-tag">Rastreio</span></div></div><div class="showcase-main anim-fade-up delay-1"><div class="browser-frame"><div class="browser-bar"><div class="browser-dots"><i></i><i></i><i></i></div><div class="browser-url">calendario.dpa.com.br</div></div><div class="browser-body"><img src="/images/projeto2-tela.png" alt="Calendario" class="browser-img" /></div></div></div></div></div>
+    </section>
+
+    <!-- ====== PROJETO 2B ====== -->
+    <section class="slide" data-slide="4">
+      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-center-title anim-fade-down">Calendario</div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
+      <div class="slide-body v2-body">
+        <div class="v2-main-grid">
+          <!-- COLUNA ESQUERDA: DESAFIO -->
+          <div class="v2-col-before anim-fade-right">
+            <div class="v2-col-title v2-col-title--red"><span class="v2-dot v2-dot--red"></span> O Desafio (Antes)</div>
+            <div class="v2-before-imgs">
+              <div class="v2-img-wrap v2-img-half"><span class="v2-label v2-label--red">Antes</span><img src="/images/projeto2-antes1.png" alt="WhatsApp grupo" /></div>
+              <div class="v2-img-wrap v2-img-half"><span class="v2-label v2-label--red">Antes</span><img src="/images/projeto2-antes2.png" alt="WhatsApp fotos" /></div>
+            </div>
+            <ul class="v2-list v2-list--red">
+              <li>Escalas sem clareza visual e comunicacao de tarefas dependendo de grupos de mensagens</li>
+              <li>Caos de informacoes: Fotos de comprovacao perdidas no chat, tornando a verificacao de areas um processo lento e confuso</li>
+              <li>Falta de metricas: Nenhuma ferramenta para medir o que esta pendente, concluido ou atrasado</li>
+            </ul>
+          </div>
+
+          <!-- COLUNA DIREITA: SOLUCAO -->
+          <div class="v2-col-after anim-fade-left delay-1">
+            <div class="v2-col-title v2-col-title--green"><span class="v2-dot v2-dot--green"></span> A Solucao (Como Ficou)</div>
+            <div class="v2-img-wrap"><span class="v2-label v2-label--green">Depois</span><img src="/images/projeto2-tela.png" alt="Calendario digital" /></div>
+
+            <div class="v2-group anim-fade-up delay-2">
+              <h6>Plataforma e Auditoria</h6>
+              <ul class="v2-list v2-list--green">
+                <li>Plataforma completa de gestao de escalas com rastreio fotografico e auditoria</li>
+                <li>Governanca: Sistema de auditoria com historico de modificacoes (quem criou, editou ou excluiu) e geracao de relatorios oficiais em PDF</li>
+              </ul>
+            </div>
+
+            <div class="v2-group anim-fade-up delay-2">
+              <h6>Notificacoes e Comprovacao</h6>
+              <ul class="v2-list v2-list--green">
+                <li>Notificacoes Push: O colaborador recebe alertas diretamente no celular sempre que uma nova atividade e atribuida a ele</li>
+                <li>Comprovacao inteligente: Upload de fotos feito diretamente dentro da tarefa, vinculando a imagem ao dia, area e responsavel</li>
+              </ul>
+            </div>
+
+            <div class="v2-group anim-fade-up delay-3">
+              <h6>Visao e Controle</h6>
+              <ul class="v2-list v2-list--green">
+                <li>Visao 360 para a Gestao: Calendario interativo com panorama de visualizacao diaria, semanal e mensal e total e escopo</li>
+                <li>Controle de Aderencia: Filtros instantaneos para visualizar atividades por colaborador, pesquisar por nome e acompanhar o status (concluido, pendente, atrasada)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- CENARIOS -->
+        <div class="v2-time anim-fade-up delay-4">
+          <div class="v2-time-block v2-time--slow">
+            <div class="v2-time-icon">&#128197;</div>
+            <div class="v2-time-info">
+              <span class="v2-time-label">Cenario A <small>- Ritmo atual da empresa</small></span>
+              <span class="v2-time-value v2-time-value--red">1 dia/semana (Tercas) &rarr; Quase 4 meses (15 semanas)</span><small class="v2-time-calc">~80h totais / 6h por semana = ~13 semanas uteis</small>
+            </div>
+          </div>
+          <div class="v2-time-block v2-time--fast">
+            <div class="v2-time-icon">&#9889;</div>
+            <div class="v2-time-info">
+              <span class="v2-time-label">Cenario B <small>- Meu ritmo real</small></span>
+              <span class="v2-time-value v2-time-value--green">80h de desenvolvimento &rarr; Entrega em 2,5 Semanas</span><small class="v2-time-calc">~80h totais / ~36h por semana = 2,5 semanas</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== PROJETO 3A ====== -->
+    <section class="slide" data-slide="5">
+      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
+      <div class="slide-body"><div class="showcase-layout"><div class="showcase-sidebar anim-fade-right"><div class="proj-num">03</div><h3 class="proj-name">Solicitacao<br>de Material</h3><p class="proj-desc">Plataforma com catalogo visual e fluxo em etapas para controle absoluto de suprimentos.</p><div class="proj-tag-row"><span class="proj-tag">Catalogo</span><span class="proj-tag">Estoque</span><span class="proj-tag">Fluxo</span></div></div><div class="showcase-main anim-fade-up delay-1"><div class="browser-frame"><div class="browser-bar"><div class="browser-dots"><i></i><i></i><i></i></div><div class="browser-url">solicitacao-material.dpa.com.br</div></div><div class="browser-body"><img src="/images/projeto3-tela.png" alt="Solicitacao de Material" class="browser-img" /></div></div></div></div></div>
+    </section>
+
+    <!-- ====== PROJETO 3B ====== -->
+    <section class="slide" data-slide="6">
+      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-center-title anim-fade-down">Solicitacao de Material</div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
+      <div class="slide-body v2-body">
+        <div class="v2-main-grid">
+          <!-- DESAFIO -->
+          <div class="v2-col-before anim-fade-right">
+            <div class="v2-col-title v2-col-title--red"><span class="v2-dot v2-dot--red"></span> O Desafio (Antes)</div>
+            <div class="v2-before-imgs">
+              <div class="v2-img-wrap v2-img-half"><span class="v2-label v2-label--red">Formulario</span><img src="/images/projeto3-antes1.png" alt="Formulario antigo" /></div>
+              <div class="v2-img-wrap v2-img-half"><span class="v2-label v2-label--red">Planilha</span><img src="/images/projeto3-antes2.png" alt="Planilha Excel" /></div>
+            </div>
+            <ul class="v2-list v2-list--red">
+              <li>Despadronizacao de Dados: Formularios basicos que geravam erros de digitacao (nomes incompletos ou abreviados) e ausencia de codigos oficiais dos materiais</li>
+              <li>Falta de Rastreabilidade: A gestao nao sabia para qual DML ou area o material estava indo, dificultando o controle de consumo</li>
+              <li>Processo Descentralizado: Cruzamento de dados lento, com os pedidos em uma planilha e o historico do colaborador em outra</li>
+            </ul>
+          </div>
+
+          <!-- SOLUCAO -->
+          <div class="v2-col-after anim-fade-left delay-1">
+            <div class="v2-col-title v2-col-title--green"><span class="v2-dot v2-dot--green"></span> A Solucao (Como Ficou)</div>
+            <div class="v2-img-wrap"><span class="v2-label v2-label--green">Depois</span><img src="/images/projeto3-tela.png" alt="Sistema novo" /></div>
+
+            <div class="v2-group anim-fade-up delay-2">
+              <h6>Catalogo Visual e UI Intuitiva</h6>
+              <ul class="v2-list v2-list--green">
+                <li>Inclusao de imagens dos produtos para zerar erros na hora da escolha e tela de "resumo do pedido" para revisao antes do envio</li>
+              </ul>
+            </div>
+
+            <div class="v2-group anim-fade-up delay-2">
+              <h6>Fluxo Guiado (Step-by-Step)</h6>
+              <ul class="v2-list v2-list--green">
+                <li>O sistema agora distribui o pedido em etapas logicas (identificacao de turno, matricula e destino final: DML ou Uso Pessoal)</li>
+              </ul>
+            </div>
+
+            <div class="v2-group anim-fade-up delay-3">
+              <h6>Bloqueio de Duplicidade</h6>
+              <ul class="v2-list v2-list--green">
+                <li>Rastreio inteligente que verifica se o DML ja fez solicitacoes no mesmo dia, evitando pedidos duplicados e acumulo de estoque</li>
+              </ul>
+            </div>
+
+            <div class="v2-group anim-fade-up delay-3">
+              <h6>Historico Centralizado</h6>
+              <ul class="v2-list v2-list--green">
+                <li>Integracao total do historico de consumo por matricula e por DML, no mesmo ambiente</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- CENARIOS -->
+        <div class="v2-time anim-fade-up delay-4">
+          <div class="v2-time-block v2-time--slow">
+            <div class="v2-time-icon">&#128197;</div>
+            <div class="v2-time-info">
+              <span class="v2-time-label">Cenario A <small>- Viacao Pioneira</small></span>
+              <span class="v2-time-value v2-time-value--red">1 dia/semana (Tercas) &rarr; 3 meses (12 tercas)</span><small class="v2-time-calc">~72h totais / 6h por semana = 12 semanas</small>
+            </div>
+          </div>
+          <div class="v2-time-block v2-time--fast">
+            <div class="v2-time-icon">&#9889;</div>
+            <div class="v2-time-info">
+              <span class="v2-time-label">Cenario B <small>- Meu ritmo real</small></span>
+              <span class="v2-time-value v2-time-value--green">72h reais de codigo (tardes e sabados) &rarr; 2 semanas</span><small class="v2-time-calc">~72h totais / ~36h por semana = 2 semanas</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== PROJETO 4A ====== -->
+    <section class="slide" data-slide="7">
+      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
+      <div class="slide-body"><div class="showcase-layout"><div class="showcase-sidebar anim-fade-right"><div class="proj-num">04</div><h3 class="proj-name">Registro<br>Limpeza</h3><p class="proj-desc">Sistema digital responsivo com gestao de cores, painel administrativo e assinatura eletronica.</p><div class="proj-tag-row"><span class="proj-tag">Bancada</span><span class="proj-tag">Ocorrencias</span><span class="proj-tag">Deploy</span></div></div><div class="showcase-main anim-fade-up delay-1"><div class="browser-frame"><div class="browser-bar"><div class="browser-dots"><i></i><i></i><i></i></div><div class="browser-url">registro-limpeza.dpa.com.br</div></div><div class="browser-body"><img src="/images/projeto4-tela.png" alt="Registro Limpeza" class="browser-img" /></div></div></div></div></div>
+    </section>
+
+    <!-- ====== PROJETO 4B ====== -->
+    <section class="slide" data-slide="8">
+      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-center-title anim-fade-down">Registro Limpeza</div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
+      <div class="slide-body v2-body">
+        <div class="v2-main-grid">
+          <!-- DESAFIO -->
+          <div class="v2-col-before anim-fade-right">
+            <div class="v2-col-title v2-col-title--red"><span class="v2-dot v2-dot--red"></span> O Desafio (Antes)</div>
+            <div class="v2-img-wrap"><span class="v2-label v2-label--red">Folha de papel</span><img src="/images/projeto4-antes.png" alt="Controle em papel" /></div>
+            <ul class="v2-list v2-list--red">
+              <li>Gestao Analogica e Confusa: Controles em folhas de papel, deixando colaboradores perdidos sobre os dias e as frequencias exatas das tarefas</li>
+              <li>Validacao Ineficiente: O supervisor perdia horas semanais descendo e conferindo fisicamente assinaturas de papel para validar as atividades</li>
+              <li>Zero Gestao Visual: Falta de indicadores claros sobre o status do que esta pendente ou atrasado</li>
+            </ul>
+          </div>
+
+          <!-- SOLUCAO -->
+          <div class="v2-col-after anim-fade-left delay-1">
+            <div class="v2-col-title v2-col-title--green"><span class="v2-dot v2-dot--green"></span> A Solucao (Em Fase de Deploy)</div>
+            <div class="v2-img-wrap"><span class="v2-label v2-label--green">Depois</span><img src="/images/projeto4-tela.png" alt="Sistema digital" /></div>
+
+            <div class="v2-group anim-fade-up delay-2">
+              <h6>Acesso Multi-Dispositivo</h6>
+              <ul class="v2-list v2-list--green">
+                <li>Interface 100% responsiva (Celular, PC, Tablet) com paineis individuais para cada colaborador assinar digitalmente onde estiver</li>
+              </ul>
+            </div>
+
+            <div class="v2-group anim-fade-up delay-2">
+              <h6>Sistema de Cores Inteligente</h6>
+              <ul class="v2-list v2-list--green">
+                <li>Indicadores visuais claros (Pendente, Atencao, Realizado, Validado) que facilitam a vida de quem executa e de quem audita</li>
+              </ul>
+            </div>
+
+            <div class="v2-group anim-fade-up delay-3">
+              <h6>Autonomia Administrativa</h6>
+              <ul class="v2-list v2-list--green">
+                <li>Dashboard central com barra de progresso (0 a 100%), permitindo ao ADM editar atividades, mudar frequencias e gerenciar acessos sem precisar mexer no codigo</li>
+              </ul>
+            </div>
+
+            <div class="v2-group anim-fade-up delay-3">
+              <h6>Arquitetura e Deploy</h6>
+              <ul class="v2-list v2-list--green">
+                <li>Banco de dados estruturado e sistema conteinerizado (Docker) para integracao segura com os servidores legados da empresa</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- CENARIOS -->
+        <div class="v2-time anim-fade-up delay-4">
+          <div class="v2-time-block v2-time--slow">
+            <div class="v2-time-icon">&#128197;</div>
+            <div class="v2-time-info">
+              <span class="v2-time-label">Cenario A <small>- A realidade da empresa</small></span>
+              <span class="v2-time-value v2-time-value--red">1 dia/sem (Tercas), 8h &rarr; 4 anos e meio (234 semanas)</span><small class="v2-time-calc">~1.872h totais / 8h por semana = 234 semanas</small>
+            </div>
+          </div>
+          <div class="v2-time-block v2-time--fast">
+            <div class="v2-time-icon">&#9889;</div>
+            <div class="v2-time-info">
+              <span class="v2-time-label">Cenario B <small>- Meu esforco real (imersao)</small></span>
+              <span class="v2-time-value v2-time-value--green">Seg a sab + tardes livres &rarr; 9 meses (39 semanas ativas)</span><small class="v2-time-calc">~1.872h totais / ~48h por semana = 39 semanas</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== PROJETO 5A ====== -->
+    <section class="slide" data-slide="9">
+      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
+      <div class="slide-body"><div class="showcase-layout"><div class="showcase-sidebar anim-fade-right"><div class="proj-num">05</div><div class="proj-future-badge">PROJETO FUTURO</div><h3 class="proj-name">Checklist<br>Maquinarios</h3><p class="proj-desc">Aplicativo PWA interativo com tecnologia 3D e auditoria completa para checklist de maquinarios.</p><div class="proj-tag-row"><span class="proj-tag">PWA</span><span class="proj-tag">3D</span><span class="proj-tag">Checklist</span></div></div><div class="showcase-main anim-fade-up delay-1"><div class="video-frame"><div class="browser-bar"><div class="browser-dots"><i></i><i></i><i></i></div><div class="browser-url">checklist-maquinarios.dpa.com.br</div></div><div class="video-body"><video src="/images/projeto5-video.mp4" controls playsinline></video></div></div></div></div></div>
+    </section>
+
+    <!-- ====== PROJETO 5B ====== -->
+    <section class="slide" data-slide="10">
+      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-center-title anim-fade-down">Checklist Maquinarios</div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
+      <div class="slide-body v2-body">
+        <div class="v2-main-grid">
+          <!-- DESAFIO -->
+          <div class="v2-col-before anim-fade-right">
+            <div class="v2-col-title v2-col-title--red"><span class="v2-dot v2-dot--red"></span> O Desafio (Cenario Atual)</div>
+            <div class="v2-img-wrap"><span class="v2-label v2-label--red">Formulario</span><img src="/images/projeto5-antes.png" alt="Google Forms" /></div>
+            <ul class="v2-list v2-list--red">
+              <li>Zero Conformidade: Checklists ignorados ou nao preenchidos na pratica</li>
+              <li>Dados Genericos: Formularios engessados onde as respostas se repetem para qualquer tipo de maquina, sem especificidade</li>
+              <li>Falta de Auditoria Visual: Nenhuma exigencia de foto para comprovar o estado real do equipamento</li>
+            </ul>
+          </div>
+
+          <!-- SOLUCAO -->
+          <div class="v2-col-after anim-fade-left delay-1">
+            <div class="v2-col-title v2-col-title--green"><span class="v2-dot v2-dot--green"></span> A Solucao (O Prototipo do Futuro)</div>
+            <div class="v2-img-wrap"><span class="v2-label v2-label--green">Prototipo</span><img src="/images/projeto5-depois.png" alt="App PWA 3D" /></div>
+
+            <div class="v2-group anim-fade-up delay-2">
+              <h6>Experiencia de App (PWA)</h6>
+              <ul class="v2-list v2-list--green">
+                <li>Sistema responsivo que funciona no celular como um aplicativo nativo, sem precisar baixar nas lojas</li>
+                <li>Renderizacao de maquinario em 3D na tela, indicando os pontos exatos onde a foto deve ser tirada</li>
+              </ul>
+            </div>
+
+            <div class="v2-group anim-fade-up delay-3">
+              <h6>Trava de Seguranca</h6>
+              <ul class="v2-list v2-list--green">
+                <li>O checklist so e concluido se a foto do peca/maquinario for tirada em tempo real</li>
+              </ul>
+            </div>
+
+            <div class="v2-group anim-fade-up delay-3">
+              <h6>Gestao Total</h6>
+              <ul class="v2-list v2-list--green">
+                <li>Calendario integrado de manutencoes e Dashboard de usabilidade para medir a aderencia da equipe</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- CENARIOS (3 opcoes) -->
+        <div class="v2-time v2-time--triple anim-fade-up delay-4">
+          <div class="v2-time-block v2-time--slow">
+            <div class="v2-time-icon">&#128197;</div>
+            <div class="v2-time-info">
+              <span class="v2-time-label">Cenario A <small>- Ritmo da empresa</small></span>
+              <span class="v2-time-value v2-time-value--red">1 dia/sem (Tercas), 8h &rarr; 9 meses (36 semanas)</span><small class="v2-time-calc">~288h totais / 8h por semana = 36 semanas</small>
+            </div>
+          </div>
+          <div class="v2-time-block v2-time--mid">
+            <div class="v2-time-icon">&#128338;</div>
+            <div class="v2-time-info">
+              <span class="v2-time-label">Cenario B <small>- Meio-Termo (Equilibrio)</small></span>
+              <span class="v2-time-value" style="color:var(--ink)">3 dias programados + 2 na operacao &rarr; 1 mes e meio</span><small class="v2-time-calc">~288h totais / 18h por semana = ~16 semanas = ~6 semanas uteis</small>
+            </div>
+          </div>
+          <div class="v2-time-block v2-time--fast">
+            <div class="v2-time-icon">&#9889;</div>
+            <div class="v2-time-info">
+              <span class="v2-time-label">Cenario C <small>- Foco em Tecnologia (Ideal)</small></span>
+              <span class="v2-time-value v2-time-value--green">4 dias programados + 1 dia admin &rarr; Apenas 1 Mes</span><small class="v2-time-calc">~288h totais / 24h por semana = ~12 semanas = ~4.5 semanas uteis</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== PROJETO 6A ====== -->
+    <section class="slide" data-slide="11">
+      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
+      <div class="slide-body"><div class="showcase-layout"><div class="showcase-sidebar anim-fade-right"><div class="proj-num">06</div><div class="proj-future-badge">PROJETO FUTURO</div><h3 class="proj-name">Central de<br>Notificacoes</h3><p class="proj-desc">Sistema de notificacoes por area com gestao de colaboradores e alertas inteligentes para a limpeza.</p><div class="proj-tag-row"><span class="proj-tag">Notificacoes</span><span class="proj-tag">Areas</span><span class="proj-tag">Alertas</span></div></div><div class="showcase-main anim-fade-up delay-1"><div class="video-frame"><div class="browser-bar"><div class="browser-dots"><i></i><i></i><i></i></div><div class="browser-url">notificacoes-limpeza.dpa.com.br</div></div><div class="video-body"><video src="/images/projeto6-video.mp4" controls playsinline></video></div></div></div></div></div>
+    </section>
+
+    <!-- ====== PROJETO 6B ====== -->
+    <section class="slide" data-slide="12">
+      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-center-title anim-fade-down">Central de Notificacoes</div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
+      <div class="slide-body v2-body">
+        <div class="v2-main-grid">
+          <!-- DESAFIO -->
+          <div class="v2-col-before anim-fade-right">
+            <div class="v2-col-title v2-col-title--red"><span class="v2-dot v2-dot--red"></span> O Desafio (Antes)</div>
+            <div class="v2-no-image-box">
+              <span>Sem sistema de notificacoes</span>
+              <p>Atualmente nao existe nenhuma ferramenta para notificar colaboradores ou areas sobre tarefas, ocorrencias ou pendencias da limpeza.</p>
+            </div>
+            <ul class="v2-list v2-list--red">
+              <li>Comunicacao informal: Avisos dependem de mensagens em grupos de WhatsApp ou comunicacao verbal</li>
+              <li>Sem rastreio: Ninguem sabe se o colaborador recebeu, visualizou ou atendeu a solicitacao</li>
+              <li>Zero segmentacao: Nao existe separacao por area — avisos genericos para todos, sem direcionamento</li>
+            </ul>
+          </div>
+
+          <!-- SOLUCAO -->
+          <div class="v2-col-after anim-fade-left delay-1">
+            <div class="v2-col-title v2-col-title--green"><span class="v2-dot v2-dot--green"></span> A Solucao (Prototipo)</div>
+            <div class="v2-img-wrap"><span class="v2-label v2-label--green">Prototipo</span><img src="/images/projeto6-depois.png" alt="Central de Notificacoes" /></div>
+
+            <div class="v2-group anim-fade-up delay-2">
+              <h6>Gestao por Area</h6>
+              <ul class="v2-list v2-list--green">
+                <li>Selecao de areas (Financeiro, Tecnologia, RH, Comercial, Juridico, Operacoes) com visualizacao dos colaboradores de cada setor</li>
+              </ul>
+            </div>
+
+            <div class="v2-group anim-fade-up delay-2">
+              <h6>Notificacoes Direcionadas</h6>
+              <ul class="v2-list v2-list--green">
+                <li>Envio de alertas individuais ou em massa por area, com confirmacao de recebimento e leitura</li>
+              </ul>
+            </div>
+
+            <div class="v2-group anim-fade-up delay-3">
+              <h6>Painel de Controle</h6>
+              <ul class="v2-list v2-list--green">
+                <li>Dashboard com status de cada notificacao (enviada, lida, respondida) e historico completo por colaborador</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- CENARIOS -->
+        <div class="v2-time v2-time--triple anim-fade-up delay-4">
+          <div class="v2-time-block v2-time--slow">
+            <div class="v2-time-icon">&#128197;</div>
+            <div class="v2-time-info">
+              <span class="v2-time-label">Cenario A <small>- Ritmo da empresa</small></span>
+              <span class="v2-time-value v2-time-value--red">6h/sem (Tercas) &rarr; Quase 4 meses (15 semanas)</span><small class="v2-time-calc">~90h totais / 6h por semana = 15 semanas</small>
+            </div>
+          </div>
+          <div class="v2-time-block v2-time--mid">
+            <div class="v2-time-icon">&#128338;</div>
+            <div class="v2-time-info">
+              <span class="v2-time-label">Cenario B <small>- Meio-Termo (Equilibrio)</small></span>
+              <span class="v2-time-value" style="color:var(--ink)">3 dias prog. + 2 operacao, 18h/sem &rarr; 1 mes e 1 semana</span><small class="v2-time-calc">~90h totais / 18h por semana = 5 semanas</small>
+            </div>
+          </div>
+          <div class="v2-time-block v2-time--fast">
+            <div class="v2-time-icon">&#9889;</div>
+            <div class="v2-time-info">
+              <span class="v2-time-label">Cenario C <small>- Foco em Tecnologia (Ideal)</small></span>
+              <span class="v2-time-value v2-time-value--green">4 dias prog. + 1 admin, 24h/sem &rarr; Menos de 1 Mes</span><small class="v2-time-calc">~90h totais / 24h por semana = 3,75 semanas</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== PROJETO 7A ====== -->
+    <section class="slide" data-slide="13">
+      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
+      <div class="slide-body"><div class="showcase-layout"><div class="showcase-sidebar anim-fade-right"><div class="proj-num">07</div><div class="proj-future-badge">PROJETO FUTURO</div><h3 class="proj-name">Gestao de<br>Armarios</h3><p class="proj-desc">Sistema visual a prova de erros, com rastreio automatico e gestao inteligente de armarios por colaborador.</p><div class="proj-tag-row"><span class="proj-tag">Armarios</span><span class="proj-tag">UI/UX</span><span class="proj-tag">Auditoria</span></div></div><div class="showcase-main anim-fade-up delay-1"><div class="video-frame"><div class="browser-bar"><div class="browser-dots"><i></i><i></i><i></i></div><div class="browser-url">gestao-armarios.dpa.com.br</div></div><div class="video-body"><video src="/images/projeto7-video.mp4" controls playsinline></video></div></div></div></div></div>
+    </section>
+
+    <!-- ====== PROJETO 7B ====== -->
+    <section class="slide" data-slide="14">
+      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-center-title anim-fade-down">Gestao de Armarios</div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
+      <div class="slide-body v2-body">
+        <div class="v2-main-grid">
+          <!-- DESAFIO -->
+          <div class="v2-col-before anim-fade-right">
+            <div class="v2-col-title v2-col-title--red"><span class="v2-dot v2-dot--red"></span> O Desafio (Cenario Atual)</div>
+            <div class="v2-img-wrap"><span class="v2-label v2-label--red">Planilha Excel</span><img src="/images/projeto7-antes.png" alt="Planilha de armarios" /></div>
+            <ul class="v2-list v2-list--red">
+              <li>Fragilidade de Dados: Planilhas complexas geridas manualmente, onde formulas vitais sao frequentemente apagadas ou corrompidas durante o uso rotineiro</li>
+              <li>Rastreabilidade Zero: Historico de movimentacao de armarios e colaboradores registrado de forma analogica ("por cima") ou no ceremonial no Excel</li>
+              <li>Falta de Auditoria (Ponto Cego): Impossibilidade de saber quem alterou uma informacao, quando a alteracao foi feita ou para onde o colaborador foi realocado</li>
+            </ul>
+          </div>
+
+          <!-- SOLUCAO -->
+          <div class="v2-col-after anim-fade-left delay-1">
+            <div class="v2-col-title v2-col-title--green"><span class="v2-dot v2-dot--green"></span> A Solucao (Prototipo do Futuro)</div>
+            <div class="v2-img-wrap"><span class="v2-label v2-label--green">Prototipo</span><img src="/images/projeto7-depois.png" alt="Sistema de armarios" /></div>
+
+            <div class="v2-group anim-fade-up delay-2">
+              <h6>Gestao na Palma da Mao</h6>
+              <ul class="v2-list v2-list--green">
+                <li>UI/UX moderno com layout que mapeia visualmente os armarios, permitindo adicionar ou movimentar colaboradores diretamente pelo celular</li>
+              </ul>
+            </div>
+
+            <div class="v2-group anim-fade-up delay-2">
+              <h6>Sistema "A Prova de Falha"</h6>
+              <ul class="v2-list v2-list--green">
+                <li>Elimina total de formulas, uma interface limpa e blindada, garantindo que nenhuma pessoa pressione sem querer um botao e quebre o sistema</li>
+              </ul>
+            </div>
+
+            <div class="v2-group anim-fade-up delay-3">
+              <h6>Banco de Auditoria Autonomo</h6>
+              <ul class="v2-list v2-list--green">
+                <li>Cada movimentacao gera um registro imutavel no banco de dados, aposentando os "post-its" e criando um historico real e seguro</li>
+              </ul>
+            </div>
+
+            <div class="v2-group anim-fade-up delay-3">
+              <h6>Dashboard de Movimentacoes</h6>
+              <ul class="v2-list v2-list--green">
+                <li>Painel central para a administracao monitorar todas as trocas, sabendo exatamente quem mexeu, quando e para onde foi a chave</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- CENARIOS (3) -->
+        <div class="v2-time v2-time--triple anim-fade-up delay-4">
+          <div class="v2-time-block v2-time--slow">
+            <div class="v2-time-icon">&#128197;</div>
+            <div class="v2-time-info">
+              <span class="v2-time-label">Cenario A <small>- Ritmo da empresa</small></span>
+              <span class="v2-time-value v2-time-value--red">6h/sem (Tercas) &rarr; 8 meses (Meio ano)</span><small class="v2-time-calc">~192h totais / 6h por semana = 32 semanas</small>
+            </div>
+          </div>
+          <div class="v2-time-block v2-time--mid">
+            <div class="v2-time-icon">&#128338;</div>
+            <div class="v2-time-info">
+              <span class="v2-time-label">Cenario B <small>- Meio-Termo (Equilibrio)</small></span>
+              <span class="v2-time-value" style="color:var(--ink)">3 dias prog. + 2 operacao, 18h/sem &rarr; 2 Meses</span><small class="v2-time-calc">~192h totais / 18h por semana = ~11 semanas = 8 semanas uteis</small>
+            </div>
+          </div>
+          <div class="v2-time-block v2-time--fast">
+            <div class="v2-time-icon">&#9889;</div>
+            <div class="v2-time-info">
+              <span class="v2-time-label">Cenario C <small>- Foco em Tecnologia (Ideal)</small></span>
+              <span class="v2-time-value v2-time-value--green">4 dias prog. + 1 admin, 24h/sem &rarr; 1 Mes e Meio</span><small class="v2-time-calc">~192h totais / 24h por semana = 8 semanas = 5 semanas uteis</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== PROJETO 8A ====== -->
+    <section class="slide" data-slide="15">
+      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
+      <div class="slide-body"><div class="showcase-layout"><div class="showcase-sidebar anim-fade-right"><div class="proj-num">08</div><div class="proj-future-badge">PROJETO FUTURO</div><h3 class="proj-name">Calendario<br>de Telas</h3><p class="proj-desc">Sistema de Manutencao Preditiva com modelagem 3D, checklists fotograficos e gestao visual do estoque.</p><div class="proj-tag-row"><span class="proj-tag">3D</span><span class="proj-tag">Estoque</span><span class="proj-tag">Manutencao</span></div></div><div class="showcase-main anim-fade-up delay-1"><div class="video-frame"><div class="browser-bar"><div class="browser-dots"><i></i><i></i><i></i></div><div class="browser-url">calendario-telas.dpa.com.br</div></div><div class="video-body"><video src="/images/projeto8-video.mp4" controls playsinline></video></div></div></div></div></div>
+    </section>
+
+    <!-- ====== PROJETO 8B ====== -->
+    <section class="slide" data-slide="16">
+      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-center-title anim-fade-down">Calendario de Telas</div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
+      <div class="slide-body v2-body">
+        <div class="v2-main-grid">
+          <!-- DESAFIO -->
+          <div class="v2-col-before anim-fade-right">
+            <div class="v2-col-title v2-col-title--red"><span class="v2-dot v2-dot--red"></span> O Desafio (Cenario Atual)</div>
+            <div class="v2-no-image-box">
+              <span>Sem sistema de gestao de telas</span>
+              <p>Nao existe ferramenta para controle visual do estoque de telas, manutencao ou rastreio de qualidade.</p>
+            </div>
+            <ul class="v2-list v2-list--red">
+              <li>Controle Informal: Acompanhamento feito exclusivamente por mensagens de WhatsApp ou do arquivo e fichamento alterado no local para inspecoes</li>
+              <li>Falta de Previsibilidade: Ausencia de um cronograma claro e visual sobre quando cada tela precisa ser trocada</li>
+              <li>Sem historico fotografico organizado e sem indicadores de aderencia para saber se o padrao de qualidade esta sendo mantido</li>
+            </ul>
+          </div>
+
+          <!-- SOLUCAO -->
+          <div class="v2-col-after anim-fade-left delay-1">
+            <div class="v2-col-title v2-col-title--green"><span class="v2-dot v2-dot--green"></span> A Solucao (Prototipo do Futuro)</div>
+            <div class="v2-img-wrap"><span class="v2-label v2-label--green">Prototipo 3D</span><img src="/images/projeto8-depois.png" alt="Sistema 3D de telas" /></div>
+
+            <div class="v2-group anim-fade-up delay-2">
+              <h6>Gemeo Digital em 3D</h6>
+              <ul class="v2-list v2-list--green">
+                <li>Visualizacao das telas do estoque em 3D para facilitar a identificacao exata de qual equipamento esta sendo analisado</li>
+              </ul>
+            </div>
+
+            <div class="v2-group anim-fade-up delay-2">
+              <h6>Alertas Visuais e Automaticos</h6>
+              <ul class="v2-list v2-list--green">
+                <li>De leitura rapida, a tela muda de cor automaticamente para vermelho no sistema quando o prazo da lavagem expira, forcando a acao da equipe</li>
+              </ul>
+            </div>
+
+            <div class="v2-group anim-fade-up delay-3">
+              <h6>Checklist Fotografico com Rating</h6>
+              <ul class="v2-list v2-list--green">
+                <li>Obrigatoriedade de anexar foto apos a lavagem para gerar uma nota/rating de qualidade do servico</li>
+              </ul>
+            </div>
+
+            <div class="v2-group anim-fade-up delay-3">
+              <h6>Dashboard de Aderencia e Calendario</h6>
+              <ul class="v2-list v2-list--green">
+                <li>Painel nos mesmos moldes do sistema de escala, mostrando a frequencia de manutencao e o indice de cumprimento das tarefas</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- CENARIOS (3) -->
+        <div class="v2-time v2-time--triple anim-fade-up delay-4">
+          <div class="v2-time-block v2-time--slow">
+            <div class="v2-time-icon">&#128197;</div>
+            <div class="v2-time-info">
+              <span class="v2-time-label">Cenario A <small>- Ritmo da empresa</small></span>
+              <span class="v2-time-value v2-time-value--red">6h/sem (Tercas) &rarr; 3 meses (12 semanas)</span><small class="v2-time-calc">~72h totais / 6h por semana = 12 semanas</small>
+            </div>
+          </div>
+          <div class="v2-time-block v2-time--mid">
+            <div class="v2-time-icon">&#128338;</div>
+            <div class="v2-time-info">
+              <span class="v2-time-label">Cenario B <small>- Meio-Termo (Equilibrio)</small></span>
+              <span class="v2-time-value" style="color:var(--ink)">3 dias prog. + 2 operacao, 18h/sem &rarr; 4 semanas (30 dias)</span><small class="v2-time-calc">~72h totais / 18h por semana = 4 semanas</small>
+            </div>
+          </div>
+          <div class="v2-time-block v2-time--fast">
+            <div class="v2-time-icon">&#9889;</div>
+            <div class="v2-time-info">
+              <span class="v2-time-label">Cenario C <small>- Foco em Tecnologia (Ideal)</small></span>
+              <span class="v2-time-value v2-time-value--green">4 dias prog. + 1 admin, 24h/sem &rarr; 3 semanas</span><small class="v2-time-calc">~72h totais / 24h por semana = 3 semanas</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== FINAL ====== -->
+    <section class="slide slide--final-full" data-slide="17">
+      <header class="topbar">
+        <div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div>
+        <div class="topbar-center-title">Resumo de Resultados</div>
+        <div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div>
+      </header>
+
+      <div class="slide-body final-body">
+        <!-- HEADLINE -->
+        <div class="final-headline anim-fade-up">
+          <span class="final-headline-time">1 ano</span> de Brasal. <span class="final-headline-accent">8 projetos.</span>
+        </div>
+
+        <!-- METRICAS PRINCIPAIS -->
+        <div class="final-metrics anim-fade-up">
+          <div class="final-metric">
+            <span class="final-metric-num" data-count="4">0</span>
+            <span class="final-metric-label">Projetos<br>Desenvolvidos</span>
+          </div>
+          <div class="final-metric">
+            <span class="final-metric-num" data-count="3">0</span>
+            <span class="final-metric-label">Entregues<br>em Producao</span>
+          </div>
+          <div class="final-metric">
+            <span class="final-metric-num" data-count="1">0</span>
+            <span class="final-metric-label">Em Fase<br>Final</span>
+          </div>
+          <div class="final-metric">
+            <span class="final-metric-num" data-count="4">0</span>
+            <span class="final-metric-label">Prototipos<br>Futuros</span>
+          </div>
+          <div class="final-metric final-metric--accent">
+            <span class="final-metric-num" data-count="100">0</span>
+            <span class="final-metric-unit">%</span>
+            <span class="final-metric-label">Digital<br>Sem papel</span>
+          </div>
+        </div>
+
+        <!-- O QUE FOI AUTOMATIZADO -->
+        <div class="final-section anim-fade-up delay-1">
+          <h4 class="final-section-title">O que foi automatizado</h4>
+          <div class="final-tags-grid">
+            <div class="final-tag-item">
+              <span class="final-tag-icon">&#128203;</span>
+              <span>Avaliacoes NPS com QR Code digital e dashboard automatico</span>
+            </div>
+            <div class="final-tag-item">
+              <span class="final-tag-icon">&#128197;</span>
+              <span>Escalas e calendario com rastreio fotografico em tempo real</span>
+            </div>
+            <div class="final-tag-item">
+              <span class="final-tag-icon">&#128230;</span>
+              <span>Solicitacao de material com catalogo visual e bloqueio de duplicidade</span>
+            </div>
+            <div class="final-tag-item">
+              <span class="final-tag-icon">&#9989;</span>
+              <span>Registro de limpeza com assinatura digital e sistema de cores</span>
+            </div>
+            <div class="final-tag-item">
+              <span class="final-tag-icon">&#128295;</span>
+              <span>Checklist de maquinarios com renderizacao 3D e foto obrigatoria</span>
+            </div>
+            <div class="final-tag-item">
+              <span class="final-tag-icon">&#128276;</span>
+              <span>Central de notificacoes por area com confirmacao de leitura</span>
+            </div>
+            <div class="final-tag-item">
+              <span class="final-tag-icon">&#128274;</span>
+              <span>Gestao de armarios com auditoria imutavel e mapa visual</span>
+            </div>
+            <div class="final-tag-item">
+              <span class="final-tag-icon">&#127916;</span>
+              <span>Calendario de telas com gemeo digital 3D e alertas automaticos</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ELIMINADOS -->
+        <div class="final-bottom anim-fade-up delay-2">
+          <div class="final-eliminated">
+            <h5>Eliminados</h5>
+            <div class="final-elim-row">
+              <span class="final-elim-item">&#10060; Planilhas manuais</span>
+              <span class="final-elim-item">&#10060; Google Forms</span>
+              <span class="final-elim-item">&#10060; Controle em papel</span>
+              <span class="final-elim-item">&#10060; WhatsApp como ferramenta</span>
+              <span class="final-elim-item">&#10060; Fotos perdidas no chat</span>
+              <span class="final-elim-item">&#10060; Formulas quebradas</span>
+            </div>
+          </div>
+          <div class="final-created">
+            <h5>Criados</h5>
+            <div class="final-elim-row">
+              <span class="final-created-item">&#9989; Dashboards inteligentes</span>
+              <span class="final-created-item">&#9989; Auditoria completa</span>
+              <span class="final-created-item">&#9989; Rastreio fotografico</span>
+              <span class="final-created-item">&#9989; Notificacoes Push</span>
+              <span class="final-created-item">&#9989; Prototipos 3D</span>
+              <span class="final-created-item">&#9989; Assinatura digital</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- QR CODE -->
+        <div class="final-qr anim-fade-up delay-3">
+          <div class="final-qr-code" id="qrcode"></div>
+          <div class="final-qr-text">
+            <strong>Sugira um projeto!</strong>
+            <span>Escaneie o QR Code para enviar sua sugestao de projeto futuro.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script type="module" src="/main.js"></script>
+  <script>
+    // Gerar QR Code
+    window.addEventListener('DOMContentLoaded', () => {
+      const qr = qrcode(0, 'M');
+      qr.addData(window.location.origin + '/sugestao.html');
+      qr.make();
+      document.getElementById('qrcode').innerHTML = qr.createSvgTag({ cellSize: 4, margin: 0 });
+    });
+  </script>
+</body>
+</html>

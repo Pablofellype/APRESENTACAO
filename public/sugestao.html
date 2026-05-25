@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sugestao de Projeto - Projetos Digitais 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --red: #c41e2a;
+      --red-dark: #9e1821;
+      --red-soft: #fef2f2;
+      --red-border: #fca5a5;
+      --green: #16a34a;
+      --green-soft: #f0fdf4;
+      --green-border: #86efac;
+      --ink: #1a1a1a;
+      --ink-light: #444;
+      --ink-muted: #777;
+      --ink-faint: #aaa;
+      --line: #e8e8e8;
+      --surface: #f7f7f8;
+      --white: #fff;
+    }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      min-height: 100vh;
+      border-left: 6px solid var(--red);
+    }
+
+    /* TOPBAR */
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 24px;
+      border-bottom: 3px solid var(--red);
+      background: var(--white);
+    }
+    .topbar-left { display: flex; align-items: center; gap: 10px; }
+    .topbar-logo { height: 28px; }
+    .topbar-text { display: flex; flex-direction: column; }
+    .topbar-label {
+      font-size: 0.55rem; text-transform: uppercase;
+      letter-spacing: 2px; color: var(--ink-muted); font-weight: 500; line-height: 1;
+    }
+    .topbar-year {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.1rem; font-weight: 800; color: var(--red); line-height: 1.2;
+    }
+    .topbar-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 0.9rem; font-weight: 700; color: var(--ink);
+    }
+
+    /* MAIN */
+    .main {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 32px 20px 40px;
+    }
+
+    /* HEADER */
+    .page-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .page-header-label {
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+    .page-header h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-top: 6px;
+    }
+    .page-header h1 span { color: var(--red); }
+    .page-header-line {
+      width: 60px;
+      height: 2px;
+      background: var(--red);
+      margin: 12px auto;
+    }
+    .page-header p {
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+      line-height: 1.5;
+    }
+
+    /* FORM CARD */
+    .form-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03), 0 4px 16px rgba(0,0,0,0.05);
+    }
+    .form-card-stripe {
+      height: 3px;
+      background: var(--red);
+    }
+    .form-card-body {
+      padding: 24px;
+    }
+
+    /* FIELDS */
+    .field { margin-bottom: 18px; }
+    .field:last-of-type { margin-bottom: 0; }
+    .field label {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .field label .field-num {
+      width: 20px; height: 20px;
+      background: var(--red);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.58rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .field label small {
+      font-weight: 400;
+      color: var(--ink-faint);
+    }
+    .field input, .field textarea, .field select {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--line);
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      color: var(--ink);
+      background: var(--surface);
+      transition: all 0.2s ease;
+    }
+    .field input:focus, .field textarea:focus, .field select:focus {
+      outline: none;
+      border-color: var(--red);
+      background: var(--white);
+      box-shadow: 0 0 0 3px rgba(196,30,42,0.08);
+    }
+    .field input::placeholder, .field textarea::placeholder {
+      color: var(--ink-faint);
+    }
+    .field textarea { resize: vertical; min-height: 90px; }
+    .field select { cursor: pointer; }
+
+    /* BUTTON */
+    .btn-wrap { margin-top: 24px; }
+    .btn {
+      width: 100%;
+      padding: 13px;
+      background: var(--red);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      letter-spacing: 0.5px;
+    }
+    .btn:hover {
+      background: var(--red-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(196,30,42,0.2);
+    }
+    .btn:disabled { background: var(--ink-muted); cursor: not-allowed; transform: none; box-shadow: none; }
+
+    /* SUCCESS */
+    .success {
+      display: none;
+      text-align: center;
+      padding: 50px 24px;
+    }
+    .success-icon {
+      width: 56px; height: 56px;
+      background: var(--green-soft);
+      border: 2px solid var(--green-border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 1.5rem;
+    }
+    .success h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      color: var(--green);
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .success p {
+      color: var(--ink-muted);
+      font-size: 0.82rem;
+      line-height: 1.6;
+      max-width: 360px;
+      margin: 0 auto;
+    }
+    .success-badge {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 8px 20px;
+      background: var(--green-soft);
+      border: 1px solid var(--green-border);
+      border-radius: 100px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    /* FOOTER */
+    .page-footer {
+      text-align: center;
+      margin-top: 24px;
+      padding-bottom: 20px;
+    }
+    .page-footer span {
+      font-size: 0.65rem;
+      color: var(--ink-faint);
+      letter-spacing: 1px;
+    }
+
+    /* RESPONSIVO */
+    @media (max-width: 480px) {
+      .main { padding: 20px 14px 30px; }
+      .page-header h1 { font-size: 1.5rem; }
+      .form-card-body { padding: 18px; }
+      .topbar { padding: 8px 14px; }
+      .topbar-title { font-size: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-left">
+      <img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" />
+      <div class="topbar-text">
+        <span class="topbar-label">Projetos Digitais</span>
+        <span class="topbar-year">2026</span>
+      </div>
+    </div>
+    <span class="topbar-title">Sugestao de Projeto</span>
+    <div>
+      <img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" />
+    </div>
+  </header>
+
+  <div class="main">
+    <div class="page-header">
+      <p class="page-header-label">Compartilhe sua ideia</p>
+      <h1>Sugira um <span>Projeto</span></h1>
+      <div class="page-header-line"></div>
+      <p>Tem uma ideia para melhorar algum processo?<br>Preencha o formulario abaixo e sua sugestao sera analisada.</p>
+    </div>
+
+    <div class="form-card">
+      <div class="form-card-stripe"></div>
+      <div class="form-card-body">
+        <form id="form">
+          <div class="field">
+            <label><span class="field-num">1</span> Seu Nome</label>
+            <input type="text" name="nome" required placeholder="Ex: Joao Silva" />
+          </div>
+          <div class="field">
+            <label><span class="field-num">2</span> Setor / Area</label>
+            <input type="text" name="setor" required placeholder="Ex: Limpeza, Administrativo, Operacoes..." />
+          </div>
+          <div class="field">
+            <label><span class="field-num">3</span> Nome do Projeto <small>(titulo curto)</small></label>
+            <input type="text" name="projeto" required placeholder="Ex: Controle de Uniformes" />
+          </div>
+          <div class="field">
+            <label><span class="field-num">4</span> Qual o problema hoje?</label>
+            <textarea name="problema" required placeholder="Descreva o que acontece atualmente e por que e um problema..."></textarea>
+          </div>
+          <div class="field">
+            <label><span class="field-num">5</span> Como e feito hoje?</label>
+            <select name="como_hoje" required>
+              <option value="">Selecione uma opcao...</option>
+              <option value="Manual (papel)">Manual (papel)</option>
+              <option value="Planilha Excel">Planilha Excel</option>
+              <option value="Google Forms">Google Forms</option>
+              <option value="WhatsApp">WhatsApp</option>
+              <option value="Nao e feito">Nao e feito / Nao existe</option>
+              <option value="Outro">Outro</option>
+            </select>
+          </div>
+          <div class="field">
+            <label><span class="field-num">6</span> Prioridade</label>
+            <select name="prioridade" required>
+              <option value="">Selecione a urgencia...</option>
+              <option value="Alta">Alta - Urgente, impacta o dia a dia</option>
+              <option value="Media">Media - Importante, mas nao urgente</option>
+              <option value="Baixa">Baixa - Seria bom ter no futuro</option>
+            </select>
+          </div>
+          <div class="btn-wrap">
+            <button type="submit" class="btn" id="submitBtn">
+              Enviar Sugestao
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </div>
+        </form>
+
+        <div class="success" id="success">
+          <div class="success-icon">&#9989;</div>
+          <h2>Sugestao Enviada!</h2>
+          <p>Obrigado pela sua contribuicao. Sua ideia sera analisada pela equipe de tecnologia e voce podera acompanhar o andamento.</p>
+          <span class="success-badge">Registrado com sucesso</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>Projetos Digitais 2026 &bull; DPA</span>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.innerHTML = 'Enviando...';
+
+      const fd = new FormData(e.target);
+      const data = {
+        data: new Date().toLocaleString('pt-BR'),
+        nome: fd.get('nome'),
+        setor: fd.get('setor'),
+        projeto: fd.get('projeto'),
+        problema: fd.get('problema'),
+        como_hoje: fd.get('como_hoje'),
+        prioridade: fd.get('prioridade')
+      };
+
+      try {
+        const sugestoes = JSON.parse(localStorage.getItem('sugestoes') || '[]');
+        sugestoes.push(data);
+        localStorage.setItem('sugestoes', JSON.stringify(sugestoes));
+
+        await fetch('https://script.google.com/macros/s/AKfycbwNOJ2CzwoQuCfvpKwaFIXaaCzbLOYqUaIdSwlR4qBqv2NR2qnMyhtO3gzGQTIosrt8ng/exec', {
+          method: 'POST',
+          mode: 'no-cors',
+          body: JSON.stringify(data)
+        });
+
+        document.getElementById('form').style.display = 'none';
+        document.getElementById('success').style.display = 'block';
+      } catch (err) {
+        alert('Erro ao enviar. Tente novamente.');
+        btn.disabled = false;
+        btn.innerHTML = 'Enviar Sugestao';
+      }
+    });
+  </script>
+</body>
+</html>
