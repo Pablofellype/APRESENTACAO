@@ -43,6 +43,7 @@ function goToSlide(index, direction = null) {
     currentEl.style.visibility = 'hidden';
     currentEl.style.opacity = '0';
     nextEl.classList.remove('entering-from-right','entering-from-left');
+    handleSlideVideos(nextEl, currentEl);
     currentSlide = index;
     updateProgress();
     updateProjNav();
@@ -123,6 +124,25 @@ document.addEventListener('wheel', (e) => {
   wheelLock = setTimeout(() => { wheelLock = null; }, 800);
   e.deltaY > 0 ? nextSlide() : prevSlide();
 }, { passive: true });
+
+// Video control - play on enter, reset on leave
+function handleSlideVideos(enterEl, leaveEl) {
+  // Pause and reset videos on the slide we're leaving
+  if (leaveEl) {
+    leaveEl.querySelectorAll('video').forEach(v => {
+      v.pause();
+      v.currentTime = 0;
+    });
+  }
+  // Play videos on the slide we're entering
+  if (enterEl) {
+    enterEl.querySelectorAll('video').forEach(v => {
+      v.currentTime = 0;
+      if (v.dataset.speed) v.playbackRate = parseFloat(v.dataset.speed);
+      v.play().catch(() => {});
+    });
+  }
+}
 
 // Counter animation
 function animateCounters(el) {

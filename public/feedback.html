@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feedback - Projetos Digitais 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{--red:#c41e2a;--red-dark:#9e1821;--red-soft:#fef2f2;--red-border:#fca5a5;--teal:#0f766e;--teal-soft:#f0fdfa;--teal-border:#99f6e4;--ink:#1a1a1a;--ink-light:#444;--ink-muted:#777;--ink-faint:#aaa;--line:#e8e8e8;--surface:#f7f7f8;--white:#fff}
+    body{font-family:'DM Sans',system-ui,sans-serif;background:linear-gradient(160deg,#fff,#fdf8f8,#f9f3f3);color:var(--ink);min-height:100vh;border-left:6px solid var(--red)}
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;border-bottom:3px solid var(--red);background:var(--white)}
+    .topbar-left{display:flex;align-items:center;gap:10px}
+    .topbar-logo{height:28px}
+    .topbar-text{display:flex;flex-direction:column}
+    .topbar-label{font-size:.55rem;text-transform:uppercase;letter-spacing:2px;color:var(--ink-muted);font-weight:500;line-height:1}
+    .topbar-year{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:800;color:var(--red);line-height:1.2}
+    .topbar-title{font-family:'Playfair Display',serif;font-size:.9rem;font-weight:700;color:var(--ink)}
+    .main{max-width:520px;margin:0 auto;padding:24px 20px 40px}
+
+    /* TELA SELECAO */
+    .select-screen{text-align:center}
+    .select-screen h1{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--ink);margin:8px 0}
+    .select-screen h1 span{color:var(--red)}
+    .select-label{font-size:.6rem;text-transform:uppercase;letter-spacing:4px;color:var(--ink-muted)}
+    .select-line{width:50px;height:2px;background:var(--red);margin:10px auto}
+    .select-sub{font-size:.78rem;color:var(--ink-muted);line-height:1.6;margin-bottom:20px}
+    .select-note{font-size:.65rem;color:var(--ink-faint);font-style:italic;line-height:1.5;margin-bottom:20px;padding:10px 14px;background:#fffbeb;border:1px solid #fde68a;border-radius:12px}
+    .sys-list{display:flex;flex-direction:column;gap:10px}
+    .sys-item{display:flex;align-items:center;gap:14px;padding:16px;border:1.5px solid var(--line);border-radius:14px;cursor:pointer;transition:all .3s;background:var(--white)}
+    .sys-item:hover{border-color:var(--red-border);box-shadow:0 4px 16px rgba(196,30,42,.06);transform:translateX(4px)}
+    .sys-item img{width:70px;height:46px;object-fit:cover;border-radius:8px;border:1px solid var(--line);flex-shrink:0}
+    .sys-item-info{flex:1}
+    .sys-item-name{font-size:.85rem;font-weight:700;color:var(--ink);display:block}
+    .sys-item-desc{font-size:.65rem;color:var(--ink-muted)}
+    .sys-item-arrow{color:var(--red);font-size:1.2rem;flex-shrink:0}
+
+    /* FORM SCREEN */
+    .form-screen{display:none}
+    .form-screen.active{display:block}
+    .form-back{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;color:var(--ink-muted);cursor:pointer;margin-bottom:14px;transition:color .2s;border:none;background:none;font-family:inherit}
+    .form-back:hover{color:var(--red)}
+    .header{text-align:center;margin-bottom:16px}
+    .header h1{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--ink);margin:4px 0}
+    .header h1 span{color:var(--red)}
+    .header-line{width:50px;height:2px;background:var(--red);margin:8px auto}
+    .header-sys{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:var(--red-soft);border:1px solid var(--red-border);border-radius:100px;font-size:.7rem;font-weight:600;color:var(--red);margin-top:6px}
+    .header-sys img{width:24px;height:16px;object-fit:cover;border-radius:4px}
+    .header-note{font-size:.6rem;color:var(--ink-faint);margin-top:8px;font-style:italic;line-height:1.5}
+    .card{background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.04)}
+    .card-stripe{height:4px;background:linear-gradient(90deg,var(--red),#f59e0b,var(--teal))}
+    .card-body{padding:22px}
+    .field{margin-bottom:14px}
+    .field:last-of-type{margin-bottom:0}
+    .field label{display:flex;align-items:center;gap:6px;font-size:.75rem;font-weight:600;color:var(--ink);margin-bottom:5px}
+    .field label .fn{width:20px;height:20px;background:var(--red);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:700;flex-shrink:0}
+    .field input,.field textarea,.field select{width:100%;padding:10px 14px;border:1.5px solid var(--line);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--ink);background:var(--surface);transition:all .2s}
+    .field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--red);background:var(--white);box-shadow:0 0 0 3px rgba(196,30,42,.08)}
+    .field input::placeholder,.field textarea::placeholder{color:var(--ink-faint)}
+    .field textarea{resize:vertical;min-height:80px}
+    .field input:read-only{background:#f0f0f0;color:var(--ink-muted);cursor:not-allowed}
+    .mat-row{display:flex;gap:8px}
+    .mat-row input{flex:1}
+    .mat-btn{padding:10px 18px;background:var(--red);color:#fff;border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:600;cursor:pointer;transition:all .2s;flex-shrink:0}
+    .mat-btn:hover{background:var(--red-dark)}
+    .mat-btn:disabled{background:var(--ink-faint);cursor:not-allowed}
+    .mat-info{display:none;padding:10px 14px;background:var(--teal-soft);border:1px solid var(--teal-border);border-radius:10px;margin-top:8px;font-size:.72rem;color:var(--teal)}
+    .mat-info span{display:block;font-weight:600}
+    .mat-error{display:none;padding:8px 14px;background:var(--red-soft);border:1px solid var(--red-border);border-radius:10px;margin-top:8px;font-size:.72rem;color:var(--red)}
+    .sys-preview{display:flex;align-items:center;gap:14px;padding:12px 16px;background:var(--white);border:1.5px solid var(--red-border);border-radius:14px;box-shadow:0 2px 12px rgba(196,30,42,.06);margin-bottom:4px;overflow:hidden}
+    .sys-preview img{width:100px;height:60px;object-fit:cover;border-radius:10px;border:1px solid var(--line);flex-shrink:0}
+    .sys-preview-info{display:flex;flex-direction:column;gap:2px}
+    .sys-preview-label{font-size:.55rem;text-transform:uppercase;letter-spacing:2px;color:var(--ink-faint);font-weight:500}
+    .sys-preview-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--red)}
+    .stars{display:flex;gap:8px;margin-top:4px}
+    .star-item{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;transition:all .2s;padding:8px 6px;border-radius:12px;border:2px solid var(--line);background:var(--white);min-width:56px}
+    .star-item:hover{border-color:#fde68a;background:#fffbeb;transform:translateY(-2px)}
+    .star-item.active{border-color:#f59e0b;background:#fffbeb;box-shadow:0 2px 10px rgba(245,158,11,.2);transform:translateY(-2px)}
+    .star-icon{font-size:1.5rem;line-height:1;color:var(--line);transition:color .2s}
+    .star-item:hover .star-icon,.star-item.active .star-icon{color:#f59e0b}
+    .star-label{font-size:.5rem;color:var(--ink-faint);font-weight:600;text-transform:uppercase;letter-spacing:.5px;transition:color .2s}
+    .star-item.active .star-label{color:#92400e}
+    .stars-selected{font-size:.72rem;font-weight:700;color:#f59e0b;margin-top:6px;min-height:20px}
+    .radio-group{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+    .radio-opt{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1.5px solid var(--line);border-radius:12px;cursor:pointer;transition:all .2s;font-size:.8rem;font-weight:500;color:var(--ink)}
+    .radio-opt:hover{border-color:var(--red-border);background:var(--red-soft)}
+    .radio-opt input[type=radio]{display:none}
+    .radio-opt input[type=radio]:checked+.radio-box{transform:scale(1.2)}
+    .radio-opt:has(input:checked){border-color:var(--red);background:var(--red-soft);font-weight:700}
+    .radio-box{font-size:1.1rem;flex-shrink:0}
+    .btn-wrap{margin-top:18px}
+    .btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--red),var(--red-dark));color:#fff;border:none;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:8px}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(196,30,42,.25)}
+    .btn:disabled{background:var(--ink-muted);cursor:not-allowed;transform:none;box-shadow:none}
+    .success{display:none;text-align:center;padding:40px 24px}
+    .success-icon{width:56px;height:56px;background:var(--teal-soft);border:2px solid var(--teal-border);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:1.5rem}
+    .success h2{font-family:'Playfair Display',serif;color:var(--teal);font-size:1.5rem;font-weight:700;margin-bottom:8px}
+    .success p{color:var(--ink-muted);font-size:.8rem;line-height:1.6;max-width:340px;margin:0 auto}
+    .success-badge{display:inline-block;margin-top:14px;padding:8px 20px;background:var(--teal-soft);border:1px solid var(--teal-border);border-radius:100px;font-size:.68rem;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:1.5px}
+    .footer{text-align:center;margin-top:20px}
+    .footer span{font-size:.62rem;color:var(--ink-faint);letter-spacing:1px}
+    @media(max-width:768px){
+      .main{padding:18px 16px 36px;max-width:100%}
+      .select-screen h1,.header h1{font-size:1.4rem}
+      .card-body{padding:18px}
+      .stars{gap:4px;flex-wrap:wrap;justify-content:center}
+      .star-item{min-width:50px;padding:6px 4px;border-radius:10px}
+      .star-icon{font-size:1.2rem}
+      .star-label{font-size:.42rem}
+      .sys-item{padding:12px}
+      .sys-item img{width:56px;height:38px}
+      .sys-item-name{font-size:.78rem}
+      .sys-preview{flex-direction:column;text-align:center;gap:8px}
+      .sys-preview img{width:100%;height:auto;max-height:120px}
+      .radio-opt{padding:10px 12px;font-size:.76rem}
+      .radio-box{font-size:1rem}
+      .topbar{padding:8px 16px}
+      .topbar-title{font-size:.78rem}
+      .field label{font-size:.72rem}
+      .field input,.field textarea,.field select{font-size:.8rem;padding:10px 12px}
+      .select-note{font-size:.62rem;padding:10px 12px}
+      .choice-cards{flex-direction:column}
+    }
+    @media(max-width:380px){
+      .main{padding:12px 10px 30px}
+      .select-screen h1,.header h1{font-size:1.2rem}
+      .card-body{padding:14px}
+      .stars{gap:3px}
+      .star-item{min-width:44px;padding:5px 3px}
+      .star-icon{font-size:1rem}
+      .star-label{font-size:.38rem}
+      .radio-opt{padding:8px 10px;font-size:.72rem;gap:8px}
+      .sys-item img{width:44px;height:30px}
+      .btn{padding:12px;font-size:.78rem}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-left">
+      <img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" />
+      <div class="topbar-text">
+        <span class="topbar-label">Projetos Digitais</span>
+        <span class="topbar-year">2026</span>
+      </div>
+    </div>
+    <span class="topbar-title">Feedback</span>
+    <div><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div>
+  </header>
+
+  <div class="main">
+    <!-- TELA 1: SELECAO DE SISTEMA -->
+    <div id="selectScreen" class="select-screen">
+      <p class="select-label">Avalie um sistema</p>
+      <h1>Feedback dos <span>Projetos</span></h1>
+      <div class="select-line"></div>
+      <p class="select-sub">Selecione o sistema que voce deseja avaliar.</p>
+      <div class="select-note">
+        <strong style="font-size:.75rem;color:#92400e;display:block;margin-bottom:4px">&#9733; Para onde vai seu feedback?</strong>
+        Sua avaliacao sera usada no meu <strong style="color:#92400e">portfolio profissional</strong> para apresentar resultados reais a <strong style="color:#92400e">futuras empresas</strong> e a propria <strong style="color:#92400e">Brasal Refrigerantes</strong>. Sua opiniao tem peso real!
+      </div>
+
+      <div class="sys-list">
+        <div class="sys-item" onclick="selectSys('Avaliacao NPS','/images/projeto1-tela.png')">
+          <img src="/images/projeto1-tela.png" alt="NPS" />
+          <div class="sys-item-info">
+            <span class="sys-item-name">01 - Avaliacao NPS</span>
+            <span class="sys-item-desc">Dashboard + QR Code digital</span>
+          </div>
+          <span class="sys-item-arrow">&#8594;</span>
+        </div>
+        <div class="sys-item" onclick="selectSys('Calendario de Escalas','/images/projeto2-tela.png')">
+          <img src="/images/projeto2-tela.png" alt="Calendario" />
+          <div class="sys-item-info">
+            <span class="sys-item-name">02 - Calendario de Escalas</span>
+            <span class="sys-item-desc">Gestao de escalas + rastreio fotografico</span>
+          </div>
+          <span class="sys-item-arrow">&#8594;</span>
+        </div>
+        <div class="sys-item" onclick="selectSys('Solicitacao de Material','/images/projeto3-tela.png')">
+          <img src="/images/projeto3-tela.png" alt="Material" />
+          <div class="sys-item-info">
+            <span class="sys-item-name">03 - Solicitacao de Material</span>
+            <span class="sys-item-desc">Catalogo visual + controle de suprimentos</span>
+          </div>
+          <span class="sys-item-arrow">&#8594;</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TELA 2: FORMULARIO -->
+    <div id="formScreen" class="form-screen">
+      <button class="form-back" onclick="document.getElementById('selectScreen').style.display='block';document.getElementById('formScreen').className='form-screen'">&#8592; Voltar</button>
+
+      <!-- PREVIEW DO SISTEMA SELECIONADO -->
+      <div class="sys-preview" id="sysPreview" style="display:none">
+        <img id="sysPreviewImg" src="" alt="" />
+        <div class="sys-preview-info">
+          <span class="sys-preview-label">Avaliando:</span>
+          <span class="sys-preview-name" id="sysPreviewName"></span>
+        </div>
+      </div>
+
+      <div class="header" style="margin-top:12px">
+        <h1>Feedback do <span>Sistema</span></h1>
+        <div class="header-line"></div>
+        <div style="margin-top:10px;padding:10px 16px;background:#fffbeb;border:1.5px solid #fde68a;border-radius:12px;text-align:center">
+          <p style="font-size:.68rem;color:#92400e;font-weight:600;margin-bottom:2px">&#9733; Para onde vai seu feedback?</p>
+          <p style="font-size:.62rem;color:var(--ink-muted);line-height:1.5">Sera usado no meu <strong style="color:#92400e">portfolio profissional</strong> para apresentar resultados a <strong style="color:#92400e">futuras empresas</strong> e a propria <strong style="color:#92400e">Brasal Refrigerantes</strong>.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-stripe"></div>
+        <div class="card-body">
+          <form id="feedbackForm">
+            <input type="hidden" name="sistema" id="hidSistema" />
+            <div class="field">
+              <label><span class="fn">1</span> Sua Matricula</label>
+              <div class="mat-row">
+                <input type="text" id="matInput" placeholder="Digite sua matricula" required />
+                <button type="button" class="mat-btn" id="matBtn" onclick="buscarColab()">Buscar</button>
+              </div>
+              <div class="mat-info" id="matInfo"><span id="matNome"></span><span id="matDepto"></span><span id="matCargo"></span></div>
+              <div class="mat-error" id="matError">Matricula nao encontrada.</div>
+            </div>
+            <div class="field">
+              <label><span class="fn">2</span> Nome</label>
+              <input type="text" id="nomeInput" name="nome" readonly placeholder="Preenchido automaticamente" />
+            </div>
+            <div class="field">
+              <label><span class="fn">3</span> Departamento</label>
+              <input type="text" id="deptoInput" name="departamento" readonly placeholder="Preenchido automaticamente" />
+            </div>
+            <div class="field">
+              <label><span class="fn">4</span> Cargo</label>
+              <input type="text" id="cargoInput" name="cargo" readonly placeholder="Preenchido automaticamente" />
+            </div>
+            <!-- 5: NOTA GERAL -->
+            <div class="field">
+              <label><span class="fn">5</span> Nota geral do sistema</label>
+              <p style="font-size:.65rem;color:var(--ink-muted);margin-bottom:8px">Clique nas estrelas para avaliar de 1 a 5:</p>
+              <div class="stars" id="stars">
+                <div class="star-item" data-val="1" onclick="setRating(1)"><span class="star-icon">&#9733;</span><span class="star-label">Ruim</span></div>
+                <div class="star-item" data-val="2" onclick="setRating(2)"><span class="star-icon">&#9733;</span><span class="star-label">Regular</span></div>
+                <div class="star-item" data-val="3" onclick="setRating(3)"><span class="star-icon">&#9733;</span><span class="star-label">Bom</span></div>
+                <div class="star-item" data-val="4" onclick="setRating(4)"><span class="star-icon">&#9733;</span><span class="star-label">Otimo</span></div>
+                <div class="star-item" data-val="5" onclick="setRating(5)"><span class="star-icon">&#9733;</span><span class="star-label">Excelente</span></div>
+              </div>
+              <div class="stars-selected" id="starsSelected"></div>
+              <input type="hidden" name="nota" id="notaInput" required />
+            </div>
+
+            <!-- 6: FACILIDADE -->
+            <div class="field">
+              <label><span class="fn">6</span> O sistema e facil de usar?</label>
+              <p style="font-size:.65rem;color:var(--ink-muted);margin-bottom:8px">Clique nas estrelas:</p>
+              <div class="stars" id="starsFacil">
+                <div class="star-item" data-val="1" onclick="setFacil(1)"><span class="star-icon">&#9733;</span><span class="star-label">Dificil</span></div>
+                <div class="star-item" data-val="2" onclick="setFacil(2)"><span class="star-icon">&#9733;</span><span class="star-label">Confuso</span></div>
+                <div class="star-item" data-val="3" onclick="setFacil(3)"><span class="star-icon">&#9733;</span><span class="star-label">Normal</span></div>
+                <div class="star-item" data-val="4" onclick="setFacil(4)"><span class="star-icon">&#9733;</span><span class="star-label">Facil</span></div>
+                <div class="star-item" data-val="5" onclick="setFacil(5)"><span class="star-icon">&#9733;</span><span class="star-label">Muito facil</span></div>
+              </div>
+              <div class="stars-selected" id="facilSelected"></div>
+              <input type="hidden" name="facilidade" id="facilInput" />
+            </div>
+
+            <!-- 7: FACILITOU TRABALHO -->
+            <div class="field">
+              <label><span class="fn">7</span> O sistema facilitou seu trabalho?</label>
+              <div class="radio-group">
+                <label class="radio-opt"><input type="radio" name="facilitou" value="Sim, muito" required /><span class="radio-box">&#128155;</span> Sim, muito</label>
+                <label class="radio-opt"><input type="radio" name="facilitou" value="Um pouco" /><span class="radio-box">&#128528;</span> Um pouco</label>
+                <label class="radio-opt"><input type="radio" name="facilitou" value="Nao mudou" /><span class="radio-box">&#128533;</span> Nao mudou</label>
+              </div>
+            </div>
+
+            <!-- 8: PREFERE -->
+            <div class="field">
+              <label><span class="fn">8</span> Voce prefere o sistema novo ou o jeito antigo?</label>
+              <div class="radio-group">
+                <label class="radio-opt"><input type="radio" name="prefere" value="Sistema novo" required /><span class="radio-box">&#128187;</span> Sistema novo</label>
+                <label class="radio-opt"><input type="radio" name="prefere" value="Jeito antigo" /><span class="radio-box">&#128196;</span> Jeito antigo</label>
+                <label class="radio-opt"><input type="radio" name="prefere" value="Tanto faz" /><span class="radio-box">&#129300;</span> Tanto faz</label>
+              </div>
+            </div>
+
+            <!-- 9: RECOMENDARIA -->
+            <div class="field">
+              <label><span class="fn">9</span> Recomendaria o trabalho do desenvolvedor?</label>
+              <div class="radio-group">
+                <label class="radio-opt"><input type="radio" name="recomenda" value="Sim" required /><span class="radio-box">&#128077;</span> Sim</label>
+                <label class="radio-opt"><input type="radio" name="recomenda" value="Nao" /><span class="radio-box">&#128078;</span> Nao</label>
+              </div>
+            </div>
+
+            <!-- 10: O QUE MAIS GOSTOU -->
+            <div class="field">
+              <label><span class="fn">10</span> O que voce mais gostou? <small style="color:var(--red)">(obrigatorio)</small></label>
+              <textarea name="mais_gostou" required placeholder="Ex: a facilidade, o visual, a rapidez, as cores..."></textarea>
+            </div>
+
+            <!-- 11: O QUE PODERIA MELHORAR -->
+            <div class="field">
+              <label><span class="fn">11</span> O que poderia melhorar? <small>(opcional)</small></label>
+              <textarea name="melhorar" placeholder="Sugestoes de melhoria, algo que sentiu falta..."></textarea>
+            </div>
+
+            <div class="btn-wrap">
+              <button type="submit" class="btn" id="submitBtn" disabled>Enviar Feedback &#9733;</button>
+            </div>
+          </form>
+          <div class="success" id="success">
+            <div class="success-icon">&#9733;</div>
+            <h2>Obrigado!</h2>
+            <p>Seu feedback foi registrado e sera usado para melhorar os projetos e compor meu portfolio.</p>
+            <span class="success-badge">Feedback registrado</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer"><span>Projetos Digitais 2026 &bull; DPA</span></div>
+  </div>
+
+  <script>
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwNOJ2CzwoQuCfvpKwaFIXaaCzbLOYqUaIdSwlR4qBqv2NR2qnMyhtO3gzGQTIosrt8ng/exec';
+    let rating = 0, colabFound = false;
+
+    // Se veio com ?sistema= na URL, pula direto pro form
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('sistema')) {
+      selectSys(params.get('sistema'), '');
+    }
+
+    function selectSys(name, img) {
+      document.getElementById('hidSistema').value = name;
+      document.getElementById('selectScreen').style.display = 'none';
+      document.getElementById('formScreen').className = 'form-screen active';
+      // Preview
+      const preview = document.getElementById('sysPreview');
+      if (img) {
+        document.getElementById('sysPreviewImg').src = img;
+        preview.style.display = 'flex';
+      }
+      document.getElementById('sysPreviewName').textContent = name;
+    }
+
+    const ratingLabels = {1:'Ruim',2:'Regular',3:'Bom',4:'Otimo!',5:'Excelente!'};
+    const facilLabels = {1:'Dificil',2:'Confuso',3:'Normal',4:'Facil',5:'Muito facil!'};
+
+    function setRating(val) {
+      rating = val;
+      document.getElementById('notaInput').value = val;
+      document.querySelectorAll('#stars .star-item').forEach(s => s.classList.toggle('active', parseInt(s.dataset.val) <= val));
+      document.getElementById('starsSelected').textContent = val + '/5 - ' + ratingLabels[val];
+      checkSubmit();
+    }
+
+    function setFacil(val) {
+      document.getElementById('facilInput').value = val;
+      document.querySelectorAll('#starsFacil .star-item').forEach(s => s.classList.toggle('active', parseInt(s.dataset.val) <= val));
+      document.getElementById('facilSelected').textContent = val + '/5 - ' + facilLabels[val];
+    }
+
+    function checkSubmit() {
+      document.getElementById('submitBtn').disabled = !(colabFound && rating > 0);
+    }
+
+    async function buscarColab() {
+      const mat = document.getElementById('matInput').value.trim();
+      if (!mat) return;
+      const btn = document.getElementById('matBtn');
+      btn.disabled = true; btn.textContent = '...';
+      document.getElementById('matInfo').style.display = 'none';
+      document.getElementById('matError').style.display = 'none';
+      try {
+        const res = await fetch(APPS_SCRIPT_URL + '?matricula=' + encodeURIComponent(mat));
+        const data = await res.json();
+        if (data.found) {
+          document.getElementById('matNome').textContent = 'Nome: ' + data.nome;
+          document.getElementById('matDepto').textContent = 'Depto: ' + data.departamento;
+          document.getElementById('matCargo').textContent = 'Cargo: ' + data.cargo;
+          document.getElementById('matInfo').style.display = 'block';
+          document.getElementById('nomeInput').value = data.nome;
+          document.getElementById('deptoInput').value = data.departamento;
+          document.getElementById('cargoInput').value = data.cargo;
+          colabFound = true; checkSubmit();
+        } else {
+          document.getElementById('matError').style.display = 'block';
+          colabFound = false; checkSubmit();
+        }
+      } catch (err) {
+        document.getElementById('matError').style.display = 'block';
+        document.getElementById('matError').textContent = 'Erro ao buscar. Tente novamente.';
+      }
+      btn.disabled = false; btn.textContent = 'Buscar';
+    }
+
+    document.getElementById('feedbackForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true; btn.textContent = 'Enviando...';
+      const fd = new FormData(e.target);
+      const data = {
+        action: 'feedback', data: new Date().toLocaleString('pt-BR'),
+        matricula: document.getElementById('matInput').value.trim(),
+        nome: fd.get('nome'), departamento: fd.get('departamento'), cargo: fd.get('cargo'),
+        sistema: fd.get('sistema'), nota: fd.get('nota'),
+        facilidade: fd.get('facilidade') || '',
+        facilitou: fd.get('facilitou') || '',
+        prefere: fd.get('prefere') || '',
+        recomenda: fd.get('recomenda') || '',
+        mais_gostou: fd.get('mais_gostou') || '',
+        melhorar: fd.get('melhorar') || ''
+      };
+      try {
+        await fetch(APPS_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) });
+        document.getElementById('feedbackForm').style.display = 'none';
+        document.getElementById('success').style.display = 'block';
+      } catch (err) {
+        alert('Erro ao enviar.'); btn.disabled = false; btn.textContent = 'Enviar Feedback';
+      }
+    });
+  </script>
+</body>
+</html>

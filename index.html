@@ -11,6 +11,40 @@
   <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
 </head>
 <body>
+  <!-- BLOQUEIO MOBILE -->
+  <div id="mobileBlock">
+    <div class="mb-card">
+      <div class="mb-icon">&#128187;</div>
+      <h2 class="mb-title">Abra no <span>Computador</span></h2>
+      <div class="mb-line"></div>
+      <p class="mb-text">Esta apresentacao foi projetada para telas maiores. Para a melhor experiencia, abra no <strong>computador</strong> ou <strong>notebook</strong>.</p>
+      <div class="mb-url">
+        <span>&#128279;</span>
+        <span id="mbUrl"></span>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.getElementById('mbUrl').textContent = window.location.href;
+    function checkMobile() {
+      var isMobile = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || ('ontouchstart' in window && window.innerWidth < 1200);
+      document.getElementById('mobileBlock').style.display = isMobile ? 'flex' : 'none';
+    }
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+  </script>
+  <style>
+    #mobileBlock{display:flex;position:fixed;inset:0;z-index:99999;background:linear-gradient(160deg,#fff,#fdf8f8,#f9f3f3);align-items:center;justify-content:center;padding:30px}
+    .mb-card{text-align:center;max-width:360px}
+    .mb-icon{font-size:3rem;margin-bottom:16px}
+    .mb-title{font-family:'Playfair Display',Georgia,serif;font-size:1.6rem;font-weight:900;color:#1a1a1a}
+    .mb-title span{color:#c41e2a}
+    .mb-line{width:50px;height:3px;background:#c41e2a;margin:14px auto;border-radius:2px}
+    .mb-text{font-size:.85rem;color:#444;line-height:1.7;margin-bottom:20px}
+    .mb-text strong{color:#1a1a1a}
+    .mb-url{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:#f7f7f8;border:1px solid #e8e8e8;border-radius:100px;font-size:.65rem;color:#777;font-family:'SF Mono','Consolas',monospace;word-break:break-all}
+  </style>
+
   <div id="presentation">
     <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
     <button class="nav-arrow nav-prev" id="prevBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
@@ -55,27 +89,47 @@
 
     <!-- ====== CAPA ====== -->
     <section class="slide slide--cover active" data-slide="0">
-      <div class="cover-stripe"></div>
-      <div class="cover-content">
-        <div class="cover-inner">
-          <div class="cover-top anim-fade-down">
-            <div class="cover-logos">
-              <img src="/images/logo-left.png" alt="" class="cover-logo" onerror="this.style.display='none'" />
-              <span class="cover-logos-sep"></span>
-              <img src="/images/logo-right.png" alt="DPA" class="cover-logo" onerror="this.style.display='none'" />
-            </div>
-          </div>
-          <p class="cover-label anim-fade-up">Apresentacao de Resultados</p>
-          <h1 class="cover-title anim-fade-up delay-1">Projetos<br>Digitais</h1>
-          <div class="cover-year-wrap anim-scale-in delay-2"><span class="cover-year">2026</span></div>
-          <div class="cover-line anim-width-in delay-3"></div>
-          <div class="cover-tags anim-fade-up delay-4">
-            <span class="tag">8 Projetos</span><span class="tag">Automacao</span><span class="tag">Resultados</span>
-          </div>
-          <div class="cover-bottom anim-fade-up delay-5">
-            <button class="cover-btn" onclick="goToSlide(1)">Comecar <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
-          </div>
+      <div class="cv-bg">
+        <div class="cv-orb cv-orb1"></div>
+        <div class="cv-orb cv-orb2"></div>
+        <div class="cv-orb cv-orb3"></div>
+        <div class="cv-particles"></div>
+        <div class="cv-big-num">2026</div>
+      </div>
+
+      <div class="cv-center">
+        <div class="cv-logos anim-fade-down">
+          <img src="/images/logo-left.png" alt="" class="cv-logo" onerror="this.style.display='none'" />
+          <span class="cv-logo-sep"></span>
+          <img src="/images/logo-right.png" alt="DPA" class="cv-logo" onerror="this.style.display='none'" />
         </div>
+
+        <p class="cv-sub anim-fade-up">Apresentacao de Resultados</p>
+        <h1 class="cv-title anim-fade-up delay-1">Projetos</h1>
+        <h1 class="cv-title cv-title--red anim-fade-up delay-2">Digitais</h1>
+        <div class="cv-year-row anim-scale-in delay-2">
+          <span class="cv-year-line"></span>
+          <span class="cv-year">2026</span>
+          <span class="cv-year-line"></span>
+        </div>
+
+        <div class="cv-tags anim-fade-up delay-3">
+          <span class="cv-tag">8 Projetos</span>
+          <span class="cv-tag">Automacao</span>
+          <span class="cv-tag">Resultados</span>
+        </div>
+
+        <div class="cv-stats anim-fade-up delay-4">
+          <div class="cv-stat"><span class="cv-stat-n">4</span><span class="cv-stat-l">Entregues</span></div>
+          <div class="cv-stat"><span class="cv-stat-n">1</span><span class="cv-stat-l">Em Deploy</span></div>
+          <div class="cv-stat"><span class="cv-stat-n">4</span><span class="cv-stat-l">Prototipos</span></div>
+          <div class="cv-stat cv-stat--hl"><span class="cv-stat-n">100%</span><span class="cv-stat-l">Digital</span></div>
+        </div>
+
+        <button class="cv-btn anim-fade-up delay-5" onclick="goToSlide(1)">
+          <span>Explorar Projetos</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
       </div>
     </section>
 
@@ -85,20 +139,63 @@
         <div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div>
         <div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div>
       </header>
-      <div class="slide-body">
-        <div class="showcase-layout">
-          <div class="showcase-sidebar anim-fade-right">
-            <div class="proj-num">01</div>
-            <h3 class="proj-name">Avaliacao<br>NPS</h3>
-            <p class="proj-desc">Sistema completo de avaliacao de colaboradores com dashboard inteligente e QR Code digital.</p>
-            <div class="proj-tag-row"><span class="proj-tag">Dashboard</span><span class="proj-tag">QR Code</span><span class="proj-tag">NPS</span></div>
+
+      <div class="slide-body p1-body">
+        <!-- BG decorativo -->
+        <div class="p1-bg">
+          <div class="p1-bg-num">01</div>
+          <div class="p1-bg-orb p1-bg-orb1"></div>
+          <div class="p1-bg-orb p1-bg-orb2"></div>
+        </div>
+
+        <div class="p1-hero">
+          <!-- LEFT -->
+          <div class="p1-info">
+            <span class="p1-eyebrow anim-fade-down">Projeto 01 de 8</span>
+            <h2 class="p1-title anim-fade-up delay-1">Avaliacao<br><span class="p1-title-red">NPS</span></h2>
+            <div class="p1-line anim-width-in delay-2"></div>
+            <p class="p1-desc anim-fade-up delay-2">Sistema completo de avaliacao de colaboradores com dashboard inteligente e QR Code digital.</p>
+            <div class="p1-tags anim-fade-up delay-3">
+              <span class="p1-tag">Dashboard</span>
+              <span class="p1-tag">QR Code</span>
+              <span class="p1-tag">NPS</span>
+            </div>
+            <div class="p1-metrics anim-fade-up delay-4">
+              <div class="p1-metric">
+                <span class="p1-metric-icon">&#9889;</span>
+                <span class="p1-metric-val">-80%</span>
+                <span class="p1-metric-lbl">Tempo</span>
+              </div>
+              <div class="p1-metric p1-metric--accent">
+                <span class="p1-metric-icon">&#128187;</span>
+                <span class="p1-metric-val">100%</span>
+                <span class="p1-metric-lbl">Digital</span>
+              </div>
+              <div class="p1-metric">
+                <span class="p1-metric-icon">&#9989;</span>
+                <span class="p1-metric-val">Zero</span>
+                <span class="p1-metric-lbl">Erros</span>
+              </div>
+            </div>
           </div>
-          <div class="showcase-main anim-fade-up delay-1">
-            <div class="browser-frame"><div class="browser-bar"><div class="browser-dots"><i></i><i></i><i></i></div><div class="browser-url">avaliacao-nps.dpa.com.br</div></div><div class="browser-body"><img src="/images/projeto1-tela.png" alt="Avaliacao NPS" class="browser-img" onerror="this.closest('.browser-body').innerHTML='<div class=placeholder>Adicione: projeto1-tela.png</div>'" /></div></div>
+
+          <!-- RIGHT -->
+          <div class="p1-preview anim-fade-left delay-2">
+            <div class="p1-browser-wrap">
+              <div class="p1-browser-glow"></div>
+              <div class="browser-frame">
+                <div class="browser-bar">
+                  <div class="browser-dots"><i></i><i></i><i></i></div>
+                  <div class="browser-url">avaliacao-nps.dpa.com.br</div>
+                </div>
+                <div class="browser-body">
+                  <img src="/images/projeto1-tela.png" alt="Avaliacao NPS" class="browser-img" onerror="this.closest('.browser-body').innerHTML='<div class=placeholder>Adicione: projeto1-tela.png</div>'" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <footer class="bottombar"><span class="bottombar-proj">Projeto 1 de 7</span><div class="bottombar-dots"><i class="active"></i><i></i><i></i><i></i><i></i><i></i><i></i></div></footer>
     </section>
 
     <!-- ====== PROJETO 1B: ANTES/DEPOIS ====== -->
@@ -109,37 +206,63 @@
         <div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div>
       </header>
 
-      <div class="slide-body v2-body">
+      <div class="slide-body v2-body p1s2-body">
         <div class="v2-main-grid">
           <!-- COLUNA ESQUERDA: ANTES -->
-          <div class="v2-col-before anim-fade-right">
-            <div class="v2-col-title v2-col-title--red">
-              <span class="v2-dot v2-dot--red"></span>
-              O Desafio
+          <div class="v2-col-before p1-col-before anim-fade-right">
+            <div class="p1-col-head">
+              <div class="p1-col-icon p1-col-icon--red">&#128683;</div>
+              <div>
+                <span class="p1-col-badge p1-col-badge--red">Antes</span>
+                <span class="p1-col-title">O Desafio</span>
+              </div>
             </div>
-            <div class="v2-img-wrap">
-              <span class="v2-label v2-label--red">Antes</span>
+            <div class="v2-img-wrap p1-img-hover">
               <img src="/images/projeto1-antes.png" alt="Google Forms" />
+              <div class="p1-img-overlay p1-img-overlay--red">Processo Antigo</div>
             </div>
-            <ul class="v2-list v2-list--red">
-              <li>Processo manual: QR Codes impressos em papel e sujeitos a falhas</li>
-              <li>Margem de erro alta: Matriculas digitadas incorretamente</li>
-              <li>Gargalo de tempo: Avaliacoes em planilhas cruas e calculo feito a mao</li>
-            </ul>
+            <div class="p1-problems">
+              <div class="p1-problem anim-fade-up delay-1">
+                <span class="p1-problem-icon">&#10060;</span>
+                <div class="p1-problem-text">
+                  <strong>Processo manual</strong>
+                  <span>QR Codes impressos em papel e sujeitos a falhas</span>
+                </div>
+              </div>
+              <div class="p1-problem anim-fade-up delay-2">
+                <span class="p1-problem-icon">&#10060;</span>
+                <div class="p1-problem-text">
+                  <strong>Margem de erro alta</strong>
+                  <span>Matriculas digitadas incorretamente</span>
+                </div>
+              </div>
+              <div class="p1-problem anim-fade-up delay-3">
+                <span class="p1-problem-icon">&#10060;</span>
+                <div class="p1-problem-text">
+                  <strong>Gargalo de tempo</strong>
+                  <span>Avaliacoes em planilhas cruas e calculo feito a mao</span>
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- COLUNA DIREITA: DEPOIS -->
-          <div class="v2-col-after anim-fade-left delay-1">
-            <div class="v2-col-title v2-col-title--green">
-              <span class="v2-dot v2-dot--green"></span>
-              A Solucao
+          <div class="v2-col-after p1-col-after anim-fade-left delay-1">
+            <div class="p1-col-head">
+              <div class="p1-col-icon p1-col-icon--green">&#9989;</div>
+              <div>
+                <span class="p1-col-badge p1-col-badge--green">Depois</span>
+                <span class="p1-col-title">A Solucao</span>
+              </div>
             </div>
-            <div class="v2-img-wrap">
-              <span class="v2-label v2-label--green">Depois</span>
-              <img src="/images/projeto1-tela.png" alt="Sistema novo" />
+            <div class="v2-img-wrap p1-img-hover p1-img-after">
+              <img src="/images/projeto1-depois.png" alt="Sistema novo" />
+              <div class="p1-img-overlay p1-img-overlay--green">Sistema Digital</div>
             </div>
 
-            <div class="v2-group anim-fade-up delay-2">
+            <div class="p1-card anim-fade-up delay-2">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">01</div>
               <h6>Para o Avaliador (Precisao)</h6>
               <ul class="v2-list v2-list--green">
                 <li>QR Code 100% digital e separado por area</li>
@@ -148,7 +271,9 @@
               </ul>
             </div>
 
-            <div class="v2-group anim-fade-up delay-3">
+            <div class="p1-card anim-fade-up delay-3">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">02</div>
               <h6>Para a Equipe de Limpeza (Transparencia e Privacidade)</h6>
               <ul class="v2-list v2-list--green">
                 <li>Painel de rastreio: o colaborador ve se foi avaliado, mas nao ve a nota (evita atritos)</li>
@@ -156,7 +281,9 @@
               </ul>
             </div>
 
-            <div class="v2-group anim-fade-up delay-3">
+            <div class="p1-card anim-fade-up delay-4">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">03</div>
               <h6>Para a Administracao (Gestao e Automacao)</h6>
               <ul class="v2-list v2-list--green">
                 <li>Dashboard inteligente com calculos das areas ja 100% automatizados</li>
@@ -167,99 +294,294 @@
           </div>
         </div>
 
-        <!-- CENARIOS -->
-        <div class="v2-time anim-fade-up delay-4">
-          <div class="v2-time-block v2-time--slow">
-            <div class="v2-time-icon">&#128197;</div>
-            <div class="v2-time-info">
-              <span class="v2-time-label">Cenario A <small>- Ritmo atual da empresa</small></span>
-              <span class="v2-time-value v2-time-value--red">6h/semana (Tercas) &rarr; Entrega em 3 Meses</span><small class="v2-time-calc">~72h totais / 6h por semana = 12 semanas</small>
+        <!-- TEMPO OPERACIONAL -->
+        <div class="p1-tempo anim-fade-up delay-4">
+          <div class="p1-tempo-visual">
+            <div class="p1-tempo-left">
+              <span class="p1-tempo-label">Tempo por ciclo de avaliacao</span>
+              <div class="p1-tempo-bars">
+                <div class="p1-bar-row">
+                  <span class="p1-bar-label p1-bar-label--red">Antes</span>
+                  <div class="p1-bar-track">
+                    <div class="p1-bar-fill p1-bar-fill--red"></div>
+                  </div>
+                  <span class="p1-bar-value p1-bar-value--red">2h30</span>
+                </div>
+                <div class="p1-bar-row">
+                  <span class="p1-bar-label p1-bar-label--green">Agora</span>
+                  <div class="p1-bar-track">
+                    <div class="p1-bar-fill p1-bar-fill--green"></div>
+                  </div>
+                  <span class="p1-bar-value p1-bar-value--green">30min</span>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="v2-time-block v2-time--fast">
-            <div class="v2-time-icon">&#9889;</div>
-            <div class="v2-time-info">
-              <span class="v2-time-label">Cenario B <small>- Meu ritmo real</small></span>
-              <span class="v2-time-value v2-time-value--green">36h/semana &rarr; Entrega em 2 Semanas</span><small class="v2-time-calc">~72h totais / 36h por semana = 2 semanas</small>
+            <div class="p1-tempo-right">
+              <div class="p1-tempo-saving">
+                <span class="p1-tempo-saving-num">-80%</span>
+                <span class="p1-tempo-saving-label">de tempo</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <footer class="bottombar"><span class="bottombar-proj">Projeto 1 de 7</span><div class="bottombar-dots"><i class="active"></i><i></i><i></i><i></i><i></i><i></i><i></i></div></footer>
+        <!-- CENARIOS -->
+        <div class="p1-cenarios anim-fade-up delay-5">
+          <div class="p1-cen">
+            <div class="p1-cen-badge p1-cen-badge--red">A</div>
+            <div class="p1-cen-content">
+              <div class="p1-cen-top">
+                <span class="p1-cen-title">Disponibilidade da Empresa</span>
+                <span class="p1-cen-result p1-cen-result--red">&#8776; 3 Meses</span>
+              </div>
+              <p class="p1-cen-desc">Apenas <strong>1 dia por semana</strong> (Tercas-feiras), 6h dedicadas ao desenvolvimento.</p>
+              <div class="p1-cen-math">~78h totais &divide; 6h/semana = 13 semanas</div>
+            </div>
+          </div>
+          <div class="p1-cen p1-cen--highlight">
+            <div class="p1-cen-badge p1-cen-badge--teal">B</div>
+            <div class="p1-cen-content">
+              <div class="p1-cen-top">
+                <span class="p1-cen-title">Meu Ritmo Real</span>
+                <span class="p1-cen-result p1-cen-result--teal">3 Semanas</span>
+              </div>
+              <p class="p1-cen-desc">Terca 6h (dia oficial) <strong>+ Seg, Qua, Qui e Sex 5h por dia</strong> no meu tempo livre, apos o expediente como auxiliar.</p>
+              <div class="p1-cen-math">Terca 6h + 4 dias &times; 5h = 26h/semana &rarr; 78h em 3 semanas</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- QR FEEDBACK -->
+        <div class="p1-feedback-qr anim-fade-up delay-5">
+          <div class="p1-fb-qr" id="qrFeedbackNPS"></div>
+          <div class="p1-fb-text">
+            <strong>&#9733; Avalie este sistema!</strong>
+            <span>Escaneie e de seu feedback</span>
+            <span class="p1-fb-portfolio">Usado no meu portfolio profissional</span>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ====== PROJETO 2A ====== -->
     <section class="slide" data-slide="3">
-      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
-      <div class="slide-body"><div class="showcase-layout"><div class="showcase-sidebar anim-fade-right"><div class="proj-num">02</div><h3 class="proj-name">Calendario</h3><p class="proj-desc">Plataforma completa de gestao de escalas com rastreio fotografico de atividades em tempo real.</p><div class="proj-tag-row"><span class="proj-tag">Calendario</span><span class="proj-tag">Escalas</span><span class="proj-tag">Rastreio</span></div></div><div class="showcase-main anim-fade-up delay-1"><div class="browser-frame"><div class="browser-bar"><div class="browser-dots"><i></i><i></i><i></i></div><div class="browser-url">calendario.dpa.com.br</div></div><div class="browser-body"><img src="/images/projeto2-tela.png" alt="Calendario" class="browser-img" /></div></div></div></div></div>
+      <header class="topbar">
+        <div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div>
+        <div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div>
+      </header>
+
+      <div class="slide-body p1-body">
+        <div class="p1-bg">
+          <div class="p1-bg-num">02</div>
+          <div class="p1-bg-orb p1-bg-orb1"></div>
+          <div class="p1-bg-orb p1-bg-orb2"></div>
+        </div>
+
+        <div class="p1-hero">
+          <div class="p1-info">
+            <span class="p1-eyebrow anim-fade-down">Projeto 02 de 8</span>
+            <h2 class="p1-title anim-fade-up delay-1">Calendario<br><span class="p1-title-red">de Escalas</span></h2>
+            <div class="p1-line anim-width-in delay-2"></div>
+            <p class="p1-desc anim-fade-up delay-2">Plataforma completa de gestao de escalas com rastreio fotografico de atividades em tempo real.</p>
+            <div class="p1-tags anim-fade-up delay-3">
+              <span class="p1-tag">Calendario</span>
+              <span class="p1-tag">Escalas</span>
+              <span class="p1-tag">Rastreio</span>
+            </div>
+            <div class="p1-metrics anim-fade-up delay-4">
+              <div class="p1-metric">
+                <span class="p1-metric-icon">&#128247;</span>
+                <span class="p1-metric-val">Foto</span>
+                <span class="p1-metric-lbl">Rastreio</span>
+              </div>
+              <div class="p1-metric p1-metric--accent">
+                <span class="p1-metric-icon">&#128276;</span>
+                <span class="p1-metric-val">Push</span>
+                <span class="p1-metric-lbl">Alertas</span>
+              </div>
+              <div class="p1-metric">
+                <span class="p1-metric-icon">&#128200;</span>
+                <span class="p1-metric-val">PDF</span>
+                <span class="p1-metric-lbl">Relatorios</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="p1-preview anim-fade-left delay-2">
+            <div class="p1-browser-wrap">
+              <div class="p1-browser-glow"></div>
+              <div class="browser-frame">
+                <div class="browser-bar">
+                  <div class="browser-dots"><i></i><i></i><i></i></div>
+                  <div class="browser-url">calendario.dpa.com.br</div>
+                </div>
+                <div class="browser-body">
+                  <img src="/images/projeto2-tela.png" alt="Calendario" class="browser-img" onerror="this.closest('.browser-body').innerHTML='<div class=placeholder>Adicione: projeto2-tela.png</div>'" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ====== PROJETO 2B ====== -->
     <section class="slide" data-slide="4">
-      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-center-title anim-fade-down">Calendario</div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
-      <div class="slide-body v2-body">
+      <header class="topbar">
+        <div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div>
+        <div class="topbar-center-title anim-fade-down">Calendario de Escalas</div>
+        <div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div>
+      </header>
+
+      <div class="slide-body v2-body p1s2-body">
         <div class="v2-main-grid">
-          <!-- COLUNA ESQUERDA: DESAFIO -->
-          <div class="v2-col-before anim-fade-right">
-            <div class="v2-col-title v2-col-title--red"><span class="v2-dot v2-dot--red"></span> O Desafio (Antes)</div>
-            <div class="v2-before-imgs">
-              <div class="v2-img-wrap v2-img-half"><span class="v2-label v2-label--red">Antes</span><img src="/images/projeto2-antes1.png" alt="WhatsApp grupo" /></div>
-              <div class="v2-img-wrap v2-img-half"><span class="v2-label v2-label--red">Antes</span><img src="/images/projeto2-antes2.png" alt="WhatsApp fotos" /></div>
+          <!-- COLUNA ESQUERDA: ANTES -->
+          <div class="v2-col-before p1-col-before anim-fade-right">
+            <div class="p1-col-head">
+              <div class="p1-col-icon p1-col-icon--red">&#128683;</div>
+              <div>
+                <span class="p1-col-badge p1-col-badge--red">Antes</span>
+                <span class="p1-col-title">O Desafio</span>
+              </div>
             </div>
-            <ul class="v2-list v2-list--red">
-              <li>Escalas sem clareza visual e comunicacao de tarefas dependendo de grupos de mensagens</li>
-              <li>Caos de informacoes: Fotos de comprovacao perdidas no chat, tornando a verificacao de areas um processo lento e confuso</li>
-              <li>Falta de metricas: Nenhuma ferramenta para medir o que esta pendente, concluido ou atrasado</li>
-            </ul>
+            <div class="v2-before-imgs">
+              <div class="v2-img-wrap v2-img-half p1-img-hover"><img src="/images/projeto2-antes1.png" alt="WhatsApp grupo" /></div>
+              <div class="v2-img-wrap v2-img-half p1-img-hover"><img src="/images/projeto2-antes2.png" alt="WhatsApp fotos" /></div>
+            </div>
+            <div class="p1-problems">
+              <div class="p1-problem anim-fade-up delay-1">
+                <span class="p1-problem-icon">&#10060;</span>
+                <div class="p1-problem-text">
+                  <strong>Sem clareza visual</strong>
+                  <span>Escalas e comunicacao de tarefas dependendo de grupos de WhatsApp</span>
+                </div>
+              </div>
+              <div class="p1-problem anim-fade-up delay-2">
+                <span class="p1-problem-icon">&#10060;</span>
+                <div class="p1-problem-text">
+                  <strong>Caos de informacoes</strong>
+                  <span>Fotos de comprovacao perdidas no chat, verificacao lenta e confusa</span>
+                </div>
+              </div>
+              <div class="p1-problem anim-fade-up delay-3">
+                <span class="p1-problem-icon">&#10060;</span>
+                <div class="p1-problem-text">
+                  <strong>Falta de metricas</strong>
+                  <span>Nenhuma ferramenta para medir o que esta pendente, concluido ou atrasado</span>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <!-- COLUNA DIREITA: SOLUCAO -->
-          <div class="v2-col-after anim-fade-left delay-1">
-            <div class="v2-col-title v2-col-title--green"><span class="v2-dot v2-dot--green"></span> A Solucao (Como Ficou)</div>
-            <div class="v2-img-wrap"><span class="v2-label v2-label--green">Depois</span><img src="/images/projeto2-tela.png" alt="Calendario digital" /></div>
+          <!-- COLUNA DIREITA: DEPOIS -->
+          <div class="v2-col-after p1-col-after anim-fade-left delay-1">
+            <div class="p1-col-head">
+              <div class="p1-col-icon p1-col-icon--green">&#9989;</div>
+              <div>
+                <span class="p1-col-badge p1-col-badge--green">Depois</span>
+                <span class="p1-col-title">A Solucao</span>
+              </div>
+            </div>
+            <div class="v2-img-wrap p1-img-hover p1-img-after">
+              <img src="/images/projeto2-depois.png" alt="Calendario digital" />
+            </div>
 
-            <div class="v2-group anim-fade-up delay-2">
+            <div class="p1-card anim-fade-up delay-2">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">01</div>
               <h6>Plataforma e Auditoria</h6>
               <ul class="v2-list v2-list--green">
                 <li>Plataforma completa de gestao de escalas com rastreio fotografico e auditoria</li>
-                <li>Governanca: Sistema de auditoria com historico de modificacoes (quem criou, editou ou excluiu) e geracao de relatorios oficiais em PDF</li>
+                <li>Governanca: Sistema de auditoria com historico de modificacoes e geracao de relatorios oficiais em PDF</li>
               </ul>
             </div>
 
-            <div class="v2-group anim-fade-up delay-2">
+            <div class="p1-card anim-fade-up delay-3">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">02</div>
               <h6>Notificacoes e Comprovacao</h6>
               <ul class="v2-list v2-list--green">
-                <li>Notificacoes Push: O colaborador recebe alertas diretamente no celular sempre que uma nova atividade e atribuida a ele</li>
-                <li>Comprovacao inteligente: Upload de fotos feito diretamente dentro da tarefa, vinculando a imagem ao dia, area e responsavel</li>
+                <li>Notificacoes Push: alertas diretamente no celular quando uma nova atividade e atribuida</li>
+                <li>Comprovacao inteligente: Upload de fotos dentro da tarefa, vinculando ao dia, area e responsavel</li>
               </ul>
             </div>
 
-            <div class="v2-group anim-fade-up delay-3">
+            <div class="p1-card anim-fade-up delay-4">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">03</div>
               <h6>Visao e Controle</h6>
               <ul class="v2-list v2-list--green">
-                <li>Visao 360 para a Gestao: Calendario interativo com panorama de visualizacao diaria, semanal e mensal e total e escopo</li>
-                <li>Controle de Aderencia: Filtros instantaneos para visualizar atividades por colaborador, pesquisar por nome e acompanhar o status (concluido, pendente, atrasada)</li>
+                <li>Calendario interativo com visualizacao diaria, semanal e mensal</li>
+                <li>Filtros instantaneos por colaborador, nome e status (concluido, pendente, atrasada)</li>
               </ul>
             </div>
           </div>
         </div>
 
-        <!-- CENARIOS -->
-        <div class="v2-time anim-fade-up delay-4">
-          <div class="v2-time-block v2-time--slow">
-            <div class="v2-time-icon">&#128197;</div>
-            <div class="v2-time-info">
-              <span class="v2-time-label">Cenario A <small>- Ritmo atual da empresa</small></span>
-              <span class="v2-time-value v2-time-value--red">1 dia/semana (Tercas) &rarr; Quase 4 meses (15 semanas)</span><small class="v2-time-calc">~80h totais / 6h por semana = ~13 semanas uteis</small>
+        <!-- TEMPO OPERACIONAL -->
+        <div class="p1-tempo anim-fade-up delay-4">
+          <div class="p1-tempo-visual">
+            <div class="p1-tempo-left">
+              <span class="p1-tempo-label">Tempo para localizar uma foto de comprovacao</span>
+              <div class="p1-tempo-bars">
+                <div class="p1-bar-row">
+                  <span class="p1-bar-label p1-bar-label--red">Antes</span>
+                  <div class="p1-bar-track">
+                    <div class="p1-bar-fill p1-bar-fill--red p1-bar-fill--cal-before"></div>
+                  </div>
+                  <span class="p1-bar-value p1-bar-value--red">30min</span>
+                </div>
+                <div class="p1-bar-row">
+                  <span class="p1-bar-label p1-bar-label--green">Agora</span>
+                  <div class="p1-bar-track">
+                    <div class="p1-bar-fill p1-bar-fill--green p1-bar-fill--cal-after"></div>
+                  </div>
+                  <span class="p1-bar-value p1-bar-value--green">3min</span>
+                </div>
+              </div>
+            </div>
+            <div class="p1-tempo-right">
+              <div class="p1-tempo-saving">
+                <span class="p1-tempo-saving-num">-90%</span>
+                <span class="p1-tempo-saving-label">de tempo</span>
+              </div>
             </div>
           </div>
-          <div class="v2-time-block v2-time--fast">
-            <div class="v2-time-icon">&#9889;</div>
-            <div class="v2-time-info">
-              <span class="v2-time-label">Cenario B <small>- Meu ritmo real</small></span>
-              <span class="v2-time-value v2-time-value--green">80h de desenvolvimento &rarr; Entrega em 2,5 Semanas</span><small class="v2-time-calc">~80h totais / ~36h por semana = 2,5 semanas</small>
+        </div>
+
+        <!-- CENARIOS -->
+        <div class="p1-cenarios anim-fade-up delay-5">
+          <div class="p1-cen">
+            <div class="p1-cen-badge p1-cen-badge--red">A</div>
+            <div class="p1-cen-content">
+              <div class="p1-cen-top">
+                <span class="p1-cen-title">Disponibilidade da Empresa</span>
+                <span class="p1-cen-result p1-cen-result--red">&#8776; 3 Meses</span>
+              </div>
+              <p class="p1-cen-desc">Apenas <strong>1 dia por semana</strong> (Tercas-feiras), 6h dedicadas ao desenvolvimento.</p>
+              <div class="p1-cen-math">~65h totais &divide; 6h/semana = ~11 semanas</div>
             </div>
+          </div>
+          <div class="p1-cen p1-cen--highlight">
+            <div class="p1-cen-badge p1-cen-badge--teal">B</div>
+            <div class="p1-cen-content">
+              <div class="p1-cen-top">
+                <span class="p1-cen-title">Meu Ritmo Real</span>
+                <span class="p1-cen-result p1-cen-result--teal">2,5 Semanas</span>
+              </div>
+              <p class="p1-cen-desc">Terca 6h (dia oficial) <strong>+ Seg, Qua, Qui e Sex 5h por dia</strong> no meu tempo livre, apos o expediente como auxiliar.</p>
+              <div class="p1-cen-math">Terca 6h + 4 dias &times; 5h = 26h/semana &rarr; 65h em 2,5 semanas</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- QR FEEDBACK -->
+        <div class="p1-feedback-qr anim-fade-up delay-5">
+          <div class="p1-fb-qr" id="qrFeedbackCal"></div>
+          <div class="p1-fb-text">
+            <strong>&#9733; Avalie este sistema!</strong>
+            <span>Escaneie e de seu feedback</span>
+            <span class="p1-fb-portfolio">Usado no meu portfolio profissional</span>
           </div>
         </div>
       </div>
@@ -267,56 +589,157 @@
 
     <!-- ====== PROJETO 3A ====== -->
     <section class="slide" data-slide="5">
-      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
-      <div class="slide-body"><div class="showcase-layout"><div class="showcase-sidebar anim-fade-right"><div class="proj-num">03</div><h3 class="proj-name">Solicitacao<br>de Material</h3><p class="proj-desc">Plataforma com catalogo visual e fluxo em etapas para controle absoluto de suprimentos.</p><div class="proj-tag-row"><span class="proj-tag">Catalogo</span><span class="proj-tag">Estoque</span><span class="proj-tag">Fluxo</span></div></div><div class="showcase-main anim-fade-up delay-1"><div class="browser-frame"><div class="browser-bar"><div class="browser-dots"><i></i><i></i><i></i></div><div class="browser-url">solicitacao-material.dpa.com.br</div></div><div class="browser-body"><img src="/images/projeto3-tela.png" alt="Solicitacao de Material" class="browser-img" /></div></div></div></div></div>
+      <header class="topbar">
+        <div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div>
+        <div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div>
+      </header>
+
+      <div class="slide-body p1-body">
+        <div class="p1-bg">
+          <div class="p1-bg-num">03</div>
+          <div class="p1-bg-orb p1-bg-orb1"></div>
+          <div class="p1-bg-orb p1-bg-orb2"></div>
+        </div>
+
+        <div class="p1-hero">
+          <div class="p1-info">
+            <span class="p1-eyebrow anim-fade-down">Projeto 03 de 8</span>
+            <h2 class="p1-title anim-fade-up delay-1">Solicitacao<br><span class="p1-title-red">de Material</span></h2>
+            <div class="p1-line anim-width-in delay-2"></div>
+            <p class="p1-desc anim-fade-up delay-2">Plataforma com catalogo visual e fluxo em etapas para controle absoluto de suprimentos.</p>
+            <div class="p1-tags anim-fade-up delay-3">
+              <span class="p1-tag">Catalogo</span>
+              <span class="p1-tag">Estoque</span>
+              <span class="p1-tag">Fluxo</span>
+            </div>
+            <div class="p1-metrics anim-fade-up delay-4">
+              <div class="p1-metric">
+                <span class="p1-metric-icon">&#128230;</span>
+                <span class="p1-metric-val">Visual</span>
+                <span class="p1-metric-lbl">Catalogo</span>
+              </div>
+              <div class="p1-metric p1-metric--accent">
+                <span class="p1-metric-icon">&#128275;</span>
+                <span class="p1-metric-val">Anti</span>
+                <span class="p1-metric-lbl">Duplicidade</span>
+              </div>
+              <div class="p1-metric">
+                <span class="p1-metric-icon">&#128203;</span>
+                <span class="p1-metric-val">100%</span>
+                <span class="p1-metric-lbl">Rastreado</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="p1-preview anim-fade-left delay-2">
+            <div class="p1-browser-wrap">
+              <div class="p1-browser-glow"></div>
+              <div class="browser-frame">
+                <div class="browser-bar">
+                  <div class="browser-dots"><i></i><i></i><i></i></div>
+                  <div class="browser-url">solicitacao-material.dpa.com.br</div>
+                </div>
+                <div class="browser-body">
+                  <img src="/images/projeto3-tela.png" alt="Solicitacao de Material" class="browser-img" onerror="this.closest('.browser-body').innerHTML='<div class=placeholder>Adicione: projeto3-tela.png</div>'" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ====== PROJETO 3B ====== -->
     <section class="slide" data-slide="6">
-      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-center-title anim-fade-down">Solicitacao de Material</div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
-      <div class="slide-body v2-body">
+      <header class="topbar">
+        <div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div>
+        <div class="topbar-center-title anim-fade-down">Solicitacao de Material</div>
+        <div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div>
+      </header>
+
+      <div class="slide-body v2-body p1s2-body">
         <div class="v2-main-grid">
-          <!-- DESAFIO -->
-          <div class="v2-col-before anim-fade-right">
-            <div class="v2-col-title v2-col-title--red"><span class="v2-dot v2-dot--red"></span> O Desafio (Antes)</div>
-            <div class="v2-before-imgs">
-              <div class="v2-img-wrap v2-img-half"><span class="v2-label v2-label--red">Formulario</span><img src="/images/projeto3-antes1.png" alt="Formulario antigo" /></div>
-              <div class="v2-img-wrap v2-img-half"><span class="v2-label v2-label--red">Planilha</span><img src="/images/projeto3-antes2.png" alt="Planilha Excel" /></div>
+          <!-- COLUNA ESQUERDA: ANTES -->
+          <div class="v2-col-before p1-col-before anim-fade-right">
+            <div class="p1-col-head">
+              <div class="p1-col-icon p1-col-icon--red">&#128683;</div>
+              <div>
+                <span class="p1-col-badge p1-col-badge--red">Antes</span>
+                <span class="p1-col-title">O Desafio</span>
+              </div>
             </div>
-            <ul class="v2-list v2-list--red">
-              <li>Despadronizacao de Dados: Formularios basicos que geravam erros de digitacao (nomes incompletos ou abreviados) e ausencia de codigos oficiais dos materiais</li>
-              <li>Falta de Rastreabilidade: A gestao nao sabia para qual DML ou area o material estava indo, dificultando o controle de consumo</li>
-              <li>Processo Descentralizado: Cruzamento de dados lento, com os pedidos em uma planilha e o historico do colaborador em outra</li>
-            </ul>
+            <div class="v2-before-imgs">
+              <div class="v2-img-wrap v2-img-half p1-img-hover"><img src="/images/projeto3-antes1.png" alt="Formulario antigo" /></div>
+              <div class="v2-img-wrap v2-img-half p1-img-hover"><img src="/images/projeto3-antes2.png" alt="Planilha Excel" /></div>
+            </div>
+            <div class="p1-problems">
+              <div class="p1-problem anim-fade-up delay-1">
+                <span class="p1-problem-icon">&#10060;</span>
+                <div class="p1-problem-text">
+                  <strong>Despadronizacao de dados</strong>
+                  <span>Formularios basicos com erros de digitacao e ausencia de codigos oficiais dos materiais</span>
+                </div>
+              </div>
+              <div class="p1-problem anim-fade-up delay-2">
+                <span class="p1-problem-icon">&#10060;</span>
+                <div class="p1-problem-text">
+                  <strong>Falta de rastreabilidade</strong>
+                  <span>Gestao nao sabia para qual DML ou area o material estava indo</span>
+                </div>
+              </div>
+              <div class="p1-problem anim-fade-up delay-3">
+                <span class="p1-problem-icon">&#10060;</span>
+                <div class="p1-problem-text">
+                  <strong>Processo descentralizado</strong>
+                  <span>Pedidos em uma planilha e historico do colaborador em outra</span>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <!-- SOLUCAO -->
-          <div class="v2-col-after anim-fade-left delay-1">
-            <div class="v2-col-title v2-col-title--green"><span class="v2-dot v2-dot--green"></span> A Solucao (Como Ficou)</div>
-            <div class="v2-img-wrap"><span class="v2-label v2-label--green">Depois</span><img src="/images/projeto3-tela.png" alt="Sistema novo" /></div>
+          <!-- COLUNA DIREITA: DEPOIS -->
+          <div class="v2-col-after p1-col-after anim-fade-left delay-1">
+            <div class="p1-col-head">
+              <div class="p1-col-icon p1-col-icon--green">&#9989;</div>
+              <div>
+                <span class="p1-col-badge p1-col-badge--green">Depois</span>
+                <span class="p1-col-title">A Solucao</span>
+              </div>
+            </div>
+            <div class="v2-img-wrap p1-img-hover p1-img-after">
+              <img src="/images/projeto3-depois.png" alt="Sistema novo" />
+            </div>
 
-            <div class="v2-group anim-fade-up delay-2">
+            <div class="p1-card anim-fade-up delay-2">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">01</div>
               <h6>Catalogo Visual e UI Intuitiva</h6>
               <ul class="v2-list v2-list--green">
-                <li>Inclusao de imagens dos produtos para zerar erros na hora da escolha e tela de "resumo do pedido" para revisao antes do envio</li>
+                <li>Imagens dos produtos para zerar erros na escolha e tela de "resumo do pedido" para revisao antes do envio</li>
               </ul>
             </div>
 
-            <div class="v2-group anim-fade-up delay-2">
+            <div class="p1-card anim-fade-up delay-3">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">02</div>
               <h6>Fluxo Guiado (Step-by-Step)</h6>
               <ul class="v2-list v2-list--green">
-                <li>O sistema agora distribui o pedido em etapas logicas (identificacao de turno, matricula e destino final: DML ou Uso Pessoal)</li>
+                <li>Pedido em etapas logicas: identificacao de turno, matricula e destino final (DML ou Uso Pessoal)</li>
               </ul>
             </div>
 
-            <div class="v2-group anim-fade-up delay-3">
+            <div class="p1-card anim-fade-up delay-3">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">03</div>
               <h6>Bloqueio de Duplicidade</h6>
               <ul class="v2-list v2-list--green">
-                <li>Rastreio inteligente que verifica se o DML ja fez solicitacoes no mesmo dia, evitando pedidos duplicados e acumulo de estoque</li>
+                <li>Rastreio inteligente que verifica se o DML ja fez solicitacoes no mesmo dia, evitando pedidos duplicados</li>
               </ul>
             </div>
 
-            <div class="v2-group anim-fade-up delay-3">
+            <div class="p1-card anim-fade-up delay-4">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">04</div>
               <h6>Historico Centralizado</h6>
               <ul class="v2-list v2-list--green">
                 <li>Integracao total do historico de consumo por matricula e por DML, no mesmo ambiente</li>
@@ -325,21 +748,70 @@
           </div>
         </div>
 
-        <!-- CENARIOS -->
-        <div class="v2-time anim-fade-up delay-4">
-          <div class="v2-time-block v2-time--slow">
-            <div class="v2-time-icon">&#128197;</div>
-            <div class="v2-time-info">
-              <span class="v2-time-label">Cenario A <small>- Viacao Pioneira</small></span>
-              <span class="v2-time-value v2-time-value--red">1 dia/semana (Tercas) &rarr; 3 meses (12 tercas)</span><small class="v2-time-calc">~72h totais / 6h por semana = 12 semanas</small>
+        <!-- TEMPO OPERACIONAL -->
+        <div class="p1-tempo anim-fade-up delay-4">
+          <div class="p1-tempo-visual">
+            <div class="p1-tempo-left">
+              <span class="p1-tempo-label">Tempo para solicitar material completo</span>
+              <div class="p1-tempo-bars">
+                <div class="p1-bar-row">
+                  <span class="p1-bar-label p1-bar-label--red">Antes</span>
+                  <div class="p1-bar-track">
+                    <div class="p1-bar-fill p1-bar-fill--red p1-bar-fill--mat-before"></div>
+                  </div>
+                  <span class="p1-bar-value p1-bar-value--red">3h</span>
+                </div>
+                <div class="p1-bar-row">
+                  <span class="p1-bar-label p1-bar-label--green">Agora</span>
+                  <div class="p1-bar-track">
+                    <div class="p1-bar-fill p1-bar-fill--green p1-bar-fill--mat-after"></div>
+                  </div>
+                  <span class="p1-bar-value p1-bar-value--green">30min</span>
+                </div>
+              </div>
+            </div>
+            <div class="p1-tempo-right">
+              <div class="p1-tempo-saving">
+                <span class="p1-tempo-saving-num">-83%</span>
+                <span class="p1-tempo-saving-label">de tempo</span>
+              </div>
             </div>
           </div>
-          <div class="v2-time-block v2-time--fast">
-            <div class="v2-time-icon">&#9889;</div>
-            <div class="v2-time-info">
-              <span class="v2-time-label">Cenario B <small>- Meu ritmo real</small></span>
-              <span class="v2-time-value v2-time-value--green">72h reais de codigo (tardes e sabados) &rarr; 2 semanas</span><small class="v2-time-calc">~72h totais / ~36h por semana = 2 semanas</small>
+        </div>
+
+        <!-- CENARIOS -->
+        <div class="p1-cenarios anim-fade-up delay-5">
+          <div class="p1-cen">
+            <div class="p1-cen-badge p1-cen-badge--red">A</div>
+            <div class="p1-cen-content">
+              <div class="p1-cen-top">
+                <span class="p1-cen-title">Disponibilidade da Empresa</span>
+                <span class="p1-cen-result p1-cen-result--red">&#8776; 4 Meses</span>
+              </div>
+              <p class="p1-cen-desc">Apenas <strong>1 dia por semana</strong> (Tercas-feiras), 6h dedicadas ao desenvolvimento.</p>
+              <div class="p1-cen-math">~104h totais &divide; 6h/semana = ~17 semanas</div>
             </div>
+          </div>
+          <div class="p1-cen p1-cen--highlight">
+            <div class="p1-cen-badge p1-cen-badge--teal">B</div>
+            <div class="p1-cen-content">
+              <div class="p1-cen-top">
+                <span class="p1-cen-title">Meu Ritmo Real</span>
+                <span class="p1-cen-result p1-cen-result--teal">4 Semanas</span>
+              </div>
+              <p class="p1-cen-desc">Terca 6h (dia oficial) <strong>+ Seg, Qua, Qui e Sex 5h por dia</strong> no meu tempo livre, apos o expediente como auxiliar.</p>
+              <div class="p1-cen-math">Terca 6h + 4 dias &times; 5h = 26h/semana &rarr; 104h em 4 semanas</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- QR FEEDBACK -->
+        <div class="p1-feedback-qr anim-fade-up delay-5">
+          <div class="p1-fb-qr" id="qrFeedbackMat"></div>
+          <div class="p1-fb-text">
+            <strong>&#9733; Avalie este sistema!</strong>
+            <span>Escaneie e de seu feedback</span>
+            <span class="p1-fb-portfolio">Usado no meu portfolio profissional</span>
           </div>
         </div>
       </div>
@@ -347,75 +819,217 @@
 
     <!-- ====== PROJETO 4A ====== -->
     <section class="slide" data-slide="7">
-      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
-      <div class="slide-body"><div class="showcase-layout"><div class="showcase-sidebar anim-fade-right"><div class="proj-num">04</div><h3 class="proj-name">Registro<br>Limpeza</h3><p class="proj-desc">Sistema digital responsivo com gestao de cores, painel administrativo e assinatura eletronica.</p><div class="proj-tag-row"><span class="proj-tag">Bancada</span><span class="proj-tag">Ocorrencias</span><span class="proj-tag">Deploy</span></div></div><div class="showcase-main anim-fade-up delay-1"><div class="browser-frame"><div class="browser-bar"><div class="browser-dots"><i></i><i></i><i></i></div><div class="browser-url">registro-limpeza.dpa.com.br</div></div><div class="browser-body"><img src="/images/projeto4-tela.png" alt="Registro Limpeza" class="browser-img" /></div></div></div></div></div>
+      <header class="topbar">
+        <div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div>
+        <div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div>
+      </header>
+
+      <div class="slide-body p1-body">
+        <div class="p1-bg">
+          <div class="p1-bg-num">04</div>
+          <div class="p1-bg-orb p1-bg-orb1"></div>
+          <div class="p1-bg-orb p1-bg-orb2"></div>
+        </div>
+
+        <div class="p1-hero">
+          <div class="p1-info">
+            <span class="p1-eyebrow anim-fade-down">Projeto 04 de 8</span>
+            <h2 class="p1-title anim-fade-up delay-1">Registro<br><span class="p1-title-red">de Limpeza</span></h2>
+            <div class="p1-line anim-width-in delay-2"></div>
+            <p class="p1-desc anim-fade-up delay-2">Sistema digital responsivo com gestao de cores, painel administrativo e assinatura eletronica.</p>
+            <div class="p1-tags anim-fade-up delay-3">
+              <span class="p1-tag">Responsivo</span>
+              <span class="p1-tag">Assinatura</span>
+              <span class="p1-tag">Docker</span>
+            </div>
+            <div class="p1-metrics anim-fade-up delay-4">
+              <div class="p1-metric">
+                <span class="p1-metric-icon">&#127912;</span>
+                <span class="p1-metric-val">Cores</span>
+                <span class="p1-metric-lbl">Gestao Visual</span>
+              </div>
+              <div class="p1-metric p1-metric--accent">
+                <span class="p1-metric-icon">&#9997;</span>
+                <span class="p1-metric-val">Digital</span>
+                <span class="p1-metric-lbl">Assinatura</span>
+              </div>
+              <div class="p1-metric">
+                <span class="p1-metric-icon">&#128225;</span>
+                <span class="p1-metric-val">Multi</span>
+                <span class="p1-metric-lbl">Dispositivo</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="p1-preview anim-fade-left delay-2">
+            <div class="p1-browser-wrap">
+              <div class="p1-browser-glow"></div>
+              <div class="browser-frame">
+                <div class="browser-bar">
+                  <div class="browser-dots"><i></i><i></i><i></i></div>
+                  <div class="browser-url">registro-limpeza.dpa.com.br</div>
+                </div>
+                <div class="browser-body">
+                  <img src="/images/projeto4-tela.png" alt="Registro Limpeza" class="browser-img" onerror="this.closest('.browser-body').innerHTML='<div class=placeholder>Adicione: projeto4-tela.png</div>'" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ====== PROJETO 4B ====== -->
     <section class="slide" data-slide="8">
-      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-center-title anim-fade-down">Registro Limpeza</div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
-      <div class="slide-body v2-body">
+      <header class="topbar">
+        <div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div>
+        <div class="topbar-center-title anim-fade-down">Registro de Limpeza</div>
+        <div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div>
+      </header>
+
+      <div class="slide-body v2-body p1s2-body">
         <div class="v2-main-grid">
-          <!-- DESAFIO -->
-          <div class="v2-col-before anim-fade-right">
-            <div class="v2-col-title v2-col-title--red"><span class="v2-dot v2-dot--red"></span> O Desafio (Antes)</div>
-            <div class="v2-img-wrap"><span class="v2-label v2-label--red">Folha de papel</span><img src="/images/projeto4-antes.png" alt="Controle em papel" /></div>
-            <ul class="v2-list v2-list--red">
-              <li>Gestao Analogica e Confusa: Controles em folhas de papel, deixando colaboradores perdidos sobre os dias e as frequencias exatas das tarefas</li>
-              <li>Validacao Ineficiente: O supervisor perdia horas semanais descendo e conferindo fisicamente assinaturas de papel para validar as atividades</li>
-              <li>Zero Gestao Visual: Falta de indicadores claros sobre o status do que esta pendente ou atrasado</li>
-            </ul>
+          <!-- COLUNA ESQUERDA: ANTES -->
+          <div class="v2-col-before p1-col-before anim-fade-right">
+            <div class="p1-col-head">
+              <div class="p1-col-icon p1-col-icon--red">&#128683;</div>
+              <div>
+                <span class="p1-col-badge p1-col-badge--red">Antes</span>
+                <span class="p1-col-title">O Desafio</span>
+              </div>
+            </div>
+            <div class="v2-img-wrap p1-img-hover">
+              <img src="/images/projeto4-antes.png" alt="Controle em papel" />
+            </div>
+            <div class="p1-problems">
+              <div class="p1-problem anim-fade-up delay-1">
+                <span class="p1-problem-icon">&#10060;</span>
+                <div class="p1-problem-text">
+                  <strong>Gestao analogica</strong>
+                  <span>Controles em folhas de papel, colaboradores perdidos sobre dias e frequencias das tarefas</span>
+                </div>
+              </div>
+              <div class="p1-problem anim-fade-up delay-2">
+                <span class="p1-problem-icon">&#10060;</span>
+                <div class="p1-problem-text">
+                  <strong>Validacao ineficiente</strong>
+                  <span>Supervisor perdia horas conferindo fisicamente assinaturas de papel para validar atividades</span>
+                </div>
+              </div>
+              <div class="p1-problem anim-fade-up delay-3">
+                <span class="p1-problem-icon">&#10060;</span>
+                <div class="p1-problem-text">
+                  <strong>Zero gestao visual</strong>
+                  <span>Sem indicadores claros sobre o que esta pendente ou atrasado</span>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <!-- SOLUCAO -->
-          <div class="v2-col-after anim-fade-left delay-1">
-            <div class="v2-col-title v2-col-title--green"><span class="v2-dot v2-dot--green"></span> A Solucao (Em Fase de Deploy)</div>
-            <div class="v2-img-wrap"><span class="v2-label v2-label--green">Depois</span><img src="/images/projeto4-tela.png" alt="Sistema digital" /></div>
+          <!-- COLUNA DIREITA: DEPOIS -->
+          <div class="v2-col-after p1-col-after anim-fade-left delay-1">
+            <div class="p1-col-head">
+              <div class="p1-col-icon p1-col-icon--green">&#9989;</div>
+              <div>
+                <span class="p1-col-badge p1-col-badge--green">Em Fase Final</span>
+                <span class="p1-col-title">A Solucao</span>
+              </div>
+            </div>
+            <div class="v2-img-wrap p1-img-hover p1-img-after">
+              <img src="/images/projeto4-depois.png" alt="Sistema digital" />
+            </div>
 
-            <div class="v2-group anim-fade-up delay-2">
+            <div class="p1-card anim-fade-up delay-2">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">01</div>
               <h6>Acesso Multi-Dispositivo</h6>
               <ul class="v2-list v2-list--green">
-                <li>Interface 100% responsiva (Celular, PC, Tablet) com paineis individuais para cada colaborador assinar digitalmente onde estiver</li>
+                <li>Interface 100% responsiva (Celular, PC, Tablet) com paineis individuais para cada colaborador assinar digitalmente</li>
               </ul>
             </div>
 
-            <div class="v2-group anim-fade-up delay-2">
+            <div class="p1-card anim-fade-up delay-2">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">02</div>
               <h6>Sistema de Cores Inteligente</h6>
               <ul class="v2-list v2-list--green">
-                <li>Indicadores visuais claros (Pendente, Atencao, Realizado, Validado) que facilitam a vida de quem executa e de quem audita</li>
+                <li>Indicadores visuais claros (Pendente, Atencao, Realizado, Validado) para quem executa e quem audita</li>
               </ul>
             </div>
 
-            <div class="v2-group anim-fade-up delay-3">
+            <div class="p1-card anim-fade-up delay-3">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">03</div>
               <h6>Autonomia Administrativa</h6>
               <ul class="v2-list v2-list--green">
-                <li>Dashboard central com barra de progresso (0 a 100%), permitindo ao ADM editar atividades, mudar frequencias e gerenciar acessos sem precisar mexer no codigo</li>
+                <li>Dashboard com barra de progresso (0 a 100%), ADM edita atividades e gerencia acessos sem mexer no codigo</li>
               </ul>
             </div>
 
-            <div class="v2-group anim-fade-up delay-3">
+            <div class="p1-card anim-fade-up delay-4">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">04</div>
               <h6>Arquitetura e Deploy</h6>
               <ul class="v2-list v2-list--green">
-                <li>Banco de dados estruturado e sistema conteinerizado (Docker) para integracao segura com os servidores legados da empresa</li>
+                <li>Banco de dados estruturado e sistema conteinerizado (Docker) para integracao segura com servidores legados</li>
               </ul>
             </div>
           </div>
         </div>
 
-        <!-- CENARIOS -->
-        <div class="v2-time anim-fade-up delay-4">
-          <div class="v2-time-block v2-time--slow">
-            <div class="v2-time-icon">&#128197;</div>
-            <div class="v2-time-info">
-              <span class="v2-time-label">Cenario A <small>- A realidade da empresa</small></span>
-              <span class="v2-time-value v2-time-value--red">1 dia/sem (Tercas), 8h &rarr; 4 anos e meio (234 semanas)</span><small class="v2-time-calc">~1.872h totais / 8h por semana = 234 semanas</small>
+        <!-- TEMPO OPERACIONAL -->
+        <div class="p1-tempo anim-fade-up delay-4">
+          <div class="p1-tempo-visual">
+            <div class="p1-tempo-left">
+              <span class="p1-tempo-label">Verificacao de assinaturas e atividades</span>
+              <div class="p1-tempo-bars">
+                <div class="p1-bar-row">
+                  <span class="p1-bar-label p1-bar-label--red">Antes</span>
+                  <div class="p1-bar-track">
+                    <div class="p1-bar-fill p1-bar-fill--red p1-bar-fill--reg-before"></div>
+                  </div>
+                  <span class="p1-bar-value p1-bar-value--red">1x/sem</span>
+                </div>
+                <div class="p1-bar-row">
+                  <span class="p1-bar-label p1-bar-label--green">Agora</span>
+                  <div class="p1-bar-track">
+                    <div class="p1-bar-fill p1-bar-fill--green p1-bar-fill--reg-after"></div>
+                  </div>
+                  <span class="p1-bar-value p1-bar-value--green">Todo dia</span>
+                </div>
+              </div>
+            </div>
+            <div class="p1-tempo-right">
+              <div class="p1-tempo-saving">
+                <span class="p1-tempo-saving-num" style="font-size:1.1rem">Diario</span>
+                <span class="p1-tempo-saving-label">Acesso</span>
+              </div>
             </div>
           </div>
-          <div class="v2-time-block v2-time--fast">
-            <div class="v2-time-icon">&#9889;</div>
-            <div class="v2-time-info">
-              <span class="v2-time-label">Cenario B <small>- Meu esforco real (imersao)</small></span>
-              <span class="v2-time-value v2-time-value--green">Seg a sab + tardes livres &rarr; 9 meses (39 semanas ativas)</span><small class="v2-time-calc">~1.872h totais / ~48h por semana = 39 semanas</small>
+        </div>
+
+        <!-- CENARIOS -->
+        <div class="p1-cenarios anim-fade-up delay-5">
+          <div class="p1-cen">
+            <div class="p1-cen-badge p1-cen-badge--red">A</div>
+            <div class="p1-cen-content">
+              <div class="p1-cen-top">
+                <span class="p1-cen-title">Disponibilidade da Empresa</span>
+                <span class="p1-cen-result p1-cen-result--red">&#8776; 3 Anos e Meio</span>
+              </div>
+              <p class="p1-cen-desc">Apenas <strong>1 dia por semana</strong> (Tercas-feiras), 6h dedicadas ao desenvolvimento.</p>
+              <div class="p1-cen-math">~1.092h totais &divide; 6h/semana = ~182 semanas</div>
+            </div>
+          </div>
+          <div class="p1-cen p1-cen--highlight">
+            <div class="p1-cen-badge p1-cen-badge--teal">B</div>
+            <div class="p1-cen-content">
+              <div class="p1-cen-top">
+                <span class="p1-cen-title">Meu Ritmo Real</span>
+                <span class="p1-cen-result p1-cen-result--teal">~10 Meses (fase final)</span>
+              </div>
+              <p class="p1-cen-desc">Desde 07/08/2025, <strong>Seg a Sex</strong>: Terca 6h (oficial) + outros dias 5h no meu tempo livre. Aguardando TI liberar ultimo banco de dados.</p>
+              <div class="p1-cen-math">Terca 6h + 4 dias &times; 5h = 26h/semana &rarr; ~1.092h em 42 semanas</div>
             </div>
           </div>
         </div>
@@ -424,76 +1038,203 @@
 
     <!-- ====== PROJETO 5A ====== -->
     <section class="slide" data-slide="9">
-      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
-      <div class="slide-body"><div class="showcase-layout"><div class="showcase-sidebar anim-fade-right"><div class="proj-num">05</div><div class="proj-future-badge">PROJETO FUTURO</div><h3 class="proj-name">Checklist<br>Maquinarios</h3><p class="proj-desc">Aplicativo PWA interativo com tecnologia 3D e auditoria completa para checklist de maquinarios.</p><div class="proj-tag-row"><span class="proj-tag">PWA</span><span class="proj-tag">3D</span><span class="proj-tag">Checklist</span></div></div><div class="showcase-main anim-fade-up delay-1"><div class="video-frame"><div class="browser-bar"><div class="browser-dots"><i></i><i></i><i></i></div><div class="browser-url">checklist-maquinarios.dpa.com.br</div></div><div class="video-body"><video src="/images/projeto5-video.mp4" controls playsinline></video></div></div></div></div></div>
+      <header class="topbar">
+        <div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div>
+        <div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div>
+      </header>
+
+      <div class="slide-body p1-body">
+        <div class="p1-bg">
+          <div class="p1-bg-num">05</div>
+          <div class="p1-bg-orb p1-bg-orb1"></div>
+          <div class="p1-bg-orb p1-bg-orb2"></div>
+        </div>
+
+        <div class="p1-hero">
+          <div class="p1-info">
+            <div class="proj-future-badge anim-fade-down">PROJETO FUTURO</div>
+            <span class="p1-eyebrow anim-fade-down delay-1">Projeto 05 de 8</span>
+            <h2 class="p1-title anim-fade-up delay-1">Checklist<br><span class="p1-title-red">Maquinarios</span></h2>
+            <div class="p1-line anim-width-in delay-2"></div>
+            <p class="p1-desc anim-fade-up delay-2">Aplicativo PWA interativo com tecnologia 3D e auditoria completa para checklist de maquinarios.</p>
+            <div class="p1-tags anim-fade-up delay-3">
+              <span class="p1-tag">PWA</span>
+              <span class="p1-tag">3D</span>
+              <span class="p1-tag">Checklist</span>
+            </div>
+            <div class="p1-metrics anim-fade-up delay-4">
+              <div class="p1-metric">
+                <span class="p1-metric-icon">&#128241;</span>
+                <span class="p1-metric-val">PWA</span>
+                <span class="p1-metric-lbl">App Nativo</span>
+              </div>
+              <div class="p1-metric p1-metric--accent">
+                <span class="p1-metric-icon">&#127922;</span>
+                <span class="p1-metric-val">3D</span>
+                <span class="p1-metric-lbl">Renderizacao</span>
+              </div>
+              <div class="p1-metric">
+                <span class="p1-metric-icon">&#128247;</span>
+                <span class="p1-metric-val">Foto</span>
+                <span class="p1-metric-lbl">Obrigatoria</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="p1-preview anim-fade-left delay-2">
+            <div class="p1-browser-wrap">
+              <div class="p1-browser-glow"></div>
+              <div class="p1-video-frame">
+                <div class="browser-bar">
+                  <div class="browser-dots"><i></i><i></i><i></i></div>
+                  <div class="browser-url">checklist-maquinarios.dpa.com.br</div>
+                </div>
+                <div class="p1-video-body">
+                  <video id="vid5" src="/images/projeto5-video.mp4" muted playsinline loop data-speed="2"></video>
+                  <div class="p1-video-controls">
+                    <button class="p1-vid-btn" onclick="document.getElementById('vid5').currentTime-=5" title="Voltar 5s">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/></svg>
+                      <span>5s</span>
+                    </button>
+                    <button class="p1-vid-btn p1-vid-btn--speed" onclick="var v=document.getElementById('vid5');v.playbackRate=v.playbackRate===2?1:2;this.querySelector('span').textContent=v.playbackRate===2?'2x':'1x'" title="Velocidade">
+                      <span>2x</span>
+                    </button>
+                    <button class="p1-vid-btn" onclick="document.getElementById('vid5').currentTime+=5" title="Avancar 5s">
+                      <span>5s</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ====== PROJETO 5B ====== -->
     <section class="slide" data-slide="10">
-      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-center-title anim-fade-down">Checklist Maquinarios</div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
-      <div class="slide-body v2-body">
+      <header class="topbar">
+        <div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div>
+        <div class="topbar-center-title anim-fade-down">Checklist Maquinarios</div>
+        <div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div>
+      </header>
+
+      <div class="slide-body v2-body p1s2-body">
         <div class="v2-main-grid">
-          <!-- DESAFIO -->
-          <div class="v2-col-before anim-fade-right">
-            <div class="v2-col-title v2-col-title--red"><span class="v2-dot v2-dot--red"></span> O Desafio (Cenario Atual)</div>
-            <div class="v2-img-wrap"><span class="v2-label v2-label--red">Formulario</span><img src="/images/projeto5-antes.png" alt="Google Forms" /></div>
-            <ul class="v2-list v2-list--red">
-              <li>Zero Conformidade: Checklists ignorados ou nao preenchidos na pratica</li>
-              <li>Dados Genericos: Formularios engessados onde as respostas se repetem para qualquer tipo de maquina, sem especificidade</li>
-              <li>Falta de Auditoria Visual: Nenhuma exigencia de foto para comprovar o estado real do equipamento</li>
-            </ul>
+          <!-- COLUNA ESQUERDA: ANTES -->
+          <div class="v2-col-before p1-col-before anim-fade-right">
+            <div class="p1-col-head">
+              <div class="p1-col-icon p1-col-icon--red">&#128683;</div>
+              <div>
+                <span class="p1-col-badge p1-col-badge--red">Cenario Atual</span>
+                <span class="p1-col-title">O Desafio</span>
+              </div>
+            </div>
+            <div class="v2-img-wrap p1-img-hover">
+              <img src="/images/projeto5-antes.png" alt="Google Forms" />
+            </div>
+            <div class="p1-problems">
+              <div class="p1-problem anim-fade-up delay-1">
+                <span class="p1-problem-icon">&#10060;</span>
+                <div class="p1-problem-text">
+                  <strong>Zero conformidade</strong>
+                  <span>Checklists ignorados ou nao preenchidos na pratica</span>
+                </div>
+              </div>
+              <div class="p1-problem anim-fade-up delay-2">
+                <span class="p1-problem-icon">&#10060;</span>
+                <div class="p1-problem-text">
+                  <strong>Dados genericos</strong>
+                  <span>Formularios engessados, respostas repetidas para qualquer tipo de maquina</span>
+                </div>
+              </div>
+              <div class="p1-problem anim-fade-up delay-3">
+                <span class="p1-problem-icon">&#10060;</span>
+                <div class="p1-problem-text">
+                  <strong>Sem auditoria visual</strong>
+                  <span>Nenhuma exigencia de foto para comprovar o estado real do equipamento</span>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <!-- SOLUCAO -->
-          <div class="v2-col-after anim-fade-left delay-1">
-            <div class="v2-col-title v2-col-title--green"><span class="v2-dot v2-dot--green"></span> A Solucao (O Prototipo do Futuro)</div>
-            <div class="v2-img-wrap"><span class="v2-label v2-label--green">Prototipo</span><img src="/images/projeto5-depois.png" alt="App PWA 3D" /></div>
+          <!-- COLUNA DIREITA: DEPOIS -->
+          <div class="v2-col-after p1-col-after anim-fade-left delay-1">
+            <div class="p1-col-head">
+              <div class="p1-col-icon p1-col-icon--green">&#9989;</div>
+              <div>
+                <span class="p1-col-badge p1-col-badge--green">Prototipo Futuro</span>
+                <span class="p1-col-title">A Solucao</span>
+              </div>
+            </div>
+            <div class="v2-img-wrap p1-img-hover p1-img-after">
+              <img src="/images/projeto5-depois.png" alt="App PWA 3D" />
+            </div>
 
-            <div class="v2-group anim-fade-up delay-2">
+            <div class="p1-card anim-fade-up delay-2">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">01</div>
               <h6>Experiencia de App (PWA)</h6>
               <ul class="v2-list v2-list--green">
-                <li>Sistema responsivo que funciona no celular como um aplicativo nativo, sem precisar baixar nas lojas</li>
-                <li>Renderizacao de maquinario em 3D na tela, indicando os pontos exatos onde a foto deve ser tirada</li>
+                <li>Funciona no celular como app nativo, sem baixar nas lojas</li>
+                <li>Renderizacao 3D do maquinario indicando pontos exatos para foto</li>
               </ul>
             </div>
 
-            <div class="v2-group anim-fade-up delay-3">
+            <div class="p1-card anim-fade-up delay-3">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">02</div>
               <h6>Trava de Seguranca</h6>
               <ul class="v2-list v2-list--green">
-                <li>O checklist so e concluido se a foto do peca/maquinario for tirada em tempo real</li>
+                <li>Checklist so conclui se a foto da peca/maquinario for tirada em tempo real</li>
               </ul>
             </div>
 
-            <div class="v2-group anim-fade-up delay-3">
+            <div class="p1-card anim-fade-up delay-4">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">03</div>
               <h6>Gestao Total</h6>
               <ul class="v2-list v2-list--green">
-                <li>Calendario integrado de manutencoes e Dashboard de usabilidade para medir a aderencia da equipe</li>
+                <li>Calendario integrado de manutencoes e Dashboard para medir aderencia da equipe</li>
               </ul>
             </div>
           </div>
         </div>
 
         <!-- CENARIOS (3 opcoes) -->
-        <div class="v2-time v2-time--triple anim-fade-up delay-4">
-          <div class="v2-time-block v2-time--slow">
-            <div class="v2-time-icon">&#128197;</div>
-            <div class="v2-time-info">
-              <span class="v2-time-label">Cenario A <small>- Ritmo da empresa</small></span>
-              <span class="v2-time-value v2-time-value--red">1 dia/sem (Tercas), 8h &rarr; 9 meses (36 semanas)</span><small class="v2-time-calc">~288h totais / 8h por semana = 36 semanas</small>
+        <div class="p1-cenarios p1-cenarios--triple anim-fade-up delay-5">
+          <div class="p1-cen">
+            <div class="p1-cen-badge p1-cen-badge--red">A</div>
+            <div class="p1-cen-content">
+              <div class="p1-cen-top">
+                <span class="p1-cen-title">Disponibilidade da Empresa</span>
+                <span class="p1-cen-result p1-cen-result--red">&#8776; 3 Meses</span>
+              </div>
+              <p class="p1-cen-desc">Apenas <strong>1 dia por semana</strong> (Tercas), 6h dedicadas.</p>
+              <div class="p1-cen-math">~78h totais &divide; 6h/semana = 13 semanas</div>
             </div>
           </div>
-          <div class="v2-time-block v2-time--mid">
-            <div class="v2-time-icon">&#128338;</div>
-            <div class="v2-time-info">
-              <span class="v2-time-label">Cenario B <small>- Meio-Termo (Equilibrio)</small></span>
-              <span class="v2-time-value" style="color:var(--ink)">3 dias programados + 2 na operacao &rarr; 1 mes e meio</span><small class="v2-time-calc">~288h totais / 18h por semana = ~16 semanas = ~6 semanas uteis</small>
+          <div class="p1-cen">
+            <div class="p1-cen-badge" style="background:#d97706">B</div>
+            <div class="p1-cen-content">
+              <div class="p1-cen-top">
+                <span class="p1-cen-title">Meio-Termo</span>
+                <span class="p1-cen-result" style="color:#d97706;background:#fffbeb;border-color:#fde68a">&#8776; 1 Mes</span>
+              </div>
+              <p class="p1-cen-desc"><strong>3 dias programados</strong> (6h cada) + 2 dias na operacao.</p>
+              <div class="p1-cen-math">~78h totais &divide; 18h/semana = ~4,3 semanas</div>
             </div>
           </div>
-          <div class="v2-time-block v2-time--fast">
-            <div class="v2-time-icon">&#9889;</div>
-            <div class="v2-time-info">
-              <span class="v2-time-label">Cenario C <small>- Foco em Tecnologia (Ideal)</small></span>
-              <span class="v2-time-value v2-time-value--green">4 dias programados + 1 dia admin &rarr; Apenas 1 Mes</span><small class="v2-time-calc">~288h totais / 24h por semana = ~12 semanas = ~4.5 semanas uteis</small>
+          <div class="p1-cen p1-cen--highlight">
+            <div class="p1-cen-badge p1-cen-badge--teal">C</div>
+            <div class="p1-cen-content">
+              <div class="p1-cen-top">
+                <span class="p1-cen-title">Foco em Tecnologia</span>
+                <span class="p1-cen-result p1-cen-result--teal">3 Semanas</span>
+              </div>
+              <p class="p1-cen-desc"><strong>4 dias programados</strong> (6h cada) + 1 dia administrativo.</p>
+              <div class="p1-cen-math">~78h totais &divide; 24h/semana = ~3,2 semanas</div>
             </div>
           </div>
         </div>
@@ -502,78 +1243,203 @@
 
     <!-- ====== PROJETO 6A ====== -->
     <section class="slide" data-slide="11">
-      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
-      <div class="slide-body"><div class="showcase-layout"><div class="showcase-sidebar anim-fade-right"><div class="proj-num">06</div><div class="proj-future-badge">PROJETO FUTURO</div><h3 class="proj-name">Central de<br>Notificacoes</h3><p class="proj-desc">Sistema de notificacoes por area com gestao de colaboradores e alertas inteligentes para a limpeza.</p><div class="proj-tag-row"><span class="proj-tag">Notificacoes</span><span class="proj-tag">Areas</span><span class="proj-tag">Alertas</span></div></div><div class="showcase-main anim-fade-up delay-1"><div class="video-frame"><div class="browser-bar"><div class="browser-dots"><i></i><i></i><i></i></div><div class="browser-url">notificacoes-limpeza.dpa.com.br</div></div><div class="video-body"><video src="/images/projeto6-video.mp4" controls playsinline></video></div></div></div></div></div>
+      <header class="topbar">
+        <div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div>
+        <div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div>
+      </header>
+
+      <div class="slide-body p1-body">
+        <div class="p1-bg">
+          <div class="p1-bg-num">06</div>
+          <div class="p1-bg-orb p1-bg-orb1"></div>
+          <div class="p1-bg-orb p1-bg-orb2"></div>
+        </div>
+
+        <div class="p1-hero">
+          <div class="p1-info">
+            <div class="proj-future-badge anim-fade-down">PROJETO FUTURO</div>
+            <span class="p1-eyebrow anim-fade-down delay-1">Projeto 06 de 8</span>
+            <h2 class="p1-title anim-fade-up delay-1">Central de<br><span class="p1-title-red">Notificacoes</span></h2>
+            <div class="p1-line anim-width-in delay-2"></div>
+            <p class="p1-desc anim-fade-up delay-2">Sistema de notificacoes por area com gestao de colaboradores e alertas inteligentes para a limpeza.</p>
+            <div class="p1-tags anim-fade-up delay-3">
+              <span class="p1-tag">Notificacoes</span>
+              <span class="p1-tag">Areas</span>
+              <span class="p1-tag">Alertas</span>
+            </div>
+            <div class="p1-metrics anim-fade-up delay-4">
+              <div class="p1-metric">
+                <span class="p1-metric-icon">&#128276;</span>
+                <span class="p1-metric-val">Push</span>
+                <span class="p1-metric-lbl">Notificacoes</span>
+              </div>
+              <div class="p1-metric p1-metric--accent">
+                <span class="p1-metric-icon">&#127919;</span>
+                <span class="p1-metric-val">Area</span>
+                <span class="p1-metric-lbl">Segmentacao</span>
+              </div>
+              <div class="p1-metric">
+                <span class="p1-metric-icon">&#128065;</span>
+                <span class="p1-metric-val">Leitura</span>
+                <span class="p1-metric-lbl">Confirmacao</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="p1-preview anim-fade-left delay-2">
+            <div class="p1-browser-wrap">
+              <div class="p1-browser-glow"></div>
+              <div class="p1-video-frame">
+                <div class="browser-bar">
+                  <div class="browser-dots"><i></i><i></i><i></i></div>
+                  <div class="browser-url">notificacoes-limpeza.dpa.com.br</div>
+                </div>
+                <div class="p1-video-body">
+                  <video id="vid6" src="/images/projeto6-video.mp4" muted playsinline loop data-speed="2"></video>
+                  <div class="p1-video-controls">
+                    <button class="p1-vid-btn" onclick="document.getElementById('vid6').currentTime-=5" title="Voltar 5s">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/></svg>
+                      <span>5s</span>
+                    </button>
+                    <button class="p1-vid-btn p1-vid-btn--speed" onclick="var v=document.getElementById('vid6');v.playbackRate=v.playbackRate===2?1:2;this.querySelector('span').textContent=v.playbackRate===2?'2x':'1x'" title="Velocidade">
+                      <span>2x</span>
+                    </button>
+                    <button class="p1-vid-btn" onclick="document.getElementById('vid6').currentTime+=5" title="Avancar 5s">
+                      <span>5s</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ====== PROJETO 6B ====== -->
     <section class="slide" data-slide="12">
-      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-center-title anim-fade-down">Central de Notificacoes</div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
-      <div class="slide-body v2-body">
+      <header class="topbar">
+        <div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div>
+        <div class="topbar-center-title anim-fade-down">Central de Notificacoes</div>
+        <div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div>
+      </header>
+
+      <div class="slide-body v2-body p1s2-body">
         <div class="v2-main-grid">
-          <!-- DESAFIO -->
-          <div class="v2-col-before anim-fade-right">
-            <div class="v2-col-title v2-col-title--red"><span class="v2-dot v2-dot--red"></span> O Desafio (Antes)</div>
-            <div class="v2-no-image-box">
-              <span>Sem sistema de notificacoes</span>
-              <p>Atualmente nao existe nenhuma ferramenta para notificar colaboradores ou areas sobre tarefas, ocorrencias ou pendencias da limpeza.</p>
+          <!-- COLUNA ESQUERDA: ANTES -->
+          <div class="v2-col-before p1-col-before anim-fade-right">
+            <div class="p1-col-head">
+              <div class="p1-col-icon p1-col-icon--red">&#128683;</div>
+              <div>
+                <span class="p1-col-badge p1-col-badge--red">Antes</span>
+                <span class="p1-col-title">O Desafio</span>
+              </div>
             </div>
-            <ul class="v2-list v2-list--red">
-              <li>Comunicacao informal: Avisos dependem de mensagens em grupos de WhatsApp ou comunicacao verbal</li>
-              <li>Sem rastreio: Ninguem sabe se o colaborador recebeu, visualizou ou atendeu a solicitacao</li>
-              <li>Zero segmentacao: Nao existe separacao por area — avisos genericos para todos, sem direcionamento</li>
-            </ul>
+            <div class="v2-no-image-box" style="border-radius:14px">
+              <span>Sem sistema de notificacoes</span>
+              <p>Nao existe ferramenta para notificar colaboradores ou areas sobre tarefas, ocorrencias ou pendencias.</p>
+            </div>
+            <div class="p1-problems">
+              <div class="p1-problem anim-fade-up delay-1">
+                <span class="p1-problem-icon">&#10060;</span>
+                <div class="p1-problem-text">
+                  <strong>Comunicacao informal</strong>
+                  <span>Avisos dependem de grupos de WhatsApp ou comunicacao verbal</span>
+                </div>
+              </div>
+              <div class="p1-problem anim-fade-up delay-2">
+                <span class="p1-problem-icon">&#10060;</span>
+                <div class="p1-problem-text">
+                  <strong>Sem rastreio</strong>
+                  <span>Ninguem sabe se o colaborador recebeu, visualizou ou atendeu a solicitacao</span>
+                </div>
+              </div>
+              <div class="p1-problem anim-fade-up delay-3">
+                <span class="p1-problem-icon">&#10060;</span>
+                <div class="p1-problem-text">
+                  <strong>Zero segmentacao</strong>
+                  <span>Avisos genericos para todos, sem separacao por area ou direcionamento</span>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <!-- SOLUCAO -->
-          <div class="v2-col-after anim-fade-left delay-1">
-            <div class="v2-col-title v2-col-title--green"><span class="v2-dot v2-dot--green"></span> A Solucao (Prototipo)</div>
-            <div class="v2-img-wrap"><span class="v2-label v2-label--green">Prototipo</span><img src="/images/projeto6-depois.png" alt="Central de Notificacoes" /></div>
+          <!-- COLUNA DIREITA: DEPOIS -->
+          <div class="v2-col-after p1-col-after anim-fade-left delay-1">
+            <div class="p1-col-head">
+              <div class="p1-col-icon p1-col-icon--green">&#9989;</div>
+              <div>
+                <span class="p1-col-badge p1-col-badge--green">Prototipo</span>
+                <span class="p1-col-title">A Solucao</span>
+              </div>
+            </div>
+            <div class="v2-img-wrap p1-img-hover p1-img-after">
+              <img src="/images/projeto6-depois.png" alt="Central de Notificacoes" />
+            </div>
 
-            <div class="v2-group anim-fade-up delay-2">
+            <div class="p1-card anim-fade-up delay-2">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">01</div>
               <h6>Gestao por Area</h6>
               <ul class="v2-list v2-list--green">
-                <li>Selecao de areas (Financeiro, Tecnologia, RH, Comercial, Juridico, Operacoes) com visualizacao dos colaboradores de cada setor</li>
+                <li>Selecao de areas (Financeiro, Tecnologia, RH, Comercial, Juridico, Operacoes) com colaboradores de cada setor</li>
               </ul>
             </div>
 
-            <div class="v2-group anim-fade-up delay-2">
+            <div class="p1-card anim-fade-up delay-3">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">02</div>
               <h6>Notificacoes Direcionadas</h6>
               <ul class="v2-list v2-list--green">
-                <li>Envio de alertas individuais ou em massa por area, com confirmacao de recebimento e leitura</li>
+                <li>Alertas individuais ou em massa por area, com confirmacao de recebimento e leitura</li>
               </ul>
             </div>
 
-            <div class="v2-group anim-fade-up delay-3">
+            <div class="p1-card anim-fade-up delay-4">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">03</div>
               <h6>Painel de Controle</h6>
               <ul class="v2-list v2-list--green">
-                <li>Dashboard com status de cada notificacao (enviada, lida, respondida) e historico completo por colaborador</li>
+                <li>Dashboard com status de cada notificacao (enviada, lida, respondida) e historico por colaborador</li>
               </ul>
             </div>
           </div>
         </div>
 
-        <!-- CENARIOS -->
-        <div class="v2-time v2-time--triple anim-fade-up delay-4">
-          <div class="v2-time-block v2-time--slow">
-            <div class="v2-time-icon">&#128197;</div>
-            <div class="v2-time-info">
-              <span class="v2-time-label">Cenario A <small>- Ritmo da empresa</small></span>
-              <span class="v2-time-value v2-time-value--red">6h/sem (Tercas) &rarr; Quase 4 meses (15 semanas)</span><small class="v2-time-calc">~90h totais / 6h por semana = 15 semanas</small>
+        <!-- CENARIOS (3 opcoes) -->
+        <div class="p1-cenarios p1-cenarios--triple anim-fade-up delay-5">
+          <div class="p1-cen">
+            <div class="p1-cen-badge p1-cen-badge--red">A</div>
+            <div class="p1-cen-content">
+              <div class="p1-cen-top">
+                <span class="p1-cen-title">Disponibilidade da Empresa</span>
+                <span class="p1-cen-result p1-cen-result--red">&#8776; 2 Meses</span>
+              </div>
+              <p class="p1-cen-desc">Apenas <strong>1 dia por semana</strong> (Tercas), 6h dedicadas.</p>
+              <div class="p1-cen-math">~52h totais &divide; 6h/semana = ~9 semanas</div>
             </div>
           </div>
-          <div class="v2-time-block v2-time--mid">
-            <div class="v2-time-icon">&#128338;</div>
-            <div class="v2-time-info">
-              <span class="v2-time-label">Cenario B <small>- Meio-Termo (Equilibrio)</small></span>
-              <span class="v2-time-value" style="color:var(--ink)">3 dias prog. + 2 operacao, 18h/sem &rarr; 1 mes e 1 semana</span><small class="v2-time-calc">~90h totais / 18h por semana = 5 semanas</small>
+          <div class="p1-cen">
+            <div class="p1-cen-badge" style="background:#d97706">B</div>
+            <div class="p1-cen-content">
+              <div class="p1-cen-top">
+                <span class="p1-cen-title">Meio-Termo</span>
+                <span class="p1-cen-result" style="color:#d97706;background:#fffbeb;border-color:#fde68a">&#8776; 3 Semanas</span>
+              </div>
+              <p class="p1-cen-desc"><strong>3 dias programados</strong> (6h cada) + 2 dias na operacao.</p>
+              <div class="p1-cen-math">~52h totais &divide; 18h/semana = ~3 semanas</div>
             </div>
           </div>
-          <div class="v2-time-block v2-time--fast">
-            <div class="v2-time-icon">&#9889;</div>
-            <div class="v2-time-info">
-              <span class="v2-time-label">Cenario C <small>- Foco em Tecnologia (Ideal)</small></span>
-              <span class="v2-time-value v2-time-value--green">4 dias prog. + 1 admin, 24h/sem &rarr; Menos de 1 Mes</span><small class="v2-time-calc">~90h totais / 24h por semana = 3,75 semanas</small>
+          <div class="p1-cen p1-cen--highlight">
+            <div class="p1-cen-badge p1-cen-badge--teal">C</div>
+            <div class="p1-cen-content">
+              <div class="p1-cen-top">
+                <span class="p1-cen-title">Foco em Tecnologia</span>
+                <span class="p1-cen-result p1-cen-result--teal">2 Semanas</span>
+              </div>
+              <p class="p1-cen-desc"><strong>4 dias programados</strong> (6h cada) + 1 dia administrativo.</p>
+              <div class="p1-cen-math">~52h totais &divide; 24h/semana = ~2,2 semanas</div>
             </div>
           </div>
         </div>
@@ -582,82 +1448,211 @@
 
     <!-- ====== PROJETO 7A ====== -->
     <section class="slide" data-slide="13">
-      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
-      <div class="slide-body"><div class="showcase-layout"><div class="showcase-sidebar anim-fade-right"><div class="proj-num">07</div><div class="proj-future-badge">PROJETO FUTURO</div><h3 class="proj-name">Gestao de<br>Armarios</h3><p class="proj-desc">Sistema visual a prova de erros, com rastreio automatico e gestao inteligente de armarios por colaborador.</p><div class="proj-tag-row"><span class="proj-tag">Armarios</span><span class="proj-tag">UI/UX</span><span class="proj-tag">Auditoria</span></div></div><div class="showcase-main anim-fade-up delay-1"><div class="video-frame"><div class="browser-bar"><div class="browser-dots"><i></i><i></i><i></i></div><div class="browser-url">gestao-armarios.dpa.com.br</div></div><div class="video-body"><video src="/images/projeto7-video.mp4" controls playsinline></video></div></div></div></div></div>
+      <header class="topbar">
+        <div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div>
+        <div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div>
+      </header>
+
+      <div class="slide-body p1-body">
+        <div class="p1-bg">
+          <div class="p1-bg-num">07</div>
+          <div class="p1-bg-orb p1-bg-orb1"></div>
+          <div class="p1-bg-orb p1-bg-orb2"></div>
+        </div>
+
+        <div class="p1-hero">
+          <div class="p1-info">
+            <div class="proj-future-badge anim-fade-down">PROJETO FUTURO</div>
+            <span class="p1-eyebrow anim-fade-down delay-1">Projeto 07 de 8</span>
+            <h2 class="p1-title anim-fade-up delay-1">Gestao de<br><span class="p1-title-red">Armarios</span></h2>
+            <div class="p1-line anim-width-in delay-2"></div>
+            <p class="p1-desc anim-fade-up delay-2">Sistema visual a prova de erros, com rastreio automatico e gestao inteligente de armarios por colaborador.</p>
+            <div class="p1-tags anim-fade-up delay-3">
+              <span class="p1-tag">Armarios</span>
+              <span class="p1-tag">UI/UX</span>
+              <span class="p1-tag">Auditoria</span>
+            </div>
+            <div class="p1-metrics anim-fade-up delay-4">
+              <div class="p1-metric">
+                <span class="p1-metric-icon">&#128274;</span>
+                <span class="p1-metric-val">Mapa</span>
+                <span class="p1-metric-lbl">Visual</span>
+              </div>
+              <div class="p1-metric p1-metric--accent">
+                <span class="p1-metric-icon">&#128171;</span>
+                <span class="p1-metric-val">Anti</span>
+                <span class="p1-metric-lbl">Falha</span>
+              </div>
+              <div class="p1-metric">
+                <span class="p1-metric-icon">&#128203;</span>
+                <span class="p1-metric-val">Log</span>
+                <span class="p1-metric-lbl">Auditoria</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="p1-preview anim-fade-left delay-2">
+            <div class="p1-browser-wrap">
+              <div class="p1-browser-glow"></div>
+              <div class="p1-video-frame">
+                <div class="browser-bar">
+                  <div class="browser-dots"><i></i><i></i><i></i></div>
+                  <div class="browser-url">gestao-armarios.dpa.com.br</div>
+                </div>
+                <div class="p1-video-body">
+                  <video id="vid7" src="/images/projeto7-video.mp4" muted playsinline loop data-speed="2"></video>
+                  <div class="p1-video-controls">
+                    <button class="p1-vid-btn" onclick="document.getElementById('vid7').currentTime-=5" title="Voltar 5s">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/></svg>
+                      <span>5s</span>
+                    </button>
+                    <button class="p1-vid-btn p1-vid-btn--speed" onclick="var v=document.getElementById('vid7');v.playbackRate=v.playbackRate===2?1:2;this.querySelector('span').textContent=v.playbackRate===2?'2x':'1x'" title="Velocidade">
+                      <span>2x</span>
+                    </button>
+                    <button class="p1-vid-btn" onclick="document.getElementById('vid7').currentTime+=5" title="Avancar 5s">
+                      <span>5s</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ====== PROJETO 7B ====== -->
     <section class="slide" data-slide="14">
-      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-center-title anim-fade-down">Gestao de Armarios</div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
-      <div class="slide-body v2-body">
+      <header class="topbar">
+        <div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div>
+        <div class="topbar-center-title anim-fade-down">Gestao de Armarios</div>
+        <div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div>
+      </header>
+
+      <div class="slide-body v2-body p1s2-body">
         <div class="v2-main-grid">
-          <!-- DESAFIO -->
-          <div class="v2-col-before anim-fade-right">
-            <div class="v2-col-title v2-col-title--red"><span class="v2-dot v2-dot--red"></span> O Desafio (Cenario Atual)</div>
-            <div class="v2-img-wrap"><span class="v2-label v2-label--red">Planilha Excel</span><img src="/images/projeto7-antes.png" alt="Planilha de armarios" /></div>
-            <ul class="v2-list v2-list--red">
-              <li>Fragilidade de Dados: Planilhas complexas geridas manualmente, onde formulas vitais sao frequentemente apagadas ou corrompidas durante o uso rotineiro</li>
-              <li>Rastreabilidade Zero: Historico de movimentacao de armarios e colaboradores registrado de forma analogica ("por cima") ou no ceremonial no Excel</li>
-              <li>Falta de Auditoria (Ponto Cego): Impossibilidade de saber quem alterou uma informacao, quando a alteracao foi feita ou para onde o colaborador foi realocado</li>
-            </ul>
+          <!-- COLUNA ESQUERDA: ANTES -->
+          <div class="v2-col-before p1-col-before anim-fade-right">
+            <div class="p1-col-head">
+              <div class="p1-col-icon p1-col-icon--red">&#128683;</div>
+              <div>
+                <span class="p1-col-badge p1-col-badge--red">Cenario Atual</span>
+                <span class="p1-col-title">O Desafio</span>
+              </div>
+            </div>
+            <div class="v2-img-wrap p1-img-hover">
+              <img src="/images/projeto7-antes.png" alt="Planilha de armarios" />
+            </div>
+            <div class="p1-problems">
+              <div class="p1-problem anim-fade-up delay-1">
+                <span class="p1-problem-icon">&#10060;</span>
+                <div class="p1-problem-text">
+                  <strong>Fragilidade de dados</strong>
+                  <span>Planilhas com formulas vitais apagadas ou corrompidas durante o uso rotineiro</span>
+                </div>
+              </div>
+              <div class="p1-problem anim-fade-up delay-2">
+                <span class="p1-problem-icon">&#10060;</span>
+                <div class="p1-problem-text">
+                  <strong>Rastreabilidade zero</strong>
+                  <span>Movimentacao de armarios registrada de forma analogica ou "por cima" no Excel</span>
+                </div>
+              </div>
+              <div class="p1-problem anim-fade-up delay-3">
+                <span class="p1-problem-icon">&#10060;</span>
+                <div class="p1-problem-text">
+                  <strong>Ponto cego de auditoria</strong>
+                  <span>Impossivel saber quem alterou, quando ou para onde o colaborador foi realocado</span>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <!-- SOLUCAO -->
-          <div class="v2-col-after anim-fade-left delay-1">
-            <div class="v2-col-title v2-col-title--green"><span class="v2-dot v2-dot--green"></span> A Solucao (Prototipo do Futuro)</div>
-            <div class="v2-img-wrap"><span class="v2-label v2-label--green">Prototipo</span><img src="/images/projeto7-depois.png" alt="Sistema de armarios" /></div>
+          <!-- COLUNA DIREITA: DEPOIS -->
+          <div class="v2-col-after p1-col-after anim-fade-left delay-1">
+            <div class="p1-col-head">
+              <div class="p1-col-icon p1-col-icon--green">&#9989;</div>
+              <div>
+                <span class="p1-col-badge p1-col-badge--green">Prototipo Futuro</span>
+                <span class="p1-col-title">A Solucao</span>
+              </div>
+            </div>
+            <div class="v2-img-wrap p1-img-hover p1-img-after">
+              <img src="/images/projeto7-depois.png" alt="Sistema de armarios" />
+            </div>
 
-            <div class="v2-group anim-fade-up delay-2">
+            <div class="p1-card anim-fade-up delay-2">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">01</div>
               <h6>Gestao na Palma da Mao</h6>
               <ul class="v2-list v2-list--green">
-                <li>UI/UX moderno com layout que mapeia visualmente os armarios, permitindo adicionar ou movimentar colaboradores diretamente pelo celular</li>
+                <li>Mapa visual dos armarios, adicionar ou movimentar colaboradores diretamente pelo celular</li>
               </ul>
             </div>
 
-            <div class="v2-group anim-fade-up delay-2">
+            <div class="p1-card anim-fade-up delay-3">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">02</div>
               <h6>Sistema "A Prova de Falha"</h6>
               <ul class="v2-list v2-list--green">
-                <li>Elimina total de formulas, uma interface limpa e blindada, garantindo que nenhuma pessoa pressione sem querer um botao e quebre o sistema</li>
+                <li>Interface blindada sem formulas, ninguem quebra o sistema por acidente</li>
               </ul>
             </div>
 
-            <div class="v2-group anim-fade-up delay-3">
+            <div class="p1-card anim-fade-up delay-3">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">03</div>
               <h6>Banco de Auditoria Autonomo</h6>
               <ul class="v2-list v2-list--green">
-                <li>Cada movimentacao gera um registro imutavel no banco de dados, aposentando os "post-its" e criando um historico real e seguro</li>
+                <li>Cada movimentacao gera registro imutavel, aposentando post-its e criando historico seguro</li>
               </ul>
             </div>
 
-            <div class="v2-group anim-fade-up delay-3">
+            <div class="p1-card anim-fade-up delay-4">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">04</div>
               <h6>Dashboard de Movimentacoes</h6>
               <ul class="v2-list v2-list--green">
-                <li>Painel central para a administracao monitorar todas as trocas, sabendo exatamente quem mexeu, quando e para onde foi a chave</li>
+                <li>Painel central: quem mexeu, quando e para onde foi a chave</li>
               </ul>
             </div>
           </div>
         </div>
 
-        <!-- CENARIOS (3) -->
-        <div class="v2-time v2-time--triple anim-fade-up delay-4">
-          <div class="v2-time-block v2-time--slow">
-            <div class="v2-time-icon">&#128197;</div>
-            <div class="v2-time-info">
-              <span class="v2-time-label">Cenario A <small>- Ritmo da empresa</small></span>
-              <span class="v2-time-value v2-time-value--red">6h/sem (Tercas) &rarr; 8 meses (Meio ano)</span><small class="v2-time-calc">~192h totais / 6h por semana = 32 semanas</small>
+        <!-- CENARIOS (3 opcoes) -->
+        <div class="p1-cenarios p1-cenarios--triple anim-fade-up delay-5">
+          <div class="p1-cen">
+            <div class="p1-cen-badge p1-cen-badge--red">A</div>
+            <div class="p1-cen-content">
+              <div class="p1-cen-top">
+                <span class="p1-cen-title">Disponibilidade da Empresa</span>
+                <span class="p1-cen-result p1-cen-result--red">&#8776; 5 Meses</span>
+              </div>
+              <p class="p1-cen-desc">Apenas <strong>1 dia por semana</strong> (Tercas), 6h dedicadas.</p>
+              <div class="p1-cen-math">~130h totais &divide; 6h/semana = ~22 semanas</div>
             </div>
           </div>
-          <div class="v2-time-block v2-time--mid">
-            <div class="v2-time-icon">&#128338;</div>
-            <div class="v2-time-info">
-              <span class="v2-time-label">Cenario B <small>- Meio-Termo (Equilibrio)</small></span>
-              <span class="v2-time-value" style="color:var(--ink)">3 dias prog. + 2 operacao, 18h/sem &rarr; 2 Meses</span><small class="v2-time-calc">~192h totais / 18h por semana = ~11 semanas = 8 semanas uteis</small>
+          <div class="p1-cen">
+            <div class="p1-cen-badge" style="background:#d97706">B</div>
+            <div class="p1-cen-content">
+              <div class="p1-cen-top">
+                <span class="p1-cen-title">Meio-Termo</span>
+                <span class="p1-cen-result" style="color:#d97706;background:#fffbeb;border-color:#fde68a">&#8776; 2 Meses</span>
+              </div>
+              <p class="p1-cen-desc"><strong>3 dias programados</strong> (6h cada) + 2 dias na operacao.</p>
+              <div class="p1-cen-math">~130h totais &divide; 18h/semana = ~7 semanas</div>
             </div>
           </div>
-          <div class="v2-time-block v2-time--fast">
-            <div class="v2-time-icon">&#9889;</div>
-            <div class="v2-time-info">
-              <span class="v2-time-label">Cenario C <small>- Foco em Tecnologia (Ideal)</small></span>
-              <span class="v2-time-value v2-time-value--green">4 dias prog. + 1 admin, 24h/sem &rarr; 1 Mes e Meio</span><small class="v2-time-calc">~192h totais / 24h por semana = 8 semanas = 5 semanas uteis</small>
+          <div class="p1-cen p1-cen--highlight">
+            <div class="p1-cen-badge p1-cen-badge--teal">C</div>
+            <div class="p1-cen-content">
+              <div class="p1-cen-top">
+                <span class="p1-cen-title">Foco em Tecnologia</span>
+                <span class="p1-cen-result p1-cen-result--teal">5 Semanas</span>
+              </div>
+              <p class="p1-cen-desc"><strong>4 dias programados</strong> (6h cada) + 1 dia administrativo.</p>
+              <div class="p1-cen-math">~130h totais &divide; 24h/semana = ~5,4 semanas</div>
             </div>
           </div>
         </div>
@@ -666,85 +1661,212 @@
 
     <!-- ====== PROJETO 8A ====== -->
     <section class="slide" data-slide="15">
-      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
-      <div class="slide-body"><div class="showcase-layout"><div class="showcase-sidebar anim-fade-right"><div class="proj-num">08</div><div class="proj-future-badge">PROJETO FUTURO</div><h3 class="proj-name">Calendario<br>de Telas</h3><p class="proj-desc">Sistema de Manutencao Preditiva com modelagem 3D, checklists fotograficos e gestao visual do estoque.</p><div class="proj-tag-row"><span class="proj-tag">3D</span><span class="proj-tag">Estoque</span><span class="proj-tag">Manutencao</span></div></div><div class="showcase-main anim-fade-up delay-1"><div class="video-frame"><div class="browser-bar"><div class="browser-dots"><i></i><i></i><i></i></div><div class="browser-url">calendario-telas.dpa.com.br</div></div><div class="video-body"><video src="/images/projeto8-video.mp4" controls playsinline></video></div></div></div></div></div>
+      <header class="topbar">
+        <div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div>
+        <div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div>
+      </header>
+
+      <div class="slide-body p1-body">
+        <div class="p1-bg">
+          <div class="p1-bg-num">08</div>
+          <div class="p1-bg-orb p1-bg-orb1"></div>
+          <div class="p1-bg-orb p1-bg-orb2"></div>
+        </div>
+
+        <div class="p1-hero">
+          <div class="p1-info">
+            <div class="proj-future-badge anim-fade-down">PROJETO FUTURO</div>
+            <span class="p1-eyebrow anim-fade-down delay-1">Projeto 08 de 8</span>
+            <h2 class="p1-title anim-fade-up delay-1">Calendario<br><span class="p1-title-red">de Telas</span></h2>
+            <div class="p1-line anim-width-in delay-2"></div>
+            <p class="p1-desc anim-fade-up delay-2">Sistema de Manutencao Preditiva com modelagem 3D, checklists fotograficos e gestao visual do estoque.</p>
+            <div class="p1-tags anim-fade-up delay-3">
+              <span class="p1-tag">3D</span>
+              <span class="p1-tag">Estoque</span>
+              <span class="p1-tag">Manutencao</span>
+            </div>
+            <div class="p1-metrics anim-fade-up delay-4">
+              <div class="p1-metric">
+                <span class="p1-metric-icon">&#127916;</span>
+                <span class="p1-metric-val">3D</span>
+                <span class="p1-metric-lbl">Gemeo Digital</span>
+              </div>
+              <div class="p1-metric p1-metric--accent">
+                <span class="p1-metric-icon">&#128248;</span>
+                <span class="p1-metric-val">Foto</span>
+                <span class="p1-metric-lbl">Rating</span>
+              </div>
+              <div class="p1-metric">
+                <span class="p1-metric-icon">&#128680;</span>
+                <span class="p1-metric-val">Auto</span>
+                <span class="p1-metric-lbl">Alertas</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="p1-preview anim-fade-left delay-2">
+            <div class="p1-browser-wrap">
+              <div class="p1-browser-glow"></div>
+              <div class="p1-video-frame">
+                <div class="browser-bar">
+                  <div class="browser-dots"><i></i><i></i><i></i></div>
+                  <div class="browser-url">calendario-telas.dpa.com.br</div>
+                </div>
+                <div class="p1-video-body">
+                  <video id="vid8" src="/images/projeto8-video.mp4" muted playsinline loop data-speed="2"></video>
+                  <div class="p1-video-controls">
+                    <button class="p1-vid-btn" onclick="document.getElementById('vid8').currentTime-=5" title="Voltar 5s">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/></svg>
+                      <span>5s</span>
+                    </button>
+                    <button class="p1-vid-btn p1-vid-btn--speed" onclick="var v=document.getElementById('vid8');v.playbackRate=v.playbackRate===2?1:2;this.querySelector('span').textContent=v.playbackRate===2?'2x':'1x'" title="Velocidade">
+                      <span>2x</span>
+                    </button>
+                    <button class="p1-vid-btn" onclick="document.getElementById('vid8').currentTime+=5" title="Avancar 5s">
+                      <span>5s</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ====== PROJETO 8B ====== -->
     <section class="slide" data-slide="16">
-      <header class="topbar"><div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div><div class="topbar-center-title anim-fade-down">Calendario de Telas</div><div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div></header>
-      <div class="slide-body v2-body">
+      <header class="topbar">
+        <div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text anim-fade-down"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div>
+        <div class="topbar-center-title anim-fade-down">Calendario de Telas</div>
+        <div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div>
+      </header>
+
+      <div class="slide-body v2-body p1s2-body">
         <div class="v2-main-grid">
-          <!-- DESAFIO -->
-          <div class="v2-col-before anim-fade-right">
-            <div class="v2-col-title v2-col-title--red"><span class="v2-dot v2-dot--red"></span> O Desafio (Cenario Atual)</div>
-            <div class="v2-no-image-box">
-              <span>Sem sistema de gestao de telas</span>
-              <p>Nao existe ferramenta para controle visual do estoque de telas, manutencao ou rastreio de qualidade.</p>
+          <!-- COLUNA ESQUERDA: ANTES -->
+          <div class="v2-col-before p1-col-before anim-fade-right">
+            <div class="p1-col-head">
+              <div class="p1-col-icon p1-col-icon--red">&#128683;</div>
+              <div>
+                <span class="p1-col-badge p1-col-badge--red">Cenario Atual</span>
+                <span class="p1-col-title">O Desafio</span>
+              </div>
             </div>
-            <ul class="v2-list v2-list--red">
-              <li>Controle Informal: Acompanhamento feito exclusivamente por mensagens de WhatsApp ou do arquivo e fichamento alterado no local para inspecoes</li>
-              <li>Falta de Previsibilidade: Ausencia de um cronograma claro e visual sobre quando cada tela precisa ser trocada</li>
-              <li>Sem historico fotografico organizado e sem indicadores de aderencia para saber se o padrao de qualidade esta sendo mantido</li>
-            </ul>
+            <div class="v2-no-image-box" style="border-radius:14px">
+              <span>Sem sistema de gestao de telas</span>
+              <p>Nao existe ferramenta para controle visual do estoque, manutencao ou rastreio de qualidade.</p>
+            </div>
+            <div class="p1-problems">
+              <div class="p1-problem anim-fade-up delay-1">
+                <span class="p1-problem-icon">&#10060;</span>
+                <div class="p1-problem-text">
+                  <strong>Controle informal</strong>
+                  <span>Acompanhamento por WhatsApp ou fichamento alterado no local</span>
+                </div>
+              </div>
+              <div class="p1-problem anim-fade-up delay-2">
+                <span class="p1-problem-icon">&#10060;</span>
+                <div class="p1-problem-text">
+                  <strong>Falta de previsibilidade</strong>
+                  <span>Sem cronograma claro sobre quando cada tela precisa ser trocada</span>
+                </div>
+              </div>
+              <div class="p1-problem anim-fade-up delay-3">
+                <span class="p1-problem-icon">&#10060;</span>
+                <div class="p1-problem-text">
+                  <strong>Sem historico fotografico</strong>
+                  <span>Sem indicadores de aderencia para saber se o padrao de qualidade e mantido</span>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <!-- SOLUCAO -->
-          <div class="v2-col-after anim-fade-left delay-1">
-            <div class="v2-col-title v2-col-title--green"><span class="v2-dot v2-dot--green"></span> A Solucao (Prototipo do Futuro)</div>
-            <div class="v2-img-wrap"><span class="v2-label v2-label--green">Prototipo 3D</span><img src="/images/projeto8-depois.png" alt="Sistema 3D de telas" /></div>
+          <!-- COLUNA DIREITA: DEPOIS -->
+          <div class="v2-col-after p1-col-after anim-fade-left delay-1">
+            <div class="p1-col-head">
+              <div class="p1-col-icon p1-col-icon--green">&#9989;</div>
+              <div>
+                <span class="p1-col-badge p1-col-badge--green">Prototipo Futuro</span>
+                <span class="p1-col-title">A Solucao</span>
+              </div>
+            </div>
+            <div class="v2-img-wrap p1-img-hover p1-img-after">
+              <img src="/images/projeto8-depois.png" alt="Sistema 3D de telas" />
+            </div>
 
-            <div class="v2-group anim-fade-up delay-2">
+            <div class="p1-card anim-fade-up delay-2">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">01</div>
               <h6>Gemeo Digital em 3D</h6>
               <ul class="v2-list v2-list--green">
-                <li>Visualizacao das telas do estoque em 3D para facilitar a identificacao exata de qual equipamento esta sendo analisado</li>
+                <li>Visualizacao das telas em 3D para identificar exatamente qual equipamento esta sendo analisado</li>
               </ul>
             </div>
 
-            <div class="v2-group anim-fade-up delay-2">
+            <div class="p1-card anim-fade-up delay-3">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">02</div>
               <h6>Alertas Visuais e Automaticos</h6>
               <ul class="v2-list v2-list--green">
-                <li>De leitura rapida, a tela muda de cor automaticamente para vermelho no sistema quando o prazo da lavagem expira, forcando a acao da equipe</li>
+                <li>Tela muda de cor para vermelho quando o prazo da lavagem expira, forcando acao da equipe</li>
               </ul>
             </div>
 
-            <div class="v2-group anim-fade-up delay-3">
+            <div class="p1-card anim-fade-up delay-3">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">03</div>
               <h6>Checklist Fotografico com Rating</h6>
               <ul class="v2-list v2-list--green">
-                <li>Obrigatoriedade de anexar foto apos a lavagem para gerar uma nota/rating de qualidade do servico</li>
+                <li>Foto obrigatoria apos lavagem para gerar nota/rating de qualidade do servico</li>
               </ul>
             </div>
 
-            <div class="v2-group anim-fade-up delay-3">
-              <h6>Dashboard de Aderencia e Calendario</h6>
+            <div class="p1-card anim-fade-up delay-4">
+              <div class="p1-card-bar"></div>
+              <div class="p1-card-num">04</div>
+              <h6>Dashboard de Aderencia</h6>
               <ul class="v2-list v2-list--green">
-                <li>Painel nos mesmos moldes do sistema de escala, mostrando a frequencia de manutencao e o indice de cumprimento das tarefas</li>
+                <li>Frequencia de manutencao e indice de cumprimento das tarefas em tempo real</li>
               </ul>
             </div>
           </div>
         </div>
 
-        <!-- CENARIOS (3) -->
-        <div class="v2-time v2-time--triple anim-fade-up delay-4">
-          <div class="v2-time-block v2-time--slow">
-            <div class="v2-time-icon">&#128197;</div>
-            <div class="v2-time-info">
-              <span class="v2-time-label">Cenario A <small>- Ritmo da empresa</small></span>
-              <span class="v2-time-value v2-time-value--red">6h/sem (Tercas) &rarr; 3 meses (12 semanas)</span><small class="v2-time-calc">~72h totais / 6h por semana = 12 semanas</small>
+        <!-- CENARIOS (3 opcoes) -->
+        <div class="p1-cenarios p1-cenarios--triple anim-fade-up delay-5">
+          <div class="p1-cen">
+            <div class="p1-cen-badge p1-cen-badge--red">A</div>
+            <div class="p1-cen-content">
+              <div class="p1-cen-top">
+                <span class="p1-cen-title">Disponibilidade da Empresa</span>
+                <span class="p1-cen-result p1-cen-result--red">&#8776; 3 Meses</span>
+              </div>
+              <p class="p1-cen-desc">Apenas <strong>1 dia por semana</strong> (Tercas), 6h dedicadas.</p>
+              <div class="p1-cen-math">~78h totais &divide; 6h/semana = 13 semanas</div>
             </div>
           </div>
-          <div class="v2-time-block v2-time--mid">
-            <div class="v2-time-icon">&#128338;</div>
-            <div class="v2-time-info">
-              <span class="v2-time-label">Cenario B <small>- Meio-Termo (Equilibrio)</small></span>
-              <span class="v2-time-value" style="color:var(--ink)">3 dias prog. + 2 operacao, 18h/sem &rarr; 4 semanas (30 dias)</span><small class="v2-time-calc">~72h totais / 18h por semana = 4 semanas</small>
+          <div class="p1-cen">
+            <div class="p1-cen-badge" style="background:#d97706">B</div>
+            <div class="p1-cen-content">
+              <div class="p1-cen-top">
+                <span class="p1-cen-title">Meio-Termo</span>
+                <span class="p1-cen-result" style="color:#d97706;background:#fffbeb;border-color:#fde68a">&#8776; 1 Mes</span>
+              </div>
+              <p class="p1-cen-desc"><strong>3 dias programados</strong> (6h cada) + 2 dias na operacao.</p>
+              <div class="p1-cen-math">~78h totais &divide; 18h/semana = ~4,3 semanas</div>
             </div>
           </div>
-          <div class="v2-time-block v2-time--fast">
-            <div class="v2-time-icon">&#9889;</div>
-            <div class="v2-time-info">
-              <span class="v2-time-label">Cenario C <small>- Foco em Tecnologia (Ideal)</small></span>
-              <span class="v2-time-value v2-time-value--green">4 dias prog. + 1 admin, 24h/sem &rarr; 3 semanas</span><small class="v2-time-calc">~72h totais / 24h por semana = 3 semanas</small>
+          <div class="p1-cen p1-cen--highlight">
+            <div class="p1-cen-badge p1-cen-badge--teal">C</div>
+            <div class="p1-cen-content">
+              <div class="p1-cen-top">
+                <span class="p1-cen-title">Foco em Tecnologia</span>
+                <span class="p1-cen-result p1-cen-result--teal">3 Semanas</span>
+              </div>
+              <p class="p1-cen-desc"><strong>4 dias programados</strong> (6h cada) + 1 dia administrativo.</p>
+              <div class="p1-cen-math">~78h totais &divide; 24h/semana = ~3,2 semanas</div>
             </div>
           </div>
         </div>
@@ -752,115 +1874,104 @@
     </section>
 
     <!-- ====== FINAL ====== -->
-    <section class="slide slide--final-full" data-slide="17">
+    <section class="slide" data-slide="17">
       <header class="topbar">
         <div class="topbar-left"><img src="/images/logo-left.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /><div class="topbar-text"><span class="topbar-label">Projetos Digitais</span><span class="topbar-year">2026</span></div></div>
-        <div class="topbar-center-title">Resumo de Resultados</div>
+        <div class="topbar-center-title anim-fade-down">Resumo de Resultados</div>
         <div class="topbar-right"><img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" /></div>
       </header>
 
-      <div class="slide-body final-body">
+      <div class="slide-body v2-body p1s2-body" style="align-items:center;gap:16px">
         <!-- HEADLINE -->
-        <div class="final-headline anim-fade-up">
-          <span class="final-headline-time">1 ano</span> de Brasal. <span class="final-headline-accent">8 projetos.</span>
+        <div style="text-align:center" class="anim-fade-up">
+          <p style="font-size:0.7rem;text-transform:uppercase;letter-spacing:5px;color:#aaa;margin-bottom:6px">Resumo Geral</p>
+          <h2 style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:#1a1a1a;line-height:1.1">
+            <span style="color:#c41e2a">1 ano</span> de Brasal.
+            <span>8 projetos.</span>
+          </h2>
+          <p style="font-size:0.82rem;color:#777;font-style:italic;margin-top:4px">Um desenvolvedor. Resultados reais.</p>
         </div>
 
-        <!-- METRICAS PRINCIPAIS -->
-        <div class="final-metrics anim-fade-up">
-          <div class="final-metric">
-            <span class="final-metric-num" data-count="4">0</span>
-            <span class="final-metric-label">Projetos<br>Desenvolvidos</span>
+        <!-- METRICAS -->
+        <div class="fin-metrics anim-fade-up delay-1">
+          <div class="fin-met">
+            <span class="fin-met-num" data-count="4">0</span>
+            <span class="fin-met-lbl">Desenvolvidos</span>
           </div>
-          <div class="final-metric">
-            <span class="final-metric-num" data-count="3">0</span>
-            <span class="final-metric-label">Entregues<br>em Producao</span>
+          <div class="fin-met-sep"></div>
+          <div class="fin-met">
+            <span class="fin-met-num" data-count="3">0</span>
+            <span class="fin-met-lbl">Em Producao</span>
           </div>
-          <div class="final-metric">
-            <span class="final-metric-num" data-count="1">0</span>
-            <span class="final-metric-label">Em Fase<br>Final</span>
+          <div class="fin-met-sep"></div>
+          <div class="fin-met">
+            <span class="fin-met-num" data-count="1">0</span>
+            <span class="fin-met-lbl">Fase Final</span>
           </div>
-          <div class="final-metric">
-            <span class="final-metric-num" data-count="4">0</span>
-            <span class="final-metric-label">Prototipos<br>Futuros</span>
+          <div class="fin-met-sep"></div>
+          <div class="fin-met">
+            <span class="fin-met-num" data-count="4">0</span>
+            <span class="fin-met-lbl">Prototipos</span>
           </div>
-          <div class="final-metric final-metric--accent">
-            <span class="final-metric-num" data-count="100">0</span>
-            <span class="final-metric-unit">%</span>
-            <span class="final-metric-label">Digital<br>Sem papel</span>
-          </div>
-        </div>
-
-        <!-- O QUE FOI AUTOMATIZADO -->
-        <div class="final-section anim-fade-up delay-1">
-          <h4 class="final-section-title">O que foi automatizado</h4>
-          <div class="final-tags-grid">
-            <div class="final-tag-item">
-              <span class="final-tag-icon">&#128203;</span>
-              <span>Avaliacoes NPS com QR Code digital e dashboard automatico</span>
-            </div>
-            <div class="final-tag-item">
-              <span class="final-tag-icon">&#128197;</span>
-              <span>Escalas e calendario com rastreio fotografico em tempo real</span>
-            </div>
-            <div class="final-tag-item">
-              <span class="final-tag-icon">&#128230;</span>
-              <span>Solicitacao de material com catalogo visual e bloqueio de duplicidade</span>
-            </div>
-            <div class="final-tag-item">
-              <span class="final-tag-icon">&#9989;</span>
-              <span>Registro de limpeza com assinatura digital e sistema de cores</span>
-            </div>
-            <div class="final-tag-item">
-              <span class="final-tag-icon">&#128295;</span>
-              <span>Checklist de maquinarios com renderizacao 3D e foto obrigatoria</span>
-            </div>
-            <div class="final-tag-item">
-              <span class="final-tag-icon">&#128276;</span>
-              <span>Central de notificacoes por area com confirmacao de leitura</span>
-            </div>
-            <div class="final-tag-item">
-              <span class="final-tag-icon">&#128274;</span>
-              <span>Gestao de armarios com auditoria imutavel e mapa visual</span>
-            </div>
-            <div class="final-tag-item">
-              <span class="final-tag-icon">&#127916;</span>
-              <span>Calendario de telas com gemeo digital 3D e alertas automaticos</span>
-            </div>
+          <div class="fin-met-sep"></div>
+          <div class="fin-met fin-met--hl">
+            <span class="fin-met-num" data-count="100">0</span><span class="fin-met-pct">%</span>
+            <span class="fin-met-lbl">Digital</span>
           </div>
         </div>
 
-        <!-- ELIMINADOS -->
-        <div class="final-bottom anim-fade-up delay-2">
-          <div class="final-eliminated">
-            <h5>Eliminados</h5>
-            <div class="final-elim-row">
-              <span class="final-elim-item">&#10060; Planilhas manuais</span>
-              <span class="final-elim-item">&#10060; Google Forms</span>
-              <span class="final-elim-item">&#10060; Controle em papel</span>
-              <span class="final-elim-item">&#10060; WhatsApp como ferramenta</span>
-              <span class="final-elim-item">&#10060; Fotos perdidas no chat</span>
-              <span class="final-elim-item">&#10060; Formulas quebradas</span>
-            </div>
+        <!-- GRID: PROJETOS + ELIMINADOS/CRIADOS -->
+        <div class="fin-main anim-fade-up delay-2">
+          <!-- PROJETOS -->
+          <div class="fin-projs">
+            <h4 class="fin-section-title">Os 8 Projetos</h4>
+            <div class="fin-proj"><span class="fin-pn">01</span><span class="fin-pname">Avaliacao NPS</span><span class="fin-pdesc">Dashboard + QR Code digital</span><span class="fin-ps fin-ps--done">Producao</span><span class="fin-pt">3 sem</span></div>
+            <div class="fin-proj"><span class="fin-pn">02</span><span class="fin-pname">Calendario de Escalas</span><span class="fin-pdesc">Rastreio fotografico + Push</span><span class="fin-ps fin-ps--done">Producao</span><span class="fin-pt">2,5 sem</span></div>
+            <div class="fin-proj"><span class="fin-pn">03</span><span class="fin-pname">Solic. de Material</span><span class="fin-pdesc">Catalogo visual + anti-duplicidade</span><span class="fin-ps fin-ps--done">Producao</span><span class="fin-pt">4 sem</span></div>
+            <div class="fin-proj"><span class="fin-pn">04</span><span class="fin-pname">Registro de Limpeza</span><span class="fin-pdesc">Assinatura digital + Docker</span><span class="fin-ps fin-ps--wip">Fase Final</span><span class="fin-pt">10 meses</span></div>
+            <div class="fin-proj fin-proj--fut"><span class="fin-pn">05</span><span class="fin-pname">Checklist Maquinarios</span><span class="fin-pdesc">PWA + 3D + foto obrigatoria</span><span class="fin-ps fin-ps--proto">Prototipo</span><span class="fin-pt">3 sem</span></div>
+            <div class="fin-proj fin-proj--fut"><span class="fin-pn">06</span><span class="fin-pname">Central Notificacoes</span><span class="fin-pdesc">Alertas por area + confirmacao</span><span class="fin-ps fin-ps--proto">Prototipo</span><span class="fin-pt">2 sem</span></div>
+            <div class="fin-proj fin-proj--fut"><span class="fin-pn">07</span><span class="fin-pname">Gestao de Armarios</span><span class="fin-pdesc">Mapa visual + auditoria imutavel</span><span class="fin-ps fin-ps--proto">Prototipo</span><span class="fin-pt">5 sem</span></div>
+            <div class="fin-proj fin-proj--fut"><span class="fin-pn">08</span><span class="fin-pname">Calendario de Telas</span><span class="fin-pdesc">Gemeo 3D + alertas automaticos</span><span class="fin-ps fin-ps--proto">Prototipo</span><span class="fin-pt">3 sem</span></div>
           </div>
-          <div class="final-created">
-            <h5>Criados</h5>
-            <div class="final-elim-row">
-              <span class="final-created-item">&#9989; Dashboards inteligentes</span>
-              <span class="final-created-item">&#9989; Auditoria completa</span>
-              <span class="final-created-item">&#9989; Rastreio fotografico</span>
-              <span class="final-created-item">&#9989; Notificacoes Push</span>
-              <span class="final-created-item">&#9989; Prototipos 3D</span>
-              <span class="final-created-item">&#9989; Assinatura digital</span>
+
+          <!-- ELIMINADOS / CRIADOS -->
+          <div class="fin-compare">
+            <div class="fin-elim">
+              <h4 class="fin-section-title fin-section-title--red">Eliminados</h4>
+              <div class="fin-pills">
+                <span class="fin-pill fin-pill--red">&#10060; Planilhas manuais</span>
+                <span class="fin-pill fin-pill--red">&#10060; Google Forms</span>
+                <span class="fin-pill fin-pill--red">&#10060; Controle em papel</span>
+                <span class="fin-pill fin-pill--red">&#10060; WhatsApp como ferramenta</span>
+                <span class="fin-pill fin-pill--red">&#10060; Fotos perdidas no chat</span>
+                <span class="fin-pill fin-pill--red">&#10060; Formulas quebradas</span>
+              </div>
+            </div>
+            <div class="fin-criados">
+              <h4 class="fin-section-title fin-section-title--teal">Criados</h4>
+              <div class="fin-pills">
+                <span class="fin-pill fin-pill--teal">&#9989; Dashboards inteligentes</span>
+                <span class="fin-pill fin-pill--teal">&#9989; Auditoria completa</span>
+                <span class="fin-pill fin-pill--teal">&#9989; Rastreio fotografico</span>
+                <span class="fin-pill fin-pill--teal">&#9989; Notificacoes Push</span>
+                <span class="fin-pill fin-pill--teal">&#9989; Prototipos 3D</span>
+                <span class="fin-pill fin-pill--teal">&#9989; Assinatura digital</span>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- QR CODE -->
-        <div class="final-qr anim-fade-up delay-3">
-          <div class="final-qr-code" id="qrcode"></div>
-          <div class="final-qr-text">
-            <strong>Sugira um projeto!</strong>
-            <span>Escaneie o QR Code para enviar sua sugestao de projeto futuro.</span>
+        <div class="fin-qr anim-fade-up delay-3">
+          <div class="fin-qr-code" id="qrcode"></div>
+          <div class="fin-qr-text">
+            <strong>Central de Sugestoes</strong>
+            <span>Escaneie o QR Code para:</span>
+            <div class="fin-qr-options">
+              <span class="fin-qr-opt">&#128161; Sugerir um novo projeto</span>
+              <span class="fin-qr-opt">&#128295; Melhorar um sistema ja entregue</span>
+            </div>
           </div>
         </div>
       </div>
@@ -868,12 +1979,26 @@
   </div>
   <script type="module" src="/main.js"></script>
   <script>
-    // Gerar QR Code
     window.addEventListener('DOMContentLoaded', () => {
+      const base = window.location.origin;
+
+      // QR Sugestao (tela final)
       const qr = qrcode(0, 'M');
-      qr.addData(window.location.origin + '/sugestao.html');
+      qr.addData(base + '/sugestao.html');
       qr.make();
       document.getElementById('qrcode').innerHTML = qr.createSvgTag({ cellSize: 4, margin: 0 });
+
+      // QR Feedback - mesmo link para todos (usuario seleciona dentro)
+      const feedbackUrl = base + '/feedback.html';
+      ['qrFeedbackNPS','qrFeedbackCal','qrFeedbackMat'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          const q = qrcode(0, 'M');
+          q.addData(feedbackUrl);
+          q.make();
+          el.innerHTML = q.createSvgTag({ cellSize: 3, margin: 0 });
+        }
+      });
     });
   </script>
 </body>

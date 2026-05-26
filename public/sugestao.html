@@ -14,9 +14,9 @@
       --red-dark: #9e1821;
       --red-soft: #fef2f2;
       --red-border: #fca5a5;
-      --green: #16a34a;
-      --green-soft: #f0fdf4;
-      --green-border: #86efac;
+      --teal: #0f766e;
+      --teal-soft: #f0fdfa;
+      --teal-border: #99f6e4;
       --ink: #1a1a1a;
       --ink-light: #444;
       --ink-muted: #777;
@@ -28,13 +28,12 @@
 
     body {
       font-family: 'DM Sans', system-ui, sans-serif;
-      background: var(--white);
+      background: linear-gradient(160deg, #fff, #fdf8f8, #f9f3f3);
       color: var(--ink);
       min-height: 100vh;
       border-left: 6px solid var(--red);
     }
 
-    /* TOPBAR */
     .topbar {
       display: flex; align-items: center; justify-content: space-between;
       padding: 10px 24px;
@@ -44,207 +43,124 @@
     .topbar-left { display: flex; align-items: center; gap: 10px; }
     .topbar-logo { height: 28px; }
     .topbar-text { display: flex; flex-direction: column; }
-    .topbar-label {
-      font-size: 0.55rem; text-transform: uppercase;
-      letter-spacing: 2px; color: var(--ink-muted); font-weight: 500; line-height: 1;
-    }
-    .topbar-year {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.1rem; font-weight: 800; color: var(--red); line-height: 1.2;
-    }
-    .topbar-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 0.9rem; font-weight: 700; color: var(--ink);
-    }
+    .topbar-label { font-size: 0.55rem; text-transform: uppercase; letter-spacing: 2px; color: var(--ink-muted); font-weight: 500; line-height: 1; }
+    .topbar-year { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 800; color: var(--red); line-height: 1.2; }
+    .topbar-title { font-family: 'Playfair Display', serif; font-size: 0.9rem; font-weight: 700; color: var(--ink); }
 
-    /* MAIN */
-    .main {
-      max-width: 560px;
-      margin: 0 auto;
-      padding: 32px 20px 40px;
-    }
+    .main { max-width: 560px; margin: 0 auto; padding: 28px 20px 40px; }
 
-    /* HEADER */
-    .page-header {
-      text-align: center;
-      margin-bottom: 28px;
-    }
-    .page-header-label {
-      font-size: 0.62rem;
-      text-transform: uppercase;
-      letter-spacing: 4px;
-      color: var(--ink-muted);
-      font-weight: 500;
-    }
-    .page-header h1 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--ink);
-      margin-top: 6px;
-    }
-    .page-header h1 span { color: var(--red); }
-    .page-header-line {
-      width: 60px;
-      height: 2px;
-      background: var(--red);
-      margin: 12px auto;
-    }
-    .page-header p {
-      font-size: 0.82rem;
-      color: var(--ink-muted);
-      line-height: 1.5;
-    }
+    /* ESCOLHA INICIAL */
+    .choice-screen { text-align: center; }
+    .choice-label { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 4px; color: var(--ink-muted); font-weight: 500; }
+    .choice-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--ink); margin: 8px 0; }
+    .choice-title span { color: var(--red); }
+    .choice-line { width: 60px; height: 2px; background: var(--red); margin: 12px auto; }
+    .choice-sub { font-size: 0.82rem; color: var(--ink-muted); line-height: 1.5; margin-bottom: 24px; }
 
-    /* FORM CARD */
-    .form-card {
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.03), 0 4px 16px rgba(0,0,0,0.05);
+    .choice-cards { display: flex; gap: 14px; }
+    .choice-card {
+      flex: 1; padding: 24px 16px; border-radius: 16px; border: 2px solid var(--line);
+      background: var(--white); cursor: pointer; transition: all 0.3s; text-align: center;
     }
-    .form-card-stripe {
-      height: 3px;
-      background: var(--red);
-    }
-    .form-card-body {
-      padding: 24px;
-    }
+    .choice-card:hover { border-color: var(--red-border); box-shadow: 0 6px 24px rgba(196,30,42,0.08); transform: translateY(-4px); }
+    .choice-card-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+    .choice-card-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--ink); display: block; margin-bottom: 6px; }
+    .choice-card-desc { font-size: 0.68rem; color: var(--ink-muted); line-height: 1.5; }
 
-    /* FIELDS */
-    .field { margin-bottom: 18px; }
+    /* POPUP SELETOR DE SISTEMA */
+    .popup-overlay {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+      z-index: 100; align-items: center; justify-content: center; padding: 20px;
+    }
+    .popup-overlay.active { display: flex; }
+    .popup {
+      background: var(--white); border-radius: 20px; max-width: 480px; width: 100%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2); overflow: hidden;
+      animation: popIn 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    @keyframes popIn { from { opacity: 0; transform: scale(0.9) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+    .popup-header { padding: 20px 24px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; }
+    .popup-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--ink); }
+    .popup-close { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: var(--ink-muted); transition: all 0.2s; }
+    .popup-close:hover { background: var(--red-soft); border-color: var(--red-border); color: var(--red); }
+    .popup-body { padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 10px; }
+
+    .sys-card {
+      display: flex; align-items: center; gap: 14px; padding: 14px 16px;
+      border: 1.5px solid var(--line); border-radius: 14px; cursor: pointer;
+      transition: all 0.3s; background: var(--white);
+    }
+    .sys-card:hover { border-color: var(--red-border); box-shadow: 0 4px 16px rgba(196,30,42,0.06); transform: translateX(4px); }
+    .sys-card img { width: 60px; height: 40px; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); flex-shrink: 0; }
+    .sys-card-info { flex: 1; }
+    .sys-card-name { font-size: 0.8rem; font-weight: 700; color: var(--ink); display: block; }
+    .sys-card-desc { font-size: 0.62rem; color: var(--ink-muted); }
+    .sys-card-arrow { color: var(--ink-faint); font-size: 1.2rem; flex-shrink: 0; }
+
+    /* FORMULARIOS */
+    .form-screen { display: none; }
+    .form-screen.active { display: block; }
+    .form-back { display: inline-flex; align-items: center; gap: 6px; font-size: 0.72rem; color: var(--ink-muted); cursor: pointer; margin-bottom: 16px; transition: color 0.2s; border: none; background: none; font-family: inherit; }
+    .form-back:hover { color: var(--red); }
+    .form-header { text-align: center; margin-bottom: 20px; }
+    .form-header-label { font-size: 0.58rem; text-transform: uppercase; letter-spacing: 3px; color: var(--ink-muted); }
+    .form-header h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--ink); margin-top: 4px; }
+    .form-header h2 span { color: var(--red); }
+    .form-header-line { width: 50px; height: 2px; background: var(--red); margin: 10px auto; }
+    .form-header-sys { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: var(--red-soft); border: 1px solid var(--red-border); border-radius: 100px; font-size: 0.65rem; font-weight: 600; color: var(--red); margin-top: 8px; }
+    .form-header-sys img { width: 24px; height: 16px; object-fit: cover; border-radius: 4px; }
+
+    .form-card { background: var(--white); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,0.04); }
+    .form-card-stripe { height: 4px; background: linear-gradient(90deg, var(--red), var(--red-dark)); }
+    .form-card-body { padding: 24px; }
+
+    .field { margin-bottom: 16px; }
     .field:last-of-type { margin-bottom: 0; }
-    .field label {
-      display: flex; align-items: center; gap: 6px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 6px;
-    }
-    .field label .field-num {
-      width: 20px; height: 20px;
-      background: var(--red);
-      color: var(--white);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.58rem;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-    .field label small {
-      font-weight: 400;
-      color: var(--ink-faint);
-    }
-    .field input, .field textarea, .field select {
-      width: 100%;
-      padding: 10px 14px;
-      border: 1.5px solid var(--line);
-      border-radius: 8px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.82rem;
-      color: var(--ink);
-      background: var(--surface);
-      transition: all 0.2s ease;
-    }
-    .field input:focus, .field textarea:focus, .field select:focus {
-      outline: none;
-      border-color: var(--red);
-      background: var(--white);
-      box-shadow: 0 0 0 3px rgba(196,30,42,0.08);
-    }
-    .field input::placeholder, .field textarea::placeholder {
-      color: var(--ink-faint);
-    }
-    .field textarea { resize: vertical; min-height: 90px; }
-    .field select { cursor: pointer; }
+    .field label { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+    .field label .field-num { width: 20px; height: 20px; background: var(--red); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.58rem; font-weight: 700; flex-shrink: 0; }
+    .field label small { font-weight: 400; color: var(--ink-faint); }
+    .field input, .field textarea, .field select { width: 100%; padding: 10px 14px; border: 1.5px solid var(--line); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; color: var(--ink); background: var(--surface); transition: all 0.2s; }
+    .field input:focus, .field textarea:focus, .field select:focus { outline: none; border-color: var(--red); background: var(--white); box-shadow: 0 0 0 3px rgba(196,30,42,0.08); }
+    .field input::placeholder, .field textarea::placeholder { color: var(--ink-faint); }
+    .field textarea { resize: vertical; min-height: 80px; }
 
-    /* BUTTON */
-    .btn-wrap { margin-top: 24px; }
-    .btn {
-      width: 100%;
-      padding: 13px;
-      background: var(--red);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      letter-spacing: 0.5px;
-    }
-    .btn:hover {
-      background: var(--red-dark);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 14px rgba(196,30,42,0.2);
-    }
+    .btn-wrap { margin-top: 20px; }
+    .btn { width: 100%; padding: 14px; background: linear-gradient(135deg, var(--red), var(--red-dark)); color: white; border: none; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; letter-spacing: 0.5px; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(196,30,42,0.25); }
     .btn:disabled { background: var(--ink-muted); cursor: not-allowed; transform: none; box-shadow: none; }
 
-    /* SUCCESS */
-    .success {
-      display: none;
-      text-align: center;
-      padding: 50px 24px;
-    }
-    .success-icon {
-      width: 56px; height: 56px;
-      background: var(--green-soft);
-      border: 2px solid var(--green-border);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 16px;
-      font-size: 1.5rem;
-    }
-    .success h2 {
-      font-family: 'Playfair Display', Georgia, serif;
-      color: var(--green);
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-    .success p {
-      color: var(--ink-muted);
-      font-size: 0.82rem;
-      line-height: 1.6;
-      max-width: 360px;
-      margin: 0 auto;
-    }
-    .success-badge {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 8px 20px;
-      background: var(--green-soft);
-      border: 1px solid var(--green-border);
-      border-radius: 100px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--green);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-    }
+    .success { display: none; text-align: center; padding: 50px 24px; }
+    .success-icon { width: 56px; height: 56px; background: var(--teal-soft); border: 2px solid var(--teal-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 1.5rem; }
+    .success h2 { font-family: 'Playfair Display', serif; color: var(--teal); font-size: 1.6rem; font-weight: 700; margin-bottom: 8px; }
+    .success p { color: var(--ink-muted); font-size: 0.82rem; line-height: 1.6; max-width: 360px; margin: 0 auto; }
+    .success-badge { display: inline-block; margin-top: 16px; padding: 8px 20px; background: var(--teal-soft); border: 1px solid var(--teal-border); border-radius: 100px; font-size: 0.7rem; font-weight: 600; color: var(--teal); text-transform: uppercase; letter-spacing: 1.5px; }
+    .success-back { display: inline-block; margin-top: 16px; font-size: 0.72rem; color: var(--red); cursor: pointer; text-decoration: underline; border: none; background: none; font-family: inherit; }
 
-    /* FOOTER */
-    .page-footer {
-      text-align: center;
-      margin-top: 24px;
-      padding-bottom: 20px;
-    }
-    .page-footer span {
-      font-size: 0.65rem;
-      color: var(--ink-faint);
-      letter-spacing: 1px;
-    }
+    .page-footer { text-align: center; margin-top: 24px; }
+    .page-footer span { font-size: 0.65rem; color: var(--ink-faint); letter-spacing: 1px; }
 
-    /* RESPONSIVO */
-    @media (max-width: 480px) {
-      .main { padding: 20px 14px 30px; }
-      .page-header h1 { font-size: 1.5rem; }
+    @media (max-width: 768px) {
+      .main { padding: 18px 16px 36px; max-width: 100%; }
+      .choice-cards { flex-direction: column; }
+      .choice-title { font-size: 1.4rem; }
+      .choice-card { padding: 18px 14px; }
+      .popup { margin: 10px; border-radius: 16px; }
+      .popup-body { padding: 14px 18px 20px; }
+      .sys-card { padding: 12px; }
+      .sys-card img { width: 52px; height: 34px; }
       .form-card-body { padding: 18px; }
-      .topbar { padding: 8px 14px; }
-      .topbar-title { font-size: 0.75rem; }
+      .field input, .field textarea, .field select { font-size: .8rem; padding: 10px 12px; }
+      .topbar { padding: 8px 16px; }
+      .topbar-title { font-size: .78rem; }
+      .form-header-sys img { width: 20px; height: 14px; }
+    }
+    @media (max-width: 380px) {
+      .main { padding: 12px 10px 30px; }
+      .choice-title { font-size: 1.2rem; }
+      .choice-card { padding: 14px 10px; }
+      .choice-card-name { font-size: .88rem; }
+      .choice-card-desc { font-size: .6rem; }
+      .btn { padding: 12px; font-size: .78rem; }
     }
   </style>
 </head>
@@ -257,74 +173,158 @@
         <span class="topbar-year">2026</span>
       </div>
     </div>
-    <span class="topbar-title">Sugestao de Projeto</span>
+    <span class="topbar-title">Central de Sugestoes</span>
     <div>
       <img src="/images/logo-right.png" alt="" class="topbar-logo" onerror="this.style.display='none'" />
     </div>
   </header>
 
   <div class="main">
-    <div class="page-header">
-      <p class="page-header-label">Compartilhe sua ideia</p>
-      <h1>Sugira um <span>Projeto</span></h1>
-      <div class="page-header-line"></div>
-      <p>Tem uma ideia para melhorar algum processo?<br>Preencha o formulario abaixo e sua sugestao sera analisada.</p>
+    <!-- TELA 1: ESCOLHA -->
+    <div id="choiceScreen" class="choice-screen">
+      <p class="choice-label">O que voce deseja?</p>
+      <h1 class="choice-title">Central de <span>Sugestoes</span></h1>
+      <div class="choice-line"></div>
+      <p class="choice-sub">Escolha uma opcao abaixo para continuar.</p>
+
+      <div class="choice-cards">
+        <div class="choice-card" onclick="showScreen('sugestao')">
+          <span class="choice-card-icon">&#128161;</span>
+          <span class="choice-card-name">Sugestao de Projeto</span>
+          <span class="choice-card-desc">Tenho uma ideia para um novo sistema ou processo digital.</span>
+        </div>
+        <div class="choice-card" onclick="openSystemPopup()">
+          <span class="choice-card-icon">&#128295;</span>
+          <span class="choice-card-name">Melhoria / Manutencao</span>
+          <span class="choice-card-desc">Quero sugerir uma melhoria ou reportar algo em um sistema ja entregue.</span>
+        </div>
+      </div>
     </div>
 
-    <div class="form-card">
-      <div class="form-card-stripe"></div>
-      <div class="form-card-body">
-        <form id="form">
-          <div class="field">
-            <label><span class="field-num">1</span> Seu Nome</label>
-            <input type="text" name="nome" required placeholder="Ex: Joao Silva" />
+    <!-- TELA 2: SUGESTAO DE PROJETO -->
+    <div id="sugestaoScreen" class="form-screen">
+      <button class="form-back" onclick="showScreen('choice')">&#8592; Voltar</button>
+      <div class="form-header">
+        <p class="form-header-label">Novo Projeto</p>
+        <h2>Sugira um <span>Projeto</span></h2>
+        <div class="form-header-line"></div>
+      </div>
+      <div class="form-card">
+        <div class="form-card-stripe"></div>
+        <div class="form-card-body">
+          <form id="formSugestao">
+            <div class="field">
+              <label><span class="field-num">1</span> Seu Nome</label>
+              <input type="text" name="nome" required placeholder="Ex: Joao Silva" />
+            </div>
+            <div class="field">
+              <label><span class="field-num">2</span> Setor / Area</label>
+              <input type="text" name="setor" required placeholder="Ex: Limpeza, Administrativo..." />
+            </div>
+            <div class="field">
+              <label><span class="field-num">3</span> Nome do Projeto <small>(titulo curto)</small></label>
+              <input type="text" name="projeto" required placeholder="Ex: Controle de Uniformes" />
+            </div>
+            <div class="field">
+              <label><span class="field-num">4</span> Qual o problema hoje?</label>
+              <textarea name="problema" required placeholder="Descreva o que acontece atualmente..."></textarea>
+            </div>
+            <div class="field">
+              <label><span class="field-num">5</span> Como e feito hoje?</label>
+              <select name="como_hoje" required>
+                <option value="">Selecione...</option>
+                <option value="Manual (papel)">Manual (papel)</option>
+                <option value="Planilha Excel">Planilha Excel</option>
+                <option value="Google Forms">Google Forms</option>
+                <option value="WhatsApp">WhatsApp</option>
+                <option value="Nao e feito">Nao e feito / Nao existe</option>
+                <option value="Outro">Outro</option>
+              </select>
+            </div>
+            <div class="field">
+              <label><span class="field-num">6</span> Prioridade</label>
+              <select name="prioridade" required>
+                <option value="">Selecione a urgencia...</option>
+                <option value="Alta">Alta - Urgente</option>
+                <option value="Media">Media - Importante</option>
+                <option value="Baixa">Baixa - Futuro</option>
+              </select>
+            </div>
+            <div class="btn-wrap">
+              <button type="submit" class="btn">Enviar Sugestao &#8594;</button>
+            </div>
+          </form>
+          <div class="success" id="successSugestao">
+            <div class="success-icon">&#9989;</div>
+            <h2>Sugestao Enviada!</h2>
+            <p>Obrigado! Sua ideia sera analisada pela equipe de tecnologia.</p>
+            <span class="success-badge">Registrado com sucesso</span><br>
+            <button class="success-back" onclick="location.reload()">Enviar outra</button>
           </div>
-          <div class="field">
-            <label><span class="field-num">2</span> Setor / Area</label>
-            <input type="text" name="setor" required placeholder="Ex: Limpeza, Administrativo, Operacoes..." />
-          </div>
-          <div class="field">
-            <label><span class="field-num">3</span> Nome do Projeto <small>(titulo curto)</small></label>
-            <input type="text" name="projeto" required placeholder="Ex: Controle de Uniformes" />
-          </div>
-          <div class="field">
-            <label><span class="field-num">4</span> Qual o problema hoje?</label>
-            <textarea name="problema" required placeholder="Descreva o que acontece atualmente e por que e um problema..."></textarea>
-          </div>
-          <div class="field">
-            <label><span class="field-num">5</span> Como e feito hoje?</label>
-            <select name="como_hoje" required>
-              <option value="">Selecione uma opcao...</option>
-              <option value="Manual (papel)">Manual (papel)</option>
-              <option value="Planilha Excel">Planilha Excel</option>
-              <option value="Google Forms">Google Forms</option>
-              <option value="WhatsApp">WhatsApp</option>
-              <option value="Nao e feito">Nao e feito / Nao existe</option>
-              <option value="Outro">Outro</option>
-            </select>
-          </div>
-          <div class="field">
-            <label><span class="field-num">6</span> Prioridade</label>
-            <select name="prioridade" required>
-              <option value="">Selecione a urgencia...</option>
-              <option value="Alta">Alta - Urgente, impacta o dia a dia</option>
-              <option value="Media">Media - Importante, mas nao urgente</option>
-              <option value="Baixa">Baixa - Seria bom ter no futuro</option>
-            </select>
-          </div>
-          <div class="btn-wrap">
-            <button type="submit" class="btn" id="submitBtn">
-              Enviar Sugestao
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </button>
-          </div>
-        </form>
+        </div>
+      </div>
+    </div>
 
-        <div class="success" id="success">
-          <div class="success-icon">&#9989;</div>
-          <h2>Sugestao Enviada!</h2>
-          <p>Obrigado pela sua contribuicao. Sua ideia sera analisada pela equipe de tecnologia e voce podera acompanhar o andamento.</p>
-          <span class="success-badge">Registrado com sucesso</span>
+    <!-- TELA 3: MELHORIA DE SISTEMA -->
+    <div id="melhoriaScreen" class="form-screen">
+      <button class="form-back" onclick="showScreen('choice')">&#8592; Voltar</button>
+      <div class="form-header">
+        <p class="form-header-label">Melhoria / Manutencao</p>
+        <h2>Melhoria no <span>Sistema</span></h2>
+        <div class="form-header-line"></div>
+        <div class="form-header-sys" id="selectedSysTag">
+          <img id="selectedSysImg" src="" alt="" />
+          <span id="selectedSysName"></span>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="form-card-stripe" style="background:linear-gradient(90deg,var(--teal),#14b8a6)"></div>
+        <div class="form-card-body">
+          <form id="formMelhoria">
+            <input type="hidden" name="sistema" id="melSistema" />
+            <div class="field">
+              <label><span class="field-num" style="background:var(--teal)">1</span> Seu Nome</label>
+              <input type="text" name="nome" required placeholder="Ex: Joao Silva" />
+            </div>
+            <div class="field">
+              <label><span class="field-num" style="background:var(--teal)">2</span> Setor / Area</label>
+              <input type="text" name="setor" required placeholder="Ex: Limpeza, Administrativo..." />
+            </div>
+            <div class="field">
+              <label><span class="field-num" style="background:var(--teal)">3</span> Tipo de Solicitacao</label>
+              <select name="tipo" required>
+                <option value="">Selecione...</option>
+                <option value="Melhoria">Melhoria - Adicionar funcionalidade</option>
+                <option value="Correcao">Correcao - Algo nao esta funcionando</option>
+                <option value="Ajuste visual">Ajuste visual - Layout/Design</option>
+                <option value="Nova funcionalidade">Nova funcionalidade</option>
+                <option value="Outro">Outro</option>
+              </select>
+            </div>
+            <div class="field">
+              <label><span class="field-num" style="background:var(--teal)">4</span> Descreva a melhoria</label>
+              <textarea name="descricao" required placeholder="Explique o que gostaria de mudar ou adicionar..."></textarea>
+            </div>
+            <div class="field">
+              <label><span class="field-num" style="background:var(--teal)">5</span> Prioridade</label>
+              <select name="prioridade" required>
+                <option value="">Selecione...</option>
+                <option value="Alta">Alta - Urgente</option>
+                <option value="Media">Media - Importante</option>
+                <option value="Baixa">Baixa - Quando possivel</option>
+              </select>
+            </div>
+            <div class="btn-wrap">
+              <button type="submit" class="btn" style="background:linear-gradient(135deg,var(--teal),#0d9488)">Enviar Melhoria &#8594;</button>
+            </div>
+          </form>
+          <div class="success" id="successMelhoria">
+            <div class="success-icon">&#9989;</div>
+            <h2>Melhoria Registrada!</h2>
+            <p>Obrigado! Sua solicitacao sera analisada e priorizada pela equipe.</p>
+            <span class="success-badge">Registrado com sucesso</span><br>
+            <button class="success-back" onclick="location.reload()">Enviar outra</button>
+          </div>
         </div>
       </div>
     </div>
@@ -334,42 +334,101 @@
     </div>
   </div>
 
-  <script>
-    document.getElementById('form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const btn = document.getElementById('submitBtn');
-      btn.disabled = true;
-      btn.innerHTML = 'Enviando...';
+  <!-- POPUP SELECAO DE SISTEMA -->
+  <div class="popup-overlay" id="popupOverlay" onclick="if(event.target===this)closePopup()">
+    <div class="popup">
+      <div class="popup-header">
+        <span class="popup-title">Selecione o Sistema</span>
+        <button class="popup-close" onclick="closePopup()">&#10005;</button>
+      </div>
+      <div class="popup-body">
+        <div class="sys-card" onclick="selectSystem('Avaliacao NPS','/images/projeto1-tela.png','Dashboard + QR Code digital')">
+          <img src="/images/projeto1-tela.png" alt="NPS" />
+          <div class="sys-card-info">
+            <span class="sys-card-name">01 - Avaliacao NPS</span>
+            <span class="sys-card-desc">Dashboard + QR Code digital</span>
+          </div>
+          <span class="sys-card-arrow">&#8594;</span>
+        </div>
+        <div class="sys-card" onclick="selectSystem('Calendario de Escalas','/images/projeto2-tela.png','Gestao de escalas + rastreio fotografico')">
+          <img src="/images/projeto2-tela.png" alt="Calendario" />
+          <div class="sys-card-info">
+            <span class="sys-card-name">02 - Calendario de Escalas</span>
+            <span class="sys-card-desc">Gestao de escalas + rastreio fotografico</span>
+          </div>
+          <span class="sys-card-arrow">&#8594;</span>
+        </div>
+        <div class="sys-card" onclick="selectSystem('Solicitacao de Material','/images/projeto3-tela.png','Catalogo visual + controle de suprimentos')">
+          <img src="/images/projeto3-tela.png" alt="Material" />
+          <div class="sys-card-info">
+            <span class="sys-card-name">03 - Solicitacao de Material</span>
+            <span class="sys-card-desc">Catalogo visual + controle de suprimentos</span>
+          </div>
+          <span class="sys-card-arrow">&#8594;</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
-      const fd = new FormData(e.target);
-      const data = {
-        data: new Date().toLocaleString('pt-BR'),
-        nome: fd.get('nome'),
-        setor: fd.get('setor'),
-        projeto: fd.get('projeto'),
-        problema: fd.get('problema'),
-        como_hoje: fd.get('como_hoje'),
-        prioridade: fd.get('prioridade')
-      };
+  <script>
+    function showScreen(screen) {
+      document.getElementById('choiceScreen').style.display = screen === 'choice' ? 'block' : 'none';
+      document.getElementById('sugestaoScreen').className = screen === 'sugestao' ? 'form-screen active' : 'form-screen';
+      document.getElementById('melhoriaScreen').className = screen === 'melhoria' ? 'form-screen active' : 'form-screen';
+    }
+
+    function openSystemPopup() {
+      document.getElementById('popupOverlay').classList.add('active');
+    }
+
+    function closePopup() {
+      document.getElementById('popupOverlay').classList.remove('active');
+    }
+
+    function selectSystem(name, img, desc) {
+      document.getElementById('melSistema').value = name;
+      document.getElementById('selectedSysName').textContent = name;
+      document.getElementById('selectedSysImg').src = img;
+      closePopup();
+      showScreen('melhoria');
+    }
+
+    async function submitForm(formId, successId, tipo) {
+      const form = document.getElementById(formId);
+      const fd = new FormData(form);
+      const data = { data: new Date().toLocaleString('pt-BR'), tipo: tipo };
+      fd.forEach((v, k) => data[k] = v);
+
+      const btn = form.querySelector('.btn');
+      btn.disabled = true;
+      btn.textContent = 'Enviando...';
 
       try {
-        const sugestoes = JSON.parse(localStorage.getItem('sugestoes') || '[]');
-        sugestoes.push(data);
-        localStorage.setItem('sugestoes', JSON.stringify(sugestoes));
+        localStorage.setItem('sugestoes', JSON.stringify([
+          ...JSON.parse(localStorage.getItem('sugestoes') || '[]'), data
+        ]));
 
         await fetch('https://script.google.com/macros/s/AKfycbwNOJ2CzwoQuCfvpKwaFIXaaCzbLOYqUaIdSwlR4qBqv2NR2qnMyhtO3gzGQTIosrt8ng/exec', {
-          method: 'POST',
-          mode: 'no-cors',
-          body: JSON.stringify(data)
+          method: 'POST', mode: 'no-cors', body: JSON.stringify(data)
         });
 
-        document.getElementById('form').style.display = 'none';
-        document.getElementById('success').style.display = 'block';
+        form.style.display = 'none';
+        document.getElementById(successId).style.display = 'block';
       } catch (err) {
         alert('Erro ao enviar. Tente novamente.');
         btn.disabled = false;
-        btn.innerHTML = 'Enviar Sugestao';
+        btn.textContent = 'Enviar';
       }
+    }
+
+    document.getElementById('formSugestao').addEventListener('submit', (e) => {
+      e.preventDefault();
+      submitForm('formSugestao', 'successSugestao', 'Sugestao de Projeto');
+    });
+
+    document.getElementById('formMelhoria').addEventListener('submit', (e) => {
+      e.preventDefault();
+      submitForm('formMelhoria', 'successMelhoria', 'Melhoria de Sistema');
     });
   </script>
 </body>
