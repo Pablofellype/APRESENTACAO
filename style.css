@@ -78,7 +78,7 @@ html, body {
    COVER - CAPA DARK CINEMATIC
    ============================================================ */
 .slide--cover {
-  background: linear-gradient(145deg, #fff 0%, #faf5f5 30%, #f5f0f1 60%, #fdf8f8 100%) !important;
+  background: pink !important;
   position: relative;
   overflow: hidden;
   min-height: 100vh;
